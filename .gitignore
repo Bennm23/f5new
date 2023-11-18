@@ -1,2 +1,5 @@
 env/*
 venv/*
+
+project/firstfive/__pycache__
+project/firstfive/__pycache__/*
