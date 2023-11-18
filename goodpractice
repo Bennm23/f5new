@@ -1,0 +1,81 @@
+press ctrl+shift+v to get a nice view
+
+Style Guide = https://github.com/HackSoftware/Django-Styleguide
+
+**Models**
+
+Should only contain logic for managing that model and its relations
+    1. Properties
+    2. Clean methods for additional validation
+
+**Views & APIs**
+
+    Serializers
+
+        1. Transform Python/ORM objects into JSON(or xml etc)
+        2. Transform JSON to pythong data / ORM
+        3. Should NOT take care of creating objects and doing additional buisiness logic
+
+    How can we use API Views? Do we need REST API
+
+Existing 'Boxes'
+
+    1. Models
+    2. Views/APIs
+    3. Templates
+    4. Forms/Serializers
+    5. Tasks
+
+**New Buisness Logic Boxes**
+
+    1. app/services.py
+        General unit that holds buisness logic
+        Service = A simple, type annotated function
+
+        Rest of Django is being communicating with the service(APIs) or from the service(ORM)
+        Works mostly and mainly with models
+
+        **Every non-trivial operation, where objects are being created, should be a service**
+        Ex:
+            def create_user(
+                *, //What is *
+                email: str,
+                name: str
+            ) -> User:
+                user = User(email = email) //Instantiation
+                user.full_clean() //Validation
+                user.save() //DB Insertion
+
+                //Call other services
+                create_profile(user = user, name = name) 
+                send_confirmation_email(user = user) //Then calls a Task, tasks should be wrapped in a service
+
+                return user
+
+    2. app/selectors.py
+        Selectors are responsible for FETCHING data from the database
+        Can handle permissions, filtering etc
+
+        Selectors vs Model Properties
+            If a model property starts doing queries on the model's realtions, or outside them, it should be a selector.
+        Ex.
+            def get_users(*, fetched_by: User) -> Iterable[User]:
+                user_ids = get_visible_users_for(user = fetched_by);//Another Selector
+
+                query = Q(id__in = user_ids) //Build database query
+
+                return User.objects.filter(query); //Use Database Query
+    
+        Bad Ex.
+        class Lecture(models.Model):
+
+            @property
+            def not_present_students(self):
+                present_ids = self.present_students.values_list('id', flat=True)
+
+                return self.course.students.exclude(id__in=present_ids)
+
+**Serializers**
+
+    Serializers are nested inside the API.
+        This prevents multiple usages of serializers where one need which changes the serializer breaks other usages.
