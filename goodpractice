@@ -80,3 +80,11 @@ Style Guide = https://github.com/HackSoftware/Django-Styleguide
 
     Serializers are nested inside the API.
     This prevents multiple usages of serializers where one need which changes the serializer breaks other usages.
+
+
+**Arguments Against 'Service' Layer**
+
+    Article by James Bennet an original contributer of Django : https://www.b-list.org/weblog/2020/mar/16/no-service/
+
+    "
+    Speaking of which: following the Law of Demeter is a lot harder, and often just plain impossible, in a “service” approach, because the service layer takes responsibility for implementing “business logic” operations like resolving the Ticket or walking the Dog, and so has to have detailed knowledge of the structure of those objects and how to reach into them and manipulate their fields (if it didn’t, and those objects instead exposed their own logical resolve(), walk(), etc. operations as methods, there’d be no point to the service layer, because the “business logic” would already be implemented elsewhere!)."
