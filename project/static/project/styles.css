@@ -7,3 +7,13 @@
 .section {
     height: 50vh;
 }
+
+.navlist {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+.navlist li {
+    margin-right: 10px;
+}

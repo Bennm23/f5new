@@ -22,5 +22,6 @@ from django.urls import include, path
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('f5index.urls')),
+    path('store/', include('f5store.urls')),
 
 ]
