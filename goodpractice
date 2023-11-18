@@ -1,12 +1,13 @@
-press ctrl+shift+v to get a nice view
+press ctrl+shift+v to get a nice view 
 
 Style Guide = https://github.com/HackSoftware/Django-Styleguide
 
 **Models**
 
-Should only contain logic for managing that model and its relations
-    1. Properties
-    2. Clean methods for additional validation
+    Should only contain logic for managing that model and its relations
+
+        1. Properties
+        2. Clean methods for additional validation
 
 **Views & APIs**
 
@@ -18,7 +19,7 @@ Should only contain logic for managing that model and its relations
 
     How can we use API Views? Do we need REST API
 
-Existing 'Boxes'
+**Existing 'Boxes'**
 
     1. Models
     2. Views/APIs
@@ -78,4 +79,4 @@ Existing 'Boxes'
 **Serializers**
 
     Serializers are nested inside the API.
-        This prevents multiple usages of serializers where one need which changes the serializer breaks other usages.
+    This prevents multiple usages of serializers where one need which changes the serializer breaks other usages.
