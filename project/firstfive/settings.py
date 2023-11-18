@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--h#gg)x$_ka22!20&=(m!)54m6ivfh4h-y13ci%yewstwb(lzl
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['www.f5rugby.com', 'f5rugby.com']
 
 
 # Application definition
@@ -74,9 +74,13 @@ WSGI_APPLICATION = 'firstfive.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+     'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'firstfive',
+        'USER': 'firstfive',
+        'PASSWORD': 'first_five',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
