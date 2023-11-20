@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class BlogsConfig(AppConfig):
+class F5BlogsConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'blogs'
+    name = 'f5blogs'
