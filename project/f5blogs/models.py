@@ -14,7 +14,7 @@ class BlogPost(models.Model):
         # Add more choices as needed
     ]
     title = models.CharField(max_length=200)
-    tags = models.ArrayField(models.CharField(max_length=20, choices=TAG_CHOICES))
+    tags = models.CharField(max_length=200, choices=TAG_CHOICES)
     create_date = models.DateTimeField('date created', auto_now_add=True)
     content = RichTextField(blank=True, null=True)
 
