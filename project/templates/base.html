@@ -12,26 +12,26 @@
 </head>
 <body>
 
-<nav>
-    <ul class="navlist">
-        <li><a href="{% url 'index:home' %}">Home</a></li>
-        <li><a href="{% url 'store:home' %}">Store</a></li>
-        {% comment %} <li><a href="{% url 'blog' %}">Blog</a></li>
-        <li><a href="{% url 'store' %}">Store</a></li>
-        <li><a href="{% url 'player' %}">Player</a></li>
-        <li><a href="{% url 'coaches' %}">Coaches</a></li>
-        <li><a href="{% url 'teams' %}">Teams</a></li> {% endcomment %}
-    </ul>
-</nav>
-
 <div class="container">
-    {% block content %}{% endblock %}
-</div>
+    <nav>
+        <ul class="navlist">
+            <li><a href="{% url 'index:home' %}">Home</a></li>
+            <li><a href="{% url 'store:home' %}">Store</a></li>
+            {% comment %} <li><a href="{% url 'blog' %}">Blog</a></li>
+            <li><a href="{% url 'store' %}">Store</a></li>
+            <li><a href="{% url 'player' %}">Player</a></li>
+            <li><a href="{% url 'coaches' %}">Coaches</a></li>
+            <li><a href="{% url 'teams' %}">Teams</a></li> {% endcomment %}
+        </ul>
+    </nav>
 
-<div class="footer">
-    <ul>
-        <li>Contact Us</li>
-    </ul>
+    {% block content %}{% endblock %}
+
+    <div class="footer">
+        <ul class="navlist">
+            <li>Contact Us</li>
+        </ul>
+    </div>
 </div>
 
 </body>

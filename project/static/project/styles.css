@@ -1,3 +1,8 @@
+body {
+    background-color: black;
+    color: whitesmoke;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
 
 .container {
     max-width: 90%;
@@ -8,12 +13,31 @@
     height: 50vh;
 }
 
+.section * {
+    margin: 0;
+}
+
 .navlist {
     display: flex;
     flex-direction: row;
     list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
 }
 
 .navlist li {
     margin-right: 10px;
+}
+
+.navlist li a {
+    text-decoration: none;
+    color: white;
+}
+
+.navlist li a:hover {
+    text-decoration: underline;
+}
+
+.navlist li a:visited {
+    color: white;
 }
