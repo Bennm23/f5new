@@ -11,4 +11,16 @@
     <h3><a href="{% url 'blogs:create' %}">Create your own!</a></h3>
 </div>
 
+<div class="section">
+    <h2>Recent Blogs</h2>
+
+    <ul>
+        {% for blog in recent_blogs %}
+        <li><a href="{% url 'blogs:detail' blog.id %}">{{blog.title}}</a></li>
+        {% endfor %}
+
+    </ul>
+
+</div>
+
 {% endblock %}

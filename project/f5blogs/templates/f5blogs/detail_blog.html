@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<hr>
+<div class="section">
+    <h1>Detail</h1>
+    <p><a href="{% url 'blogs:edit' blog.id %}"> Edit </a> </p>
+    <p><a href="{% url 'blogs:delete' blog.id %}"> Delete </a> </p>
+    <p>{{ blog.title }}</p>
+    <p>{{ blog.create_date }}</p>
+    <p>{{ blog.content|safe }}
+
+</div>
+
+{% endblock %}
