@@ -42,6 +42,11 @@ body {
     color: white;
 }
 
+.form_wrapper {
+    width: 40%;
+    margin: 0 auto;
+}
+
 form {
     padding-top: 1rem;
     display: grid;
@@ -57,4 +62,17 @@ form p {
 
 form ul {
     padding: .1rem;
+    list-style-type: none;
+}
+
+form label {
+    font-size: 1.1em;
+    font-weight: bold;
+}
+
+@media only screen and (max-width: 680px) {
+    .form_wrapper {
+        width: 100%;
+        margin: 0;
+    }
 }
