@@ -8,17 +8,35 @@
 <hr>
 <div class="section">
     <h1>Blogs</h1>
-    <h3><a href="{% url 'blogs:create' %}">Create your own!</a></h3>
+    
+    <form method="get" action="{% url 'blogs:create' %}">
+        <button class="create_blog_button" type="submit">Create Your Own!</button>
+    </form>
 </div>
 
 <div class="section">
     <h2>Recent Blogs</h2>
 
-    <ul>
+    <ul class="result_list">
         {% for blog in recent_blogs %}
-        <li><a href="{% url 'blogs:detail' blog.id %}">{{blog.title}}</a></li>
+            <div class="list_item">
+                <li>
+                    <details class="blog_summary">
+                        <summary>
+                            <a href="{% url 'blogs:detail' blog.id %}">{{blog.title}}</a>
+                            <div class="float_right_div">
+                                <h5>Created On: {{blog.create_date}}</h5>
+                            </div>
+                        </summary>
+                        <h5>{{ blog.content | safe}}</h5>
+                    </details>
+                    
+                    <hr/>
+                </li>
+            </div>
+        {% empty %}
+            <h3>There are no blogs to show :/</h3>
         {% endfor %}
-
     </ul>
 
 </div>

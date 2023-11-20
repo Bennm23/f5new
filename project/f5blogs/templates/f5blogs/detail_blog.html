@@ -12,7 +12,6 @@
 
     <div class="edit_button_group">
         <form method="get" action="{% url 'blogs:edit' blog.id %}">
-            {% csrf_token %}
             <button type="submit"> Edit </button>
         </form>
         <div class="horizontal_divider"></div>

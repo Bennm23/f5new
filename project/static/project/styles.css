@@ -85,7 +85,6 @@ form label {
 .edit_button_group {
     display: flex;
     flex-direction: row;
-    list-style-type: none;
     padding: 0 0 .6rem 0;
     margin: 0;
     
@@ -102,6 +101,37 @@ form label {
     display: inline-block;
 }
 
+.result_list {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 1.2rem 0;
+    margin: 0;
+
+}
+.result_list li {
+    margin-bottom: 0.5rem;
+}
+
+.result_list li a {
+    text-decoration: none;
+    color: white;
+}
+
+.result_list li a:hover {
+    text-decoration: underline;
+}
+
+.result_list li a:visited {
+    color: white;
+}
+
+.float_right_div {
+    position: relative;
+    float: right;
+}
+
+/* Move Below into blog specific css file */
 .blog_container {
     display: block;
     margin-top: 2rem;
@@ -110,3 +140,33 @@ form label {
 .blog_container * {
     margin-top: 1rem;
 }
+
+.create_blog_button {
+    padding: 0.2rem 1rem;
+    width: 10rem;
+}
+
+.blog_summary {
+    padding: 0.6rem 1rem;
+    border: 1px solid;
+    display: block;
+}
+
+.blog_summary > h5 {
+    padding-top: 0.3rem;
+    padding-left: 1rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-height: 15em;
+    line-height: 1.5em;
+    display: block;
+}
+
+.blog_summary summary {
+    font-weight: bold;
+}
+
+.blog_summary summary:hover {
+    cursor: pointer;
+}
+
