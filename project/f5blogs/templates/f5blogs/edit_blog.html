@@ -7,7 +7,7 @@
 {% block content %}
 <hr>
 <div class="section">
-    <div class="blog_form_wrapper">
+    <div class="form_wrapper">
         <h2>Create Blog</h2>
         <form method="post" action="{% url 'blogs:edit' blog_id %}">
             {% csrf_token %}
