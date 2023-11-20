@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'f5index',
     'f5store',
     'f5blogs',
+    'f5teams',
 
 ]
 
