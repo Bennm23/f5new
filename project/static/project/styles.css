@@ -10,7 +10,7 @@ body {
 }
 
 .section {
-    height: 50vh;
+    min-height: 50vh;
 }
 
 .section * {
@@ -40,4 +40,21 @@ body {
 
 .navlist li a:visited {
     color: white;
+}
+
+form {
+    padding-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem
+}
+
+form p {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .5rem;
+}
+
+form ul {
+    padding: .1rem;
 }

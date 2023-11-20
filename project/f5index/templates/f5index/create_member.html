@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}
+Create account
+{% endblock %}
+
+{% block content %}
+<hr>
+<div class="section">
+  <h2>Create account</h2>
+  <form method="post" action="{% url 'index:create_member' %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create user</button>
+  </form>
+</div>
+
+{% endblock %}
