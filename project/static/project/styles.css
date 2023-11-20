@@ -5,7 +5,7 @@ body {
 }
 
 .container {
-    max-width: 90%;
+    max-width: 95%;
     margin: 0 auto;
 }
 
@@ -21,8 +21,8 @@ body {
     display: flex;
     flex-direction: row;
     list-style-type: none;
-    padding: 0;
-    margin: 10px 0;
+    padding: 1.2rem 0;
+    margin: 0;
 }
 
 .navlist li {
