@@ -7,20 +7,14 @@
 
 {% block content %}
 <hr>
-<div class="section">
+<div class="blog_detail">
     <h1>{{blog.title}}</h1>
 
-    <div class="edit_button_group">
-        <form method="get" action="{% url 'blogs:edit' blog.id %}">
-            <button type="submit"> Edit </button>
-        </form>
-        <div class="horizontal_divider"></div>
-        <form method="post" action="{% url 'blogs:delete' blog.id %}">
-            {% csrf_token %}
-            <button type="submit"> Delete </button>
-        </form>
-
+    <div class="button_link_group">
+        <a href="{% url 'blogs:edit' blog.id %}" class="button_link neutral">Edit blog</a> |
+        <a href="{% url 'blogs:delete' blog.id %}" class="button_link neutral">Delete blog</a>
     </div>
+    
     <p>Authored On: {{ blog.create_date }}</p>
 
     <div class="blog_container">

@@ -12,15 +12,12 @@
 {% block content %}
 <hr>
 <div class="section">
-    <h1>Blogs</h1>
-    
-    <form method="get" action="{% url 'blogs:create' %}">
-        <button class="create_blog_button" type="submit">Create Your Own!</button>
-    </form>
-</div>
-
-<div class="section">
     <h2>Recent Blogs</h2>
+
+    
+    <div class="button_link_group">
+        <a href="{% url 'blogs:create' %}" class="button_link positive">Create your own!</a>
+    </div>
 
     <ul class="result_list">
         {% for blog in recent_blogs %}
@@ -33,7 +30,7 @@
                                 <h5>Created On: {{blog.create_date}}</h5>
                             </div>
                         </summary>
-                        <h5>{{ blog.content | safe}}</h5>
+                        <p>{{ blog.content | truncatechars:50 | safe}}</p>
                     </details>
                     
                     <hr/>
@@ -43,7 +40,6 @@
             <h3>There are no blogs to show :/</h3>
         {% endfor %}
     </ul>
-
 </div>
 
 {% endblock %}
