@@ -114,6 +114,10 @@ button:focus {
     gap: .25rem;
 }
 
+.default {
+    color: white;
+}
+
 .positive {
     color: skyblue;
 }
@@ -128,12 +132,11 @@ button:focus {
     display: inline-block;
 }
 
-.result_list {
+.results_list {
+    padding-top: 1.5rem;
     display: flex;
     flex-direction: column;
     list-style-type: none;
-    padding: .25rem;
-    margin: 2.5rem 0;
     gap: 1rem;
 }
 
@@ -153,4 +156,8 @@ button:focus {
 .float_right_div {
     position: relative;
     float: right;
+}
+
+.footer {
+    margin-top: 50vh;
 }
