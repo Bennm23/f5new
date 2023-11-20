@@ -1,5 +1,10 @@
 {% extends "base.html" %}
 
+{% block loadcss %}
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'f5blogs/f5blogs.css' %}">
+{% endblock %}
+
 {% block title %}
 
 {% endblock %}
