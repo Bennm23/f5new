@@ -53,10 +53,11 @@ body {
 }
 
 form {
-    padding-top: 1rem;
+    padding-top: 2.5rem;
+    padding-bottom: 5rem;
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1rem
+    gap: 1rem;
 }
 
 form p {
@@ -73,6 +74,34 @@ form ul {
 form label {
     font-size: 1.1em;
     font-weight: bold;
+}
+
+input {
+    height: 25px;
+}
+
+input:focus {
+    outline: none;
+}
+
+button {
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    outline: none;
+    height: 50px;
+    border-radius: 10px;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}
+
+button:focus {
+    border: none;
+    outline: none;
 }
 
 @media only screen and (max-width: 680px) {
