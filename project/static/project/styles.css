@@ -18,6 +18,10 @@ body {
     margin: 0;
 }
 
+.errorlist {
+    color: tomato;
+}
+
 .navlist {
     display: flex;
     flex-direction: row;
@@ -56,6 +60,10 @@ form {
     gap: 1rem;
 }
 
+.auth_form {
+    max-width: 40%; 
+}
+
 form p {
     display: grid;
     grid-template-columns: 1fr;
@@ -72,8 +80,18 @@ form label {
     font-weight: bold;
 }
 
+.submit {
+    margin-top: 1.5rem;
+}
+
 input {
-    height: 25px;
+    height: 40px;
+    font-size: 1.1em;
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: none;
+    border-bottom: 1px solid white;
 }
 
 input:focus {
@@ -104,6 +122,10 @@ button:focus {
     .form_wrapper {
         width: 100%;
         margin: 0;
+    }
+
+    .auth_form {
+        max-width: 100%; 
     }
 }
 
