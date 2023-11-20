@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<hr>
+<div class="section">
+    <div class="blog_form_wrapper">
+        <h2>Create Blog</h2>
+        <form method="post" action="{% url 'blogs:edit' blog_id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ form.media }}
+            <button type="submit">Update Blog</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

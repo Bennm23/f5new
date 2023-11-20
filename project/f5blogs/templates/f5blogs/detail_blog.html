@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% block title %}
 
 {% endblock %}
@@ -7,12 +8,26 @@
 {% block content %}
 <hr>
 <div class="section">
-    <h1>Detail</h1>
-    <p><a href="{% url 'blogs:edit' blog.id %}"> Edit </a> </p>
-    <p><a href="{% url 'blogs:delete' blog.id %}"> Delete </a> </p>
-    <p>{{ blog.title }}</p>
-    <p>{{ blog.create_date }}</p>
-    <p>{{ blog.content|safe }}
+    <h1>{{blog.title}}</h1>
+
+    <div class="edit_button_group">
+        <form method="get" action="{% url 'blogs:edit' blog.id %}">
+            {% csrf_token %}
+            <button type="submit"> Edit </button>
+        </form>
+        <div class="horizontal_divider"></div>
+        <form method="post" action="{% url 'blogs:delete' blog.id %}">
+            {% csrf_token %}
+            <button type="submit"> Delete </button>
+        </form>
+
+    </div>
+    <p>Authored On: {{ blog.create_date }}</p>
+
+    <div class="blog_container">
+        <h3>Content</h3>
+        <p>{{ blog.content|safe }}
+    </div>
 
 </div>
 

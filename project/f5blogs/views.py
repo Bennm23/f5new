@@ -15,19 +15,22 @@ def index(request):
     return render(request, 'f5blogs/blogs_home.html', context)
 
 def create(request):
+    form = None
     if request.method == 'POST':
         form = BlogForm(request.POST)
 
-        if form.is_valid:
+        if form.is_valid():
             form.save()
 
             return HttpResponseRedirect(reverse('blogs:home'))
     else:
-        context = {
-            'form' : BlogForm
-        }
+        form = BlogForm()
 
-        return render(request, 'f5blogs/blog_entry.html', context)
+    context = {
+        'form' : form
+    }
+
+    return render(request, 'f5blogs/blog_entry.html', context)
 
 def detail(request, blog_id):
     blog = get_object_or_404(BlogPost, pk=blog_id)
@@ -40,7 +43,7 @@ def detail(request, blog_id):
 def edit(request, blog_id):
     blog = get_object_or_404(BlogPost, pk=blog_id)
     if request.method == 'POST':
-        form = BlogForm(request.POST)
+        form = BlogForm(request.POST, instance=blog)
 
         blog = form.save()
 
@@ -50,9 +53,11 @@ def edit(request, blog_id):
     else:
 
         form = BlogForm(instance=blog)
-        return render(request, 'f5blogs/blog_entry.html', {
+        context = {
             'form' : form,
-        })
+            'blog_id' : blog_id,
+        }
+        return render(request, 'f5blogs/edit_blog.html', context)
 
 def delete(request, blog_id):
     blog = get_object_or_404(BlogPost, pk=blog_id)
