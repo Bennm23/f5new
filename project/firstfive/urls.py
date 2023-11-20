@@ -23,5 +23,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('f5index.urls')),
     path('store/', include('f5store.urls')),
+    path('blogs/', include('f5blogs.urls'))
 
 ]

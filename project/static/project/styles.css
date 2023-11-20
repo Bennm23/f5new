@@ -47,6 +47,11 @@ body {
     margin: 0 auto;
 }
 
+.blog_form_wrapper {
+    width: 60%;
+    margin: 0 auto;
+}
+
 form {
     padding-top: 1rem;
     display: grid;
