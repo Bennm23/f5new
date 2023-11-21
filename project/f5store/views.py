@@ -9,7 +9,7 @@ def index(request):
     context = {
         'products': Product.objects.all()
     }
-    return render(request, 'f5store/product_list.html', context)
+    return render(request, 'f5store/products_home.html', context)
 
 def create(request):
     form = None
@@ -18,7 +18,7 @@ def create(request):
 
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('store:product_list'))
+            return HttpResponseRedirect(reverse('store:home'))
     else:
         form = ProductForm()
 
@@ -55,4 +55,4 @@ def edit(request, product_id):
 def delete(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
-    return HttpResponseRedirect(reverse('store:product_list'))
+    return HttpResponseRedirect(reverse('store:home'))
