@@ -7,6 +7,11 @@
     margin: 0 auto;
 }
 
+.product_detail p {
+    font-size: 1.2em;
+    line-height: 1.5rem;
+}
+
 .product_image {
     width: 100%;
     height: auto;
