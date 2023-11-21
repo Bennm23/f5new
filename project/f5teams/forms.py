@@ -5,4 +5,4 @@ from django.forms import ModelForm, widgets
 class TeamForm(ModelForm):
     class Meta:
         model = Team
-        fields = ['team_name']
+        fields = ['team_name', 'bio', 'state', 'city']
