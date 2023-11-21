@@ -8,7 +8,7 @@ def index(request):
 
 def create_member(request):  
     if request.method == 'POST':  
-        form = CreateUserForm()  
+        form = CreateUserForm(request.POST)  
         if form.is_valid():  
             form.save()  
             return redirect('index:login_member')  # Redirect to a success page or another URL
@@ -29,6 +29,8 @@ def login_member(request):
                 # Log the user in
                 login(request, user)
                 return redirect('blog:index')  # Redirect to a success page or another URL
+            else:
+                return redirect('index:login_member')
     else:
         form = LoginUserForm()  
 
