@@ -13,6 +13,9 @@ class CreateUserForm(UserCreationForm):
         self.fields['email'].help_text = None
         self.fields['email'].widget.attrs['placeholder'] = 'Email address'
 
+        # Set placeholder and remove help text for the 'email' field
+        self.fields['user_type'].help_text = None
+
         # Set placeholder and remove help text for the 'username' field
         self.fields['username'].help_text = ''
         self.fields['username'].widget.attrs['placeholder'] = 'Choose a username'
@@ -27,7 +30,8 @@ class CreateUserForm(UserCreationForm):
 
     class Meta:
         model = Member
-        fields = ['email', 'username', 'password1', 'password2', 'captcha']
+        fields = ['email', 'user_type', 'username', 'password1', 'password2', 'captcha']
+        
 
 class LoginUserForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
