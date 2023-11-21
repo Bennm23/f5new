@@ -21,30 +21,3 @@
     object-fit: cover;
 }
 
-details {
-  border: 1px solid white;
-  border-radius: 10px;
-}
-
-summary {
-    cursor: pointer;
-    font-weight: bold;
-    padding: 1rem .5rem;
-}
-
-details[open] {
-    padding: .5rem;
-}
-
-details[open] summary {
-    margin-bottom: 0.5em;
-    padding-left: .5rem;
-}
-
-@media only screen and (max-width: 680px) {
-    summary {
-        display: flex;
-        flex-direction: column;
-        gap: .5rem;
-    }
-}

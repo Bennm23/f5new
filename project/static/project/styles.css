@@ -184,3 +184,32 @@ button:focus {
 .footer {
     margin-top: 50vh;
 }
+
+
+.list_item details {
+  border: 1px solid white;
+  border-radius: 10px;
+}
+
+.list_item summary {
+    cursor: pointer;
+    font-weight: bold;
+    padding: 1rem .5rem;
+}
+
+.list_item details[open] {
+    padding: .5rem;
+}
+
+.list_item details[open] summary {
+    margin-bottom: 0.5em;
+    padding-left: .5rem;
+}
+
+@media only screen and (max-width: 680px) {
+    .list_item summary {
+        display: flex;
+        flex-direction: column;
+        gap: .5rem;
+    }
+}

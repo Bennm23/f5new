@@ -39,9 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ckeditor',
+    'localflavor',
     'f5index',
     'f5store',
     'f5blogs',
+    'f5teams',
 
 ]
 

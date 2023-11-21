@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block loadcss %}
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<hr>
+<div class="section">
+<div >
+    <h1>{{team.team_name}}</h1>
+
+    {% if user.is_authenticated %}
+    <div class="button_link_group">
+        <a href="{% url 'teams:edit' team.id %}" class="button_link neutral">Edit team</a> |
+        <a href="{% url 'teams:delete' team.id %}" class="button_link neutral">Delete team</a>
+    </div>
+    {% endif %}
+
+    <div >
+        <h3>Content</h3>
+        <p>{{ team.bio |safe }}
+    </div>
+</div>
+</div>
+
+{% endblock %}
