@@ -1,16 +1,26 @@
 .product_container {
-  margin-top: 3rem;
+    margin-top: 3rem;
+}
+
+.product_detail {
+    width: 50%;
+    margin: 0 auto;
+}
+
+.product_image {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    float: left;
 }
 
 .product_date {
-  padding-top: 1rem;
+    padding-top: 1rem;
 }
 
-.image_container {
-  max-height: 70vh;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem 0;
+@media only screen and (max-width: 680px) {
+    .product_detail {
+        width: 100%;
+        margin: 0;
+    }
 }

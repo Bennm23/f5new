@@ -27,15 +27,6 @@
     padding-top: 1rem;
 }
 
-.image_container {
-    max-height: 70vh;
-    overflow: hidden;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 2rem 0;
-}
-
 .blog_image {
     width: 100%;
     height: auto;
