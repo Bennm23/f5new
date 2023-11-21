@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block loadcss %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'f5store/f5store.css' %}">
+{% endblock %}
+
+{% block title %}
+    Recent Products
+{% endblock %}
+
+{% block content %}
+<hr>
+<div class="section">
+    <h2>Products</h2>
+
+    {% if user.is_authenticated %}
+    <div class="button_link_group">
+        <a href="{% url 'store:product_create' %}" class="button_link positive">Create a new product!</a>
+    </div>
+    {% endif %}
+
+    <div class="results_list">
+        {% for product in products %}
+        <div class="list_item">
+            <details>
+                <summary>
+                    <a href="{% url 'store:product_detail' product.id %}" class="button_link default">{{ product.name }}</a>
+                    <div class="float_right_div">
+                        <h5>Price: ${{ product.price }}</h5>
+                    </div>
+                </summary>
+                <p class="shorty">{{ product.description | truncatewords:15 | safe }}</p>
+            </details>
+        </div>
+        {% empty %}
+        <h3>There are no products to show :/</h3>
+        {% endfor %}
+    </div>
+{% endblock %}
+</div>

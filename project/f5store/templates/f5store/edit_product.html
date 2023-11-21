@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block loadcss %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'f5store/f5store.css' %}">
+{% endblock %}
+
+{% block title %}
+    Update Product
+{% endblock %}
+
+{% block content %}
+<hr>
+<div class="section">
+    <div class="form_wrapper">
+        <h2>Update Product</h2>
+        <form method="post" action="{% url 'store:product_edit' product_id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ form.media }}
+            <button type="submit">Update Product</button>
+        </form>
+    </div>
+</div>
+{% endblock %}
