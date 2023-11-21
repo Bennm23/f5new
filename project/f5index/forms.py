@@ -1,4 +1,5 @@
 from .models import Member
+from captcha import ReCaptchaField
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.forms import widgets
