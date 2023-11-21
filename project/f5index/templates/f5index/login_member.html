@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+Login account
+{% endblock %}
+
+{% block content %}
+<hr>
+<div class="section">
+    <div class="form_wrapper auth_form">
+      {% if messages %}
+    <div class="error" style="color: red;">
+      <strong>Error:</strong> Please correct the errors below.
+      <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+    <h2>Login</h2>
+    <form method="post" action="{% url 'index:login_member' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="submit" type="submit">Login</button>
+      <div class="button_link_group">
+        <a href="{% url 'index:create_member' %}" class="button_link positive">Create an account.</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
