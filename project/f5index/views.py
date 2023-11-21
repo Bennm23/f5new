@@ -20,16 +20,18 @@ def create_member(request):
     return render(request, 'f5index/create_member.html', context)
 
 def login_member(request):  
+    form = None
     if request.method == 'POST':
-        form = LoginUserForm(request.POST)
+        form = LoginUserForm(data=request.POST)
         if form.is_valid():
             # Authenticate the user
             user = authenticate(request, username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             if user is not None:
                 # Log the user in
                 login(request, user)
-                return redirect('blog:index')  # Redirect to a success page or another URL
+                return redirect('blogs:home')  # Redirect to a success page or another URL
             else:
+
                 return redirect('index:login_member')
     else:
         form = LoginUserForm()  
