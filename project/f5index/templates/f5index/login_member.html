@@ -7,17 +7,7 @@ Login account
 {% block content %}
 <hr>
 <div class="section">
-    <div class="form_wrapper auth_form">
-      {% if messages %}
-    <div class="error" style="color: red;">
-      <strong>Error:</strong> Please correct the errors below.
-      <ul>
-        {% for message in messages %}
-          <li>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    </div>
-  {% endif %}
+  <div class="form_wrapper auth_form">
     <h2>Login</h2>
     <form method="post" action="{% url 'index:login_member' %}">
       {% csrf_token %}
