@@ -1,13 +1,17 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from .forms import TeamForm
+from .models import Team
 
 # Create your views here.
 
 def index(request):
-    context = {}
+    teams = Team.objects.all()[:10]
+    context = {
+        'teams': teams,
+    }
     return render(request, 'f5teams/teams_home.html', context)
 
 
@@ -29,37 +33,37 @@ def create(request):
 
     return render(request, 'f5teams/create_team.html', context)
 
-# def detail(request, blog_id):
-#     blog = get_object_or_404(BlogPost, pk=blog_id)
+def detail(request, team_id):
+    team = get_object_or_404(Team, pk=team_id)
 
-#     context = {
-#         'blog' : blog,
-#     }
-#     return render(request, 'f5blogs/detail_blog.html', context)
+    context = {
+        'team': team,
+    }
+    return render(request, 'f5teams/detail_team.html', context)
 
-# def edit(request, blog_id):
-#     blog = get_object_or_404(BlogPost, pk=blog_id)
-#     if request.method == 'POST':
-#         form = BlogForm(request.POST, instance=blog)
+def edit(request, team_id):
+    team = get_object_or_404(Team, pk=team_id)
+    if request.method == 'POST':
+        form = TeamForm(request.POST, instance=team)
 
-#         blog = form.save()
+        team = form.save()
 
-#         if form.is_valid():
-#             return HttpResponseRedirect(reverse('blogs:detail', args=(blog.id,)))
+        if form.is_valid():
+            return HttpResponseRedirect(reverse('teams:detail', args=(team.id,)))
 
-#     else:
+    else:
 
-#         form = BlogForm(instance=blog)
-#         context = {
-#             'form' : form,
-#             'blog_id' : blog_id,
-#         }
-#         return render(request, 'f5blogs/edit_blog.html', context)
+        form = TeamForm(instance=team)
+        context = {
+            'form' : form,
+            'team_id' : team_id,
+        }
+        return render(request, 'f5teams/edit_team.html', context)
 
-# def delete(request, blog_id):
-#     blog = get_object_or_404(BlogPost, pk=blog_id)
+def delete(request, team_id):
+    team = get_object_or_404(Team, pk=team_id)
 
-#     blog.delete()
+    team.delete()
 
-#     return HttpResponseRedirect(reverse('blogs:home'))
+    return HttpResponseRedirect(reverse('teams:home'))
 

@@ -1,18 +1,39 @@
 {% extends "base.html" %}
 
 {% block loadcss %}
-
 {% endblock %}
 
 {% block title %}
-
 {% endblock %}
 
 {% block content %}
 <hr>
 <div class="section">
 
-    <h3><a href="{% url 'teams:create' %}">Create your team</a></h3>
+    <h2>Teams</h2>
+    {% if user.is_authenticated %}
+    <div class="button_link_group">
+        <a href="{% url 'teams:create' %}" class="button_link positive">Create your own!</a>
+    </div>
+    {% endif %}
+
+    <div class="results_list">
+        {% for team in teams %}
+        <div class="list_item">
+            <details>
+                <summary>
+                    <a href="{% url 'teams:detail' team.id %}" class="button_link default">{{team.team_name}}</a>
+                    <div class="float_right_div">
+                        <h5>{{team.city}}, {{team.state}}</h5>
+                    </div>
+                </summary>
+                <p class="shorty">{{ team.bio | truncatewords:15 | safe}}</p>
+            </details>
+        </div>
+        {% empty %}
+        <h3>Oh No! There are no Teams...</h3>
+        {% endfor %}
+    </div>
 </div>
 
 {% endblock %}

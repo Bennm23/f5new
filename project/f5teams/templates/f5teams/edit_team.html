@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block loadcss %}
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+<hr>
+<div class="section">
+    <div class="form_wrapper">
+        <h2>Update Team</h2>
+        <form method="post" action="{% url 'teams:edit' team_id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            {{ form.media }}
+            <button type="submit">Update Team</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
