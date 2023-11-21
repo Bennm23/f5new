@@ -3,6 +3,7 @@ Django==4.2.7
 django-ckeditor==6.7.0
 django-js-asset==2.1.0
 django-localflavor==4.0
+django-recaptcha==4.0.0
 psycopg2==2.9.9
 python-stdnum==1.19
 sqlparse==0.4.4
