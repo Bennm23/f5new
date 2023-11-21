@@ -1,0 +1,16 @@
+.product_container {
+  margin-top: 3rem;
+}
+
+.product_date {
+  padding-top: 1rem;
+}
+
+.image_container {
+  max-height: 70vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
