@@ -1,10 +1,12 @@
 from .models import Member
-from captcha import ReCaptchaField
+from django_recaptcha.fields import ReCaptchaField
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 from django.forms import widgets
 
 class CreateUserForm(UserCreationForm):
+    captcha = ReCaptchaField()
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Set placeholder and remove help text for the 'email' field
@@ -25,7 +27,7 @@ class CreateUserForm(UserCreationForm):
 
     class Meta:
         model = Member
-        fields = ['email', 'username', 'password1', 'password2']
+        fields = ['email', 'username', 'password1', 'password2', 'captcha']
 
 class LoginUserForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):

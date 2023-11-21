@@ -28,16 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['www.f5rugby.com', 'f5rugby.com', 'localhost', '127.0.0.1']
 
-# Optional: Use reCAPTCHA v3
-RECAPTCHA_V3_PUBLIC_KEY = '6LfCuRYpAAAAAHCN5YlX5iZEyg7KJprOC3f_yoOP'
-RECAPTCHA_V3_PRIVATE_KEY = '6LfCuRYpAAAAAI-vVfWAPE0jzBssKTJmkWFsoQrJ'
-
-# Optional: Set a custom error message for the reCAPTCHA field
-RECAPTCHA_ERROR_MESSAGE = 'The reCAPTCHA verification failed. Please try again.'
-
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -53,6 +44,9 @@ INSTALLED_APPS = [
     'f5blogs',
     'f5teams',
 ]
+
+# Temporary until production HTTPS!
+SILENCED_SYSTEM_CHECKS = ['django_recaptcha.recaptcha_test_key_error']
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
