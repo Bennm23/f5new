@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Create account
+Login account
 {% endblock %}
 
 {% block content %}
@@ -12,7 +12,7 @@ Create account
     <form method="post" action="{% url 'index:login_member' %}">
       {% csrf_token %}
       {{ form.as_p }}
-      <button class="submit" type="submit">Login user</button>
+      <button class="submit" type="submit">Login</button>
       <div class="button_link_group">
         <a href="{% url 'index:create_member' %}" class="button_link positive">Create an account.</a>
       </div>

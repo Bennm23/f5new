@@ -7,10 +7,11 @@ def index(request):
     return render(request, "f5index/index.html", context)
 
 def create_member(request):  
-    if request.POST == 'POST':  
+    if request.method == 'POST':  
         form = CreateUserForm()  
         if form.is_valid():  
             form.save()  
+            return redirect('index:login_member')  # Redirect to a success page or another URL
     else:  
         form = CreateUserForm()  
     context = {  
