@@ -1,10 +1,18 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from .forms import CreateUserForm, LoginUserForm
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from .models import Member
 
 def index(request):
     context = {}
     return render(request, "f5index/index.html", context)
+
+def get_member(request, member_id):
+    member = get_object_or_404(Member, pk=member_id)
+    context = {
+        'user': member,
+    }
+    return render(request, 'f5index/detail_member.html', context)
 
 def create_member(request):  
     if request.user.is_authenticated:
@@ -43,3 +51,7 @@ def login_member(request):
 
     context = {'form': form}
     return render(request, 'f5index/login_member.html', context)
+
+def logout_member(request):
+  logout(request)
+  return redirect('index:login_member')
