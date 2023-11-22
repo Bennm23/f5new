@@ -13,7 +13,7 @@
 <div class="section">
     <h1>{{team.team_name}}</h1>
 
-    {% if user.is_authenticated %}
+    {% if user.is_authenticated and user in team_members %}
     <div class="button_link_group">
         <a href="{% url 'teams:edit' team.id %}" class="button_link neutral">Edit team</a> |
         <a href="{% url 'teams:delete' team.id %}" class="button_link neutral">Delete team</a>
