@@ -1,5 +1,6 @@
 from django import forms
 from .models import Team
+from localflavor.us.us_states import STATE_CHOICES 
 from django.forms import ModelForm, widgets
 
 class TeamSearchForm(forms.Form):
