@@ -18,6 +18,13 @@
     </div>
     {% endif %}
 
+    <div class="search_form_container">
+        <form method="get" action="{% url 'teams:home' %}">
+            {{ search_form.as_p }}
+            <button type="submit">Search</button>
+        </form>
+    </div>
+
     <div class="results_list">
         {% for team in my_teams %}
         <div class="list_item">

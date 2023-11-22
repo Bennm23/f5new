@@ -3,7 +3,9 @@ from .models import Team
 from django.forms import ModelForm, widgets
 
 class TeamSearchForm(forms.Form):
-    search_query = forms.CharField(label='Search', required=False)
+    team_name = forms.CharField(label='Team Name', required=False)
+    city = forms.CharField(label='City', required=False)
+    state = forms.ChoiceField(label='State', choices=[('', '---')] + list(STATE_CHOICES), required=False)
     
 
 class TeamForm(ModelForm):
