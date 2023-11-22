@@ -3,6 +3,14 @@ from .models import BlogPost, Tag
 
 from django.forms import ModelForm, widgets
 
+class BlogSearchForm(forms.Form):
+    search_query = forms.CharField(label='Search', required=False)
+    tags = forms.ModelMultipleChoiceField(
+        queryset=Tag.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+    )
+
 class BlogForm(ModelForm):
     class Meta:
         model = BlogPost
@@ -12,7 +20,7 @@ class BlogForm(ModelForm):
         queryset=Tag.objects.all(),
         widget=forms.CheckboxSelectMultiple,
         )
-
+        
     def clean_tags(self):
         selected_tags = self.cleaned_data['tags']
         if len(selected_tags) > 3:
