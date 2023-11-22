@@ -7,6 +7,9 @@ def index(request):
     return render(request, "f5index/index.html", context)
 
 def create_member(request):  
+    if request.user.is_authenticated:
+        return redirect('index:home')
+    form = None
     if request.method == 'POST':  
         form = CreateUserForm(request.POST)  
         if form.is_valid():  
@@ -20,6 +23,8 @@ def create_member(request):
     return render(request, 'f5index/create_member.html', context)
 
 def login_member(request):  
+    if request.user.is_authenticated:
+        return redirect('index:home')
     form = None
     if request.method == 'POST':
         form = LoginUserForm(data=request.POST)
