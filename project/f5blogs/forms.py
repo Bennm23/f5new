@@ -18,3 +18,10 @@ class BlogForm(ModelForm):
         if len(selected_tags) > 3:
             raise forms.ValidationError('You can only select up to 3 tags.')
         return selected_tags
+    
+    def clean_content(self):
+        data : str = self.cleaned_data['content']
+        data = data.replace('<div>','').replace('</div>', '')
+        printer = '<div class=\"blog_content\">\n\n' + data + '\n\n</div>'
+        self.cleaned_data['content'] = printer
+        return self.cleaned_data['content']

@@ -32,7 +32,13 @@
     padding-top: 1rem;
 }
 
-.blog_image {
+.blog_content p img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.blog_content img {
     width: 100%;
     height: auto;
     object-fit: cover;
