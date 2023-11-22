@@ -44,6 +44,23 @@
     object-fit: cover;
 }
 
+#id_tags {
+	background: firebrick;
+    	border: 1px solid white;
+    	padding: 0.5rem;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	gap: 1rem;
+}
+
+#id_tags label {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: .5rem;
+}
+
 @media only screen and (max-width: 680px) {
     .blog_detail {
         width: 100%;
