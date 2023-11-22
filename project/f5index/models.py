@@ -17,3 +17,9 @@ class Member(AbstractUser):
 
     def __str__(self):
         return self.username
+
+    def get_user_type_str(self) -> str:
+        match self.user_type:
+            case 'player': return 'Player'
+            case 'coach': return 'Coach'
+            case _: return 'Fan/Other'

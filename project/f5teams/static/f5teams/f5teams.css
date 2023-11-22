@@ -1,0 +1,19 @@
+.member_list_item {
+
+    padding: .5rem .5rem;
+    border: 1px solid white;
+    border-radius: 10px;
+    /* display: flex; */
+    /* flex-direction: column; */
+
+}
+
+.member_list_item a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.member_list_item a:hover {
+    text-decoration: underline;
+}
