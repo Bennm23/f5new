@@ -1,20 +1,27 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .forms import TeamForm
 from .models import Team
+from f5index.models import Member
 
 # Create your views here.
 
 def index(request):
     teams = Team.objects.all()[:10]
+
     context = {
         'teams': teams,
     }
+
+    if request.user.is_authenticated:
+        context['my_teams'] = Team.objects.filter(members__id=request.user.id)
     return render(request, 'f5teams/teams_home.html', context)
 
 
+@login_required(login_url='index:login_member')
 def create(request):
     form = None
     if request.method == 'POST':
@@ -38,9 +45,11 @@ def detail(request, team_id):
 
     context = {
         'team': team,
+        'team_members': team.members.all,
     }
     return render(request, 'f5teams/detail_team.html', context)
 
+@login_required(login_url='index:login_member')
 def edit(request, team_id):
     team = get_object_or_404(Team, pk=team_id)
     if request.method == 'POST':
@@ -60,6 +69,7 @@ def edit(request, team_id):
         }
         return render(request, 'f5teams/edit_team.html', context)
 
+@login_required(login_url='index:login_member')
 def delete(request, team_id):
     team = get_object_or_404(Team, pk=team_id)
 
@@ -67,3 +77,22 @@ def delete(request, team_id):
 
     return HttpResponseRedirect(reverse('teams:home'))
 
+
+@login_required(login_url='index:login_member')
+def join(request, team_id, member_id):
+    team = get_object_or_404(Team, pk=team_id)
+    member = get_object_or_404(Member, pk=member_id)
+
+    team.members.add(member)
+
+    return HttpResponseRedirect(reverse('teams:home'))
+
+
+@login_required(login_url='index:login_member')
+def leave(request, team_id, member_id):
+    team = get_object_or_404(Team, pk=team_id)
+    member = get_object_or_404(Member, pk=member_id)
+
+    team.members.remove(member)
+
+    return HttpResponseRedirect(reverse('teams:home'))

@@ -7,16 +7,41 @@
 {% endblock %}
 
 {% block content %}
+{% if not my_teams is None %}
 <hr>
 <div class="section">
 
-    <h2>Teams</h2>
+    <h2>My Teams</h2>
     {% if user.is_authenticated %}
     <div class="button_link_group">
         <a href="{% url 'teams:create' %}" class="button_link positive">Create your own!</a>
     </div>
     {% endif %}
 
+    <div class="results_list">
+        {% for team in my_teams %}
+        <div class="list_item">
+            <details>
+                <summary>
+                    <a href="{% url 'teams:detail' team.id %}" class="button_link default">{{team.team_name}}</a>
+                    <div class="float_right_div">
+                        <h5>{{team.city}}, {{team.state}}</h5>
+                    </div>
+                </summary>
+                <p class="shorty">{{ team.bio | truncatewords:15 | safe}}</p>
+            </details>
+        </div>
+        {% empty %}
+        <h3>Oh No! You haven't joined any teams...</h3>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+<hr>
+<div class="section">
+
+    <h2>Teams</h2>
     <div class="results_list">
         {% for team in teams %}
         <div class="list_item">
