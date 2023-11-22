@@ -16,7 +16,7 @@
 <div class="blog_detail">
     <h1>{{blog.title}}</h1>
 
-    {% if user.is_authenticated %}
+    {% if user == blog.author %}
     <div class="button_link_group">
         <a href="{% url 'blogs:edit' blog.id %}" class="button_link neutral">Edit blog</a> |
         <a href="{% url 'blogs:delete' blog.id %}" class="button_link neutral">Delete blog</a>

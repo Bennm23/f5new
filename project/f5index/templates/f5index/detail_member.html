@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Member
+{% endblock %}
+
+{% block content %}
+<hr>
+<div class="section">
+    <h1>Howdy, {{ user.username }}!</h1>
+
+    <p class=""><a href="{% url 'index:logout_member'%}">Logout</a></p>
+</div>
+
+
+{% endblock %}

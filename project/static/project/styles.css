@@ -47,6 +47,10 @@ body {
     color: white;
 }
 
+p.username {
+    margin-top: 1rem;
+}
+
 .form_wrapper {
     min-width: 40%;
     margin: 0 auto;

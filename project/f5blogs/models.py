@@ -34,6 +34,7 @@ class BlogPost(models.Model):
     tags = models.ManyToManyField(Tag, blank=True)
     create_date = models.DateTimeField('date created', auto_now_add=True)
     content = RichTextField(blank=True, null=True)
+    author = models.ForeignKey('f5index.Member', on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.title

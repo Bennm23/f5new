@@ -18,7 +18,13 @@
         <ul class="navlist">
             <li><a href="{% url 'index:home' %}">Home</a></li>
             <li><a href="{% url 'store:home' %}">Store</a></li>
-            <li><a href="{% url 'index:create_member' %}">Member</a></li>
+
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'index:get_member' user.id %}">{{ user.username }}</a></li>
+            {% else %}
+                <li><a href="{% url 'index:login_member' %}">Member</a></li>
+            {% endif %}
+
             <li><a href="{% url 'blogs:home' %}">Blogs</a></li>
             <li><a href="{% url 'teams:home' %}">Teams</a></li>
         </ul>

@@ -1,6 +1,7 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 from .forms import BlogForm
 from .models import BlogPost
@@ -9,18 +10,25 @@ from .models import BlogPost
 def index(request):
     
     context = {
-        'recent_blogs' : BlogPost.objects.order_by('-create_date')[:5]
+        'recent_blogs' : BlogPost.objects.order_by('-create_date')[:5],
     }
+
+    if request.user.is_authenticated:
+        context['user_blogs'] = BlogPost.objects.filter(author=request.user).order_by('-create_date')
+
 
     return render(request, 'f5blogs/blogs_home.html', context)
 
+@login_required(login_url='index:login_member')
 def create(request):
     form = None
     if request.method == 'POST':
         form = BlogForm(request.POST)
 
         if form.is_valid():
-            form.save()
+            obj : BlogPost = form.save(commit=False)
+            obj.author = request.user
+            obj.save()
 
             return HttpResponseRedirect(reverse('blogs:home'))
     else:
