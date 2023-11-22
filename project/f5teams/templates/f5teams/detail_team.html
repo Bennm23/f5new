@@ -46,7 +46,7 @@
             {% for member in  team_members %}
                 <div class="member_list_item">
                     <h4>
-                        <a href="{% url 'index:get_member' user.id %}">{{member.username}}</a>
+                        <a href="{% url 'index:get_member' member.id %}">{{member.username}}</a>
                         <div class="float_right_div">
                             <h5>{{member.get_user_type_str}}</h5>
                         </div>
