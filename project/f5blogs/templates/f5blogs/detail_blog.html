@@ -23,7 +23,8 @@
     </div>
     {% endif %}
 
-    <p class="blog_date">Authored On: {{ blog.create_date }}</p>
+    <p class="blog_date">Published On: {{ blog.create_date }}</p>
+    <p class="blog_date">Authored By: {{ blog.author.username }}</p>
     
     <div class="badge_list">
         {% for tag in blog.tags.all %}

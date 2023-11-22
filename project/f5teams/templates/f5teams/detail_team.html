@@ -42,15 +42,13 @@
     <div >
         <h2>Members</h2>
 
-        <div class="results_list">
+        <div class="members_list results_list">
             {% for member in  team_members %}
                 <div class="member_list_item">
                     <h4>
                         <a href="{% url 'index:get_member' member.id %}">{{member.username}}</a>
-                        <div class="float_right_div">
-                            <h5>{{member.get_user_type_str}}</h5>
-                        </div>
                     </h4>
+                    <h5>{{member.get_user_type_str}}</h5>
                 </div>
             {% empty %}
                 <h3>Oh No! This team is empty</h3>

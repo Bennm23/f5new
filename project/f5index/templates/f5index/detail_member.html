@@ -8,9 +8,18 @@ Member
 {% block content %}
 <hr>
 <div class="section">
-    <h1>Howdy, {{ user.username }}!</h1>
-
-    <p class=""><a href="{% url 'index:logout_member'%}">Logout</a></p>
+    {% if member.is_authenticated %}
+        {% if request.user == member %}
+            <h1>Howdy, {{ member.username }}!</h1><br />
+            <p><a href="{% url 'index:logout_member'%}">Logout</a></p>
+        {% else %}
+            <h1>{{ member.username }}!</h1><br />
+            <p>Bio: {{ member.bio }}</p>
+        {% endif %}
+    {% else %}
+        <h1>{{ member.username }}!</h1><br />
+        <p>Bio: {{ member.bio }}</p>
+    {% endif %}
 </div>
 
 

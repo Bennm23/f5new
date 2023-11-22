@@ -1,11 +1,17 @@
-.member_list_item {
+.members_list {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
 
+.member_list_item {
     padding: .5rem .5rem;
     border: 1px solid white;
     border-radius: 10px;
-    /* display: flex; */
-    /* flex-direction: column; */
-
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: .5rem;
 }
 
 .member_list_item a {

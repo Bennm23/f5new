@@ -10,7 +10,7 @@ def index(request):
 def get_member(request, member_id):
     member = get_object_or_404(Member, pk=member_id)
     context = {
-        'user': member,
+        'member': member,
     }
     return render(request, 'f5index/detail_member.html', context)
 
