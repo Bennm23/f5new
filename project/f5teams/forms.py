@@ -1,5 +1,5 @@
+from django import forms
 from .models import Team
-
 from django.forms import ModelForm, widgets
 
 class TeamSearchForm(forms.Form):
@@ -7,7 +7,6 @@ class TeamSearchForm(forms.Form):
     city = forms.CharField(label='City', required=False)
     state = forms.ChoiceField(label='State', choices=[('', '---')] + list(STATE_CHOICES), required=False)
     
-
 class TeamForm(ModelForm):
     class Meta:
         model = Team
