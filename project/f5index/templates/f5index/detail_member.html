@@ -11,7 +11,10 @@ Member
     {% if member.is_authenticated %}
         {% if request.user == member %}
             <h1>Howdy, {{ member.username }}!</h1><br />
-            <p><a href="{% url 'index:logout_member'%}">Logout</a></p>
+            <div class="button_link_group">
+                <a class="button_link positive" href="#">Edit profile</a>
+                <a class="button_link positive" href="{% url 'index:logout_member'%}">Logout</a>
+            </div>
         {% else %}
             <h1>{{ member.username }}!</h1><br />
             <p>Bio: {{ member.bio }}</p>
@@ -22,5 +25,70 @@ Member
     {% endif %}
 </div>
 
+{% if not user_blogs is None %}
+<hr>
+<div class="section">
+    <h2>My Blogs</h2>
+    {% if request.user == member %}
+        {% if member.is_authenticated %}
+        <div class="button_link_group">
+            <a href="{% url 'blogs:create' %}" class="button_link positive">Create your own!</a>
+        </div>
+        {% endif %}
+    {% endif %}
+
+    <div class="results_list">
+        {% for blog in user_blogs %}
+        <div class="list_item">
+            <details>
+                <summary>
+                    <a href="{% url 'blogs:detail' blog.id %}" class="button_link default">{{blog.title}}</a>
+                    <div class="float_right_div">
+                        <h5>Created On: {{blog.create_date}}</h5>
+                    </div>
+                </summary>
+                <p class="shorty">{{ blog.content | truncatewords:15 | safe}}</p>
+            </details>
+        </div>
+        {% empty %}
+        <h3>No blogs, such empty here :/</h3>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+
+{% if not user_teams is None %}
+<hr>
+<div class="section">
+
+    <h2>My Teams</h2>
+
+    {% if request.user == member %}
+        {% if user.is_authenticated %}
+        <div class="button_link_group">
+            <a href="{% url 'teams:create' %}" class="button_link positive">Create your own!</a>
+        </div>
+        {% endif %}
+    {% endif %}
+
+    <div class="results_list">
+        {% for team in user_teams %}
+        <div class="list_item">
+            <details>
+                <summary>
+                    <a href="{% url 'teams:detail' team.id %}" class="button_link default">{{team.team_name}}</a>
+                    <div class="float_right_div">
+                        <h5>{{team.city}}, {{team.state}}</h5>
+                    </div>
+                </summary>
+                <p class="shorty">{{ team.bio | truncatewords:15 | safe}}</p>
+            </details>
+        </div>
+        {% empty %}
+        <h3>Oh No! You haven't joined any teams...</h3>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
 
 {% endblock %}
