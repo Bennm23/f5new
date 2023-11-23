@@ -1,7 +1,10 @@
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import CreateUserForm, LoginUserForm
 from django.contrib.auth import authenticate, login, logout
+from f5blogs.models import BlogPost
+from f5teams.models import Team
 from .models import Member
+
 
 def index(request):
     context = {}
@@ -9,9 +12,23 @@ def index(request):
 
 def get_member(request, member_id):
     member = get_object_or_404(Member, pk=member_id)
+
+    # Get user's blogs
+    user_blogs = None
+    if request.user.is_authenticated and request.user == member:
+        user_blogs = BlogPost.objects.filter(author=request.user).order_by('-create_date')
+
+    # Get user's teams
+    user_teams = None
+    if request.user.is_authenticated and request.user == member:
+        user_teams = Team.objects.filter(members__id=request.user.id)
+
     context = {
         'member': member,
+        'user_blogs': user_blogs,
+        'user_teams': user_teams,
     }
+
     return render(request, 'f5index/detail_member.html', context)
 
 def create_member(request):  
