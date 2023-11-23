@@ -11,7 +11,10 @@ Member
     {% if member.is_authenticated %}
         {% if request.user == member %}
             <h1>Howdy, {{ member.username }}!</h1><br />
-            <p><a href="{% url 'index:logout_member'%}">Logout</a></p>
+            <div class="button_link_group">
+                <a class="button_link positive" href="#">Edit profile</a>
+                <a class="button_link positive" href="{% url 'index:logout_member'%}">Logout</a>
+            </div>
         {% else %}
             <h1>{{ member.username }}!</h1><br />
             <p>Bio: {{ member.bio }}</p>
@@ -26,16 +29,14 @@ Member
 <hr>
 <div class="section">
     <h2>My Blogs</h2>
-    {% if member.is_authenticated %}
-        {% if request.user == member %}
+    {% if request.user == member %}
+        {% if member.is_authenticated %}
         <div class="button_link_group">
             <a href="{% url 'blogs:create' %}" class="button_link positive">Create your own!</a>
         </div>
         {% endif %}
     {% endif %}
 
-    
-    {% if request.user == member %}
     <div class="results_list">
         {% for blog in user_blogs %}
         <div class="list_item">
@@ -50,10 +51,9 @@ Member
             </details>
         </div>
         {% empty %}
-        <h3>You have no blogs :/</h3>
+        <h3>No blogs, such empty here :/</h3>
         {% endfor %}
     </div>
-    {% endif %}
 </div>
 {% endif %}
 
@@ -71,7 +71,6 @@ Member
         {% endif %}
     {% endif %}
 
-    {% if request.user == member %}
     <div class="results_list">
         {% for team in user_teams %}
         <div class="list_item">
@@ -89,7 +88,6 @@ Member
         <h3>Oh No! You haven't joined any teams...</h3>
         {% endfor %}
     </div>
-    {% endif %}
 </div>
 {% endif %}
 
