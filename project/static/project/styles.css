@@ -64,6 +64,11 @@ form {
     gap: 1rem;
 }
 
+.search_form_container {
+    width: 60%;
+    margin: 0 auto;
+}
+
 .auth_form {
     max-width: 40%; 
 }
@@ -131,6 +136,10 @@ button:focus {
 
     .auth_form {
         max-width: 100%; 
+    }
+
+    .search_form_container {
+        width: 100%;
     }
 }
 

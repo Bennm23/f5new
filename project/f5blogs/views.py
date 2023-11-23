@@ -65,6 +65,7 @@ def detail(request, blog_id):
     }
     return render(request, 'f5blogs/detail_blog.html', context)
 
+@login_required(login_url='index:login_member')
 def edit(request, blog_id):
     blog = get_object_or_404(BlogPost, pk=blog_id)
     if request.method == 'POST':
@@ -84,6 +85,7 @@ def edit(request, blog_id):
         }
         return render(request, 'f5blogs/edit_blog.html', context)
 
+@login_required(login_url='index:login_member')
 def delete(request, blog_id):
     blog = get_object_or_404(BlogPost, pk=blog_id)
 

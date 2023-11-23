@@ -28,8 +28,8 @@ def index(request):
 
     # Additional context for authenticated users
     context = {'teams': teams}
-    if request.user.is_authenticated:
-        context['my_teams'] = Team.objects.filter(members__id=request.user.id)
+    #if request.user.is_authenticated:
+    #    context['my_teams'] = Team.objects.filter(members__id=request.user.id)
 
     return render(request, 'f5teams/teams_home.html', {'teams': teams, 'search_form': search_form, **context})
 
