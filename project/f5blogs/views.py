@@ -23,13 +23,14 @@ def index(request):
 
     recent_blogs = blogs.order_by('-create_date')[:5]
 
-    user_blogs = None
-    if request.user.is_authenticated:
-        user_blogs = blogs.filter(author=request.user).order_by('-create_date')
+    
+    #user_blogs = None
+    #if request.user.is_authenticated:
+    #    user_blogs = blogs.filter(author=request.user).order_by('-create_date')
 
     context = {
         'recent_blogs': recent_blogs,
-        'user_blogs': user_blogs,
+    #    'user_blogs': user_blogs,
         'search_form': search_form,
     }
 
