@@ -5,8 +5,8 @@ from django.forms import ModelForm, widgets
 
 class BlogSearchForm(forms.Form):
     search_query = forms.CharField(label='Search', required=False)
-    tags = forms.ChoiceField(choices=TAG_CHOICES, required=False)
-
+    tags = forms.MultipleChoiceField(choices=TAG_CHOICES, required=False)
+    
 class BlogForm(ModelForm):
     class Meta:
         model = BlogPost
