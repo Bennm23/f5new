@@ -1,4 +1,5 @@
 CATEGORY_CHOICES = [
+    ('', '---'),  # Empty option
     ('apparel', 'Apparel'),
     ('caps', 'Caps'),
     ('tickets', 'Tickets'),
@@ -11,6 +12,7 @@ CATEGORY_CHOICES = [
 ]
 
 MATERIAL_CHOICES = [
+    ('', '---'),  # Empty option
     ('cotton', 'Cotton'),
     ('leather', 'Leather'),
     ('polyester', 'Polyester'),

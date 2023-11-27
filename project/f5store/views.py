@@ -6,39 +6,36 @@ from .forms import ProductForm, ProductSearchForm
 from .models import Product
 
 def index(request):
-    if request.method == 'GET':
-        form = ProductSearchForm(request.GET)
-        if form.is_valid():
-            # Process the form data and filter products accordingly
-            products = Product.objects.all()
+    # Initialize the form
+    form = ProductSearchForm(request.GET)
 
-            # Filter by search query
-            search_query = form.cleaned_data.get('search_query')
-            if search_query:
-                products = products.filter(name__icontains=search_query)
+    # Get all products by default
+    products = Product.objects.all()
 
-            # Filter by category
-            category = form.cleaned_data.get('categories')
-            if category:
-                products = products.filter(categories=categories)
+    # If the form is submitted and valid, apply filters
+    if form.is_valid():
+        # Filter by search query
+        search_query = form.cleaned_data.get('search_query')
+        if search_query:
+            products = products.filter(name__icontains=search_query)
 
-            # Filter by material
-            material = form.cleaned_data.get('materials')
-            if material:
-                products = products.filter(materials=materials)
+        # Filter by category
+        category = form.cleaned_data.get('categories')
+        if category:
+            products = products.filter(categories=category)
 
-            # Filter by price range
-            min_price = form.cleaned_data.get('min_price')
-            max_price = form.cleaned_data.get('max_price')
-            if min_price is not None:
-                products = products.filter(price__gte=min_price)
-            if max_price is not None:
-                products = products.filter(price__lte=max_price)
+        # Filter by material
+        material = form.cleaned_data.get('materials')
+        if material:
+            products = products.filter(materials=material)
 
-    else:
-        # If it's not a GET request, initialize the form
-        form = ProductSearchForm()
-        products = Product.objects.all()
+        # Filter by price range
+        min_price = form.cleaned_data.get('min_price')
+        max_price = form.cleaned_data.get('max_price')
+        if min_price is not None:
+            products = products.filter(price__gte=min_price)
+        if max_price is not None:
+            products = products.filter(price__lte=max_price)
 
     context = {
         'search_form': form,

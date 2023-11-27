@@ -1,12 +1,10 @@
+from django.urls import reverse
+from .models import BlogPost, Tag
+from .forms import BlogForm, BlogSearchForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
-from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-from .forms import BlogForm, BlogSearchForm
-from .models import BlogPost
-
-# Create your views here.
 def index(request):
     blogs = BlogPost.objects.all()
     search_form = BlogSearchForm(request.GET)
@@ -19,18 +17,14 @@ def index(request):
             blogs = blogs.filter(title__icontains=search_query)
 
         if tags:
-            blogs = blogs.filter(tags__in=tags)
+            # Convert tag names to Tag instances
+            tag_objects = Tag.objects.filter(name__in=tags)
+            blogs = blogs.filter(tags__in=tag_objects)
 
     recent_blogs = blogs.order_by('-create_date')[:5]
 
-    
-    #user_blogs = None
-    #if request.user.is_authenticated:
-    #    user_blogs = blogs.filter(author=request.user).order_by('-create_date')
-
     context = {
         'recent_blogs': recent_blogs,
-    #    'user_blogs': user_blogs,
         'search_form': search_form,
     }
 
