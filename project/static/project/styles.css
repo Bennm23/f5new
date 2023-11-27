@@ -48,7 +48,7 @@ nav.open {
 }
 
 .brand_bar {
-    padding: 1rem 3rem .6rem 3rem;
+    padding: 1rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
