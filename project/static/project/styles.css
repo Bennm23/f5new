@@ -18,6 +18,12 @@ body {
     margin: 0;
 }
 
+.section_header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
 .errorlist {
     color: tomato;
 }
@@ -94,6 +100,11 @@ form label {
     font-size: 2em;
 }
 
+.filter {
+    font-size: 1.1em;
+    height: 50%;
+}
+
 input {
     height: 40px;
     font-size: 1.1em;
@@ -127,6 +138,7 @@ button:focus {
     border: none;
     outline: none;
 }
+
 
 @media only screen and (max-width: 680px) {
     .form_wrapper {
