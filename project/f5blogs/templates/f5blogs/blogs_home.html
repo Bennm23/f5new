@@ -15,10 +15,10 @@ Blogs
 <div class="section">
     <div class="section_header">
         <h2>Recent Blogs</h2>
-        <button class="filter">View filters <i class="fa fa-filter"></i></button>
+        <button class="filter" onclick="toggleSearchForm()">View filters <i class="fa fa-filter"></i></button>
     </div>
 
-    <div class="search_form_container">
+    <div id="searchFormContainer" class="search_form_container">
         <form method="get" action="{% url 'blogs:home' %}">
             {{ search_form.as_p }}
             <button class="submit" type="submit">Search</button>
