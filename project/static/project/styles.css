@@ -113,8 +113,8 @@ p.username {
 }
 
 form {
-    padding-top: 2.5rem;
-    padding-bottom: 5rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -122,8 +122,10 @@ form {
 
 .search_form_container {
     width: 60%;
-    margin: 0 auto;
+    margin: 1rem auto;
     display: none;
+    border: 1px solid white;
+    padding: 1rem;
 }
 
 .auth_form {
@@ -202,7 +204,7 @@ button:focus {
     }
 
     .search_form_container {
-        width: 100%;
+        width: 80%;
     }
 
     .brand_bar {
