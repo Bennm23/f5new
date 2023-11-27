@@ -11,15 +11,15 @@ def index(request):
 
     if search_form.is_valid():
         search_query = search_form.cleaned_data.get('search_query')
-        tags = search_form.cleaned_data.get('tags')
+        tag = search_form.cleaned_data.get('tags')
 
         if search_query:
             blogs = blogs.filter(title__icontains=search_query)
 
-        if tags:
-            # Convert tag names to Tag instances
-            tag_objects = Tag.objects.filter(name__in=tags)
-            blogs = blogs.filter(tags__in=tag_objects)
+        if tag and tag != '--':
+            # Convert the selected tag name to a Tag instance
+            tag_object = Tag.objects.get(name=tag)
+            blogs = blogs.filter(tags__in=[tag_object])
 
     recent_blogs = blogs.order_by('-create_date')[:5]
 
