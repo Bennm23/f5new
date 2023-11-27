@@ -8,3 +8,9 @@ function toggleSearchForm() {
     searchFormContainer.style.display = "none";
   }
 }
+
+// Toggle visibility of site menu on all pages.
+function toggleMenu() {
+  const nav = document.querySelector("nav");
+  nav.classList.toggle("open");
+}

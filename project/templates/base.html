@@ -32,7 +32,18 @@
             <li><a href="{% url 'blogs:home' %}">Blogs</a></li>
             <li><a href="{% url 'teams:home' %}">Teams</a></li>
         </ul>
+        <span class="close_button" onclick="toggleMenu()">X</span>
     </nav>
+
+    <div class="brand_bar">
+        <div class="toggle_button" onclick="toggleMenu()">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+
+        <div class="brand_title">
+            <h1>F5R</h1>
+        </div>
+    </div>
 
     {% block content %}{% endblock %}
 

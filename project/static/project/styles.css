@@ -11,8 +11,7 @@ body {
 }
 
 .section {
-    min-height: 50vh;
-    padding-bottom: 4rem;
+    padding-bottom: 5rem;
 }
 
 .section * {
@@ -29,16 +28,64 @@ body {
     color: tomato;
 }
 
-.navlist {
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: rgb(180, 30, 30);
+    z-index: 1;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
     display: flex;
     flex-direction: row;
-    list-style-type: none;
-    padding: 1.2rem 0;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+nav.open {
+    transform: translateX(0);
+}
+
+.brand_bar {
+    padding: 1rem .5rem .6rem .5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.brand_title h1 {
     margin: 0;
+    font-size: 1.5rem;
+    font-size: 1.8em;
+    font-style: italic;
+}
+
+.toggle_button {
+    margin: 0;
+    font-size: 1.2em;
+    order: -1;
+}
+
+.close_button:hover {
+    cursor: pointer;
+}
+
+.toggle_button:hover {
+    cursor: pointer;
+}
+
+.navlist {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    gap: 1rem;
 }
 
 .navlist li {
-    margin-right: 10px;
+    font-size: 1.2em;
 }
 
 .navlist li a {
