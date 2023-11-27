@@ -48,11 +48,12 @@ nav.open {
 }
 
 .brand_bar {
-    padding: 1rem 1.2rem .6rem 1.2rem;
+    padding: 1rem 3rem .6rem 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     background: rgb(180, 30, 30);
+    margin-bottom: 2.5rem;
 }
 
 .brand_title h1 {
@@ -202,6 +203,11 @@ button:focus {
 
     .search_form_container {
         width: 100%;
+    }
+
+    .brand_bar {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 }
 
