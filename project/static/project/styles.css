@@ -73,6 +73,7 @@ form {
 .search_form_container {
     width: 60%;
     margin: 0 auto;
+    display: none;
 }
 
 .auth_form {
