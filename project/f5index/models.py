@@ -1,13 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+from .constants import USER_TYPES
 
-class Member(AbstractUser):
-    USER_TYPES = [
-        ('player', 'Player'),
-        ('coach', 'Coach'),
-        ('fan_other', 'Fan/Other'),
-    ]
-    
+class Member(AbstractUser):    
     bio = models.TextField(max_length=500, blank=True)
     user_type = models.CharField(
         max_length=20,
