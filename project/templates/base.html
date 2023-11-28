@@ -30,6 +30,7 @@
 
         <li><a href="{% url 'blogs:home' %}"><i class="fa fa-rss" aria-hidden="true"></i> Blogs</a></li>
         <li><a href="{% url 'teams:home' %}"><i class="fa fa-users" aria-hidden="true"></i> Teams</a></li>
+        <li><a href="{% url 'index:contact_support' %}"><i class="fa fa-life-ring" aria-hidden="true"></i> Contact</a></li>
     </ul>
     <div class="toggle_button" onclick="toggleMenu()">
         <i class="fa fa-window-close" aria-hidden="true"></i>
@@ -53,7 +54,7 @@
     <div class="footer">
         <hr >
         <ul class="navlist">
-            <li>Contact Us</li>
+            <li><a href="{% url 'index:contact_support' %}"><i class="fa fa-life-ring" aria-hidden="true"></i> Support</a></li>
         </ul>
     </div>
 </div>
