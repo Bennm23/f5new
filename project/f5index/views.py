@@ -40,10 +40,11 @@ def create_member(request):
     if request.method == 'POST':  
         form = CreateUserForm(request.POST)  
         if form.is_valid():  
-            form.save()  
-            return redirect('index:get_member')  # Redirect to user page
+            user = form.save()
+            user.send_verification_email()
+            return redirect('index:verify_sent')  # Redirect to verify your email
     else:  
-        form = CreateUserForm(instance=request.user)  
+        form = CreateUserForm()  
     context = {  
         'form':form  
     }  
@@ -89,3 +90,6 @@ def login_member(request):
 def logout_member(request):
   logout(request)
   return redirect('index:login_member')
+
+def verify_sent(request):
+    return render(request, 'f5index/verify_sent.html')

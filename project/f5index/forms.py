@@ -13,7 +13,7 @@ class CreateUserForm(UserCreationForm):
         if commit:
             user.save()
         return user
-
+ 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Set placeholder and remove help text for the 'email' field

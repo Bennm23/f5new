@@ -1,6 +1,7 @@
 import string, random
 from django.db import models
 from .constants import USER_TYPES
+from django.core.mail import send_mail
 from django.contrib.auth.models import AbstractUser
 
 class Member(AbstractUser):    
@@ -32,3 +33,14 @@ class Member(AbstractUser):
     def set_verification_code(self):
         self.verification_code = self.generate_verification_code()
         self.save()
+
+    def send_verification_email(self):
+        subject = 'First Five Verify'
+        message = f'Your verification code is: {self.verification_code}'
+        send_mail(
+            subject,
+            message,
+            'firstfiverugby@gmail.com',
+            [self.email],
+            fail_silently=False,
+        )
