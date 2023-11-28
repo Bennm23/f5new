@@ -12,5 +12,7 @@ urlpatterns = [
     path('editMember/', views.edit_member, name='edit_member'),
     path('verifySent/', views.verify_sent, name="verify_sent"),
     path('verify/<str:verification_code>/', views.verify_user, name='verify_user'),
+    path('contactSupport/', views.contact_support, name='contact_support'),
+    path('thankyou/', views.thank_you, name='thank_you'),
 ]
 

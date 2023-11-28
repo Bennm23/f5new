@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from .forms import CreateUserForm, EditUserForm, LoginUserForm
+from .forms import CreateUserForm, EditUserForm, LoginUserForm, SupportSubmissionForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -112,3 +112,19 @@ def verify_user(request, verification_code):
         messages.success(request, 'Your account has been successfully verified. What are you waiting for?')
 
     return render(request, 'f5index/verify_user.html', {'messages': messages.get_messages(request)})
+
+def contact_support(request):
+    if request.method == 'POST':
+        form = SupportSubmissionForm(request.POST)
+        if form.is_valid():
+            form.save()
+            # Optionally, you can add a success message or redirect to a thank you page
+            return redirect('index:thank_you')
+    else:
+        form = SupportSubmissionForm()
+
+    context = {'form': form}
+    return render(request, 'f5index/contact_support.html', context)
+
+def thank_you(request):
+    return render(request, 'f5index/thank_you.html')
