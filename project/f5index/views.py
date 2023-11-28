@@ -69,21 +69,27 @@ def edit_member(request):
 def login_member(request):  
     if request.user.is_authenticated:
         return redirect('index:home')
+
     form = None
+
     if request.method == 'POST':
         form = LoginUserForm(data=request.POST)
+        
         if form.is_valid():
             # Authenticate the user
             user = authenticate(request, username=form.cleaned_data['username'], password=form.cleaned_data['password'])
+            
             if user is not None:
-                # Log the user in
-                login(request, user)
-                return redirect('blogs:home')  # Redirect to a success page or another URL
+                if user.is_verified:
+                    # Log the user in
+                    login(request, user)
+                    return redirect('blogs:home')  # Redirect to a success page or another URL
+                else:
+                    return redirect('index:verify_sent')  # Redirect to the verification screen
             else:
-
                 return redirect('index:login_member')
     else:
-        form = LoginUserForm()  
+        form = LoginUserForm()
 
     context = {'form': form}
     return render(request, 'f5index/login_member.html', context)
@@ -99,10 +105,10 @@ def verify_user(request, verification_code):
     user = get_object_or_404(Member, verification_code=verification_code)
     
     if user.is_verified:
-        messages.success(request, 'Your account is already verified. You can now log in.')
+        messages.success(request, 'Your account is ALREADY verified. What are you waiting for?')
     else:
         user.is_verified = True
         user.save()
-        messages.success(request, 'Your account has been successfully verified. You can now log in.')
+        messages.success(request, 'Your account has been successfully verified. What are you waiting for?')
 
     return render(request, 'f5index/verify_user.html', {'messages': messages.get_messages(request)})

@@ -1,4 +1,4 @@
-from audioop import reverse
+from django.urls import reverse
 import string, random
 from django.db import models
 from .constants import USER_TYPES
@@ -38,7 +38,7 @@ class Member(AbstractUser):
     def send_verification_email(self):
         subject = 'First Five Verify'
         verification_url = reverse('index:verify_user', args=[self.verification_code])
-        message = f'To verify your account, click on the following link: {verification_url}'
+        message = f'To verify your account, click on the following link: f5rugby.com:8000{verification_url}'
         send_mail(
             subject,
             message,
@@ -46,3 +46,11 @@ class Member(AbstractUser):
             [self.email],
             fail_silently=False,
         )
+
+class SupportSubmission(models.Model):
+    email = models.EmailField()
+    cell = models.CharField(max_length=15)  # You may adjust the max_length according to your needs
+    message = models.TextField()
+
+    def __str__(self):
+        return f"Support Submission - {self.email}"
