@@ -7,6 +7,13 @@ from django.forms import ModelForm, widgets
 class CreateUserForm(UserCreationForm):
     captcha = ReCaptchaField()
 
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_verification_code()  # Set the verification code
+        if commit:
+            user.save()
+        return user
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Set placeholder and remove help text for the 'email' field
@@ -52,4 +59,4 @@ class LoginUserForm(AuthenticationForm):
 class EditUserForm(ModelForm):
     class Meta:
         model = Member
-        fields = ['bio',]
+        fields = ['pic_url', 'bio',]
