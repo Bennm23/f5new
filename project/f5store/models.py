@@ -1,24 +1,8 @@
 from django.db import models
 from ckeditor.fields import RichTextField
+from .constants import CATEGORY_CHOICES, MATERIAL_CHOICES
 
 class Product(models.Model):
-    CATEGORY_CHOICES = [
-        ('apparel', 'Apparel'),
-        ('caps', 'Caps'),
-        ('teams', 'Teams'),
-        ('players', 'Players'),
-        ('short', 'Short sleeve'),
-        ('long', 'Long sleeve'),
-        ('shoes', 'Shoes'),
-        ('accessories', 'Accessories'),
-    ]
-
-    MATERIAL_CHOICES = [
-        ('cotton', 'Cotton'),
-        ('leather', 'Leather'),
-        ('polyester', 'Polyester'),
-    ]
-  
     name = models.CharField(max_length=255)
     description = RichTextField(blank=True, null=True)
     price = models.DecimalField(max_digits=10, decimal_places=2)

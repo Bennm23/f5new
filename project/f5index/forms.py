@@ -2,7 +2,7 @@ from .models import Member
 from django_recaptcha.fields import ReCaptchaField
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
-from django.forms import widgets
+from django.forms import ModelForm, widgets
 
 class CreateUserForm(UserCreationForm):
     captcha = ReCaptchaField()
@@ -47,3 +47,10 @@ class LoginUserForm(AuthenticationForm):
     class Meta:
         model = Member  # Replace YourUserModel with the actual user model you are using
         fields = ['username', 'password']
+
+
+class EditUserForm(ModelForm):
+
+    class Meta:
+        model = Member
+        fields = ['email', 'user_type', 'username']

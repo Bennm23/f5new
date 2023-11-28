@@ -11,27 +11,83 @@ body {
 }
 
 .section {
-    min-height: 50vh;
+    padding-bottom: 5rem;
 }
 
 .section * {
     margin: 0;
 }
 
+.section_header {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+}
+
 .errorlist {
     color: tomato;
 }
 
-.navlist {
+nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: rgb(180, 30, 30);
+    z-index: 1;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
     display: flex;
     flex-direction: row;
-    list-style-type: none;
-    padding: 1.2rem 0;
+    gap: 2.5rem;
+    padding: 1rem;
+}
+
+nav.open {
+    transform: translateX(0);
+}
+
+.brand_bar {
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgb(180, 30, 30);
+    margin-bottom: 2.5rem;
+}
+
+.brand_title h1 {
     margin: 0;
+    font-size: 1.5rem;
+    font-size: 1.8em;
+    font-style: italic;
+}
+
+.toggle_button {
+    margin: 0;
+    font-size: 1.6em;
+}
+
+.toggle_button:hover {
+    cursor: pointer;
+}
+
+.brand_bar .toggle_button {
+    font-size: 2rem;
+}
+
+
+.navlist {
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    gap: 1rem;
 }
 
 .navlist li {
-    margin-right: 10px;
+    font-size: 1.2em;
 }
 
 .navlist li a {
@@ -57,8 +113,8 @@ p.username {
 }
 
 form {
-    padding-top: 2.5rem;
-    padding-bottom: 5rem;
+    padding-top: 1rem;
+    padding-bottom: 2rem;
     display: grid;
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -66,7 +122,10 @@ form {
 
 .search_form_container {
     width: 60%;
-    margin: 0 auto;
+    margin: 1rem auto;
+    display: none;
+    border: 1px solid white;
+    padding: 1rem;
 }
 
 .auth_form {
@@ -92,6 +151,11 @@ form label {
 .submit {
     margin-top: 1.5rem;
     font-size: 2em;
+}
+
+.filter {
+    font-size: 1.1em;
+    height: 50%;
 }
 
 input {
@@ -128,6 +192,7 @@ button:focus {
     outline: none;
 }
 
+
 @media only screen and (max-width: 680px) {
     .form_wrapper {
         width: 100%;
@@ -139,7 +204,12 @@ button:focus {
     }
 
     .search_form_container {
-        width: 100%;
+        width: 80%;
+    }
+
+    .brand_bar {
+        padding-left: 1rem;
+        padding-right: 1rem;
     }
 }
 

@@ -1,6 +1,7 @@
 from django.shortcuts import get_object_or_404, redirect, render
-from .forms import CreateUserForm, LoginUserForm
+from .forms import CreateUserForm, EditUserForm, LoginUserForm
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from f5blogs.models import BlogPost
 from f5teams.models import Team
 from .models import Member
@@ -10,6 +11,7 @@ def index(request):
     context = {}
     return render(request, "f5index/index.html", context)
 
+@login_required(login_url='index:login_member')
 def get_member(request, member_id):
     member = get_object_or_404(Member, pk=member_id)
 
@@ -39,13 +41,28 @@ def create_member(request):
         form = CreateUserForm(request.POST)  
         if form.is_valid():  
             form.save()  
-            return redirect('index:login_member')  # Redirect to a success page or another URL
+            return redirect('index:get_member')  # Redirect to user page
     else:  
-        form = CreateUserForm()  
+        form = CreateUserForm(instance=request.user)  
     context = {  
         'form':form  
     }  
     return render(request, 'f5index/create_member.html', context)
+
+@login_required(login_url='index:login_member')
+def edit_member(request):  
+    form = None
+    if request.method == 'POST':  
+        form = EditUserForm(request.POST, instance=request.user)  
+        if form.is_valid():  
+            form.save()  
+            return redirect('index:login_member')  # Redirect to a success page or another URL
+    else:  
+        form = EditUserForm(instance=request.user)  
+    context = {  
+        'form':form  
+    }  
+    return render(request, 'f5index/edit_member.html', context)
 
 def login_member(request):  
     if request.user.is_authenticated:

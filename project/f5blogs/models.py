@@ -1,17 +1,8 @@
 from django.db import models
+from .constants import TAG_CHOICES
 from ckeditor.fields import RichTextField
 
 class Tag(models.Model):
-    TAG_CHOICES = [
-        ('none', 'None/Unspecified'),
-        ('mental', 'Mental'),
-        ('physical', 'Physical'),
-        ('community', 'Community'),
-        ('teams', 'Teams'),
-        ('players', 'Players'),
-        ('coaches', 'Coaches'),
-        # Add more choices as needed
-    ]
 
     COLOR_CHOICES = [
         ('white', '#FFFFFF'),     # Default color is white
@@ -23,7 +14,7 @@ class Tag(models.Model):
         ('cyan', '#00B286'),      # Cyan
     ]
 
-    name = models.CharField(max_length=50, choices=TAG_CHOICES, unique=True)
+    name = models.CharField(max_length=50, choices=TAG_CHOICES, default='')
     color = models.CharField(max_length=20, choices=COLOR_CHOICES, default='#FFFFFF') 
     
     def __str__(self):

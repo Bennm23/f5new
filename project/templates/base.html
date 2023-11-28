@@ -8,27 +8,45 @@
     {% load static %}
 
     <link rel="stylesheet" href="{% static 'project/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     {% block loadcss %}{% endblock%}
+
+    <script src="{% static 'project/scripts.js' %}"></script>
+    {% block loadjs %}{% endblock %}
 
 </head>
 <body>
 
+<nav>
+    <ul class="navlist">
+        <li><a href="{% url 'index:home' %}"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+        <li><a href="{% url 'store:home' %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Store</a></li>
+
+        {% if user.is_authenticated %}
+            <li><a href="{% url 'index:get_member' user.id %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ user.username }}</a></li>
+        {% else %}
+            <li><a href="{% url 'index:login_member' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Member</a></li>
+        {% endif %}
+
+        <li><a href="{% url 'blogs:home' %}"><i class="fa fa-rss" aria-hidden="true"></i> Blogs</a></li>
+        <li><a href="{% url 'teams:home' %}"><i class="fa fa-users" aria-hidden="true"></i> Teams</a></li>
+    </ul>
+    <div class="toggle_button" onclick="toggleMenu()">
+        <i class="fa fa-window-close" aria-hidden="true"></i>
+    </div>
+</nav>
+
+<div class="brand_bar">
+    <div class="toggle_button" onclick="toggleMenu()">
+        <i class="fa fa-empire" aria-hidden="true"></i>
+    </div>
+
+    <div class="brand_title">
+        <h1>F5R</h1>
+    </div>
+</div>
+
 <div class="container">
-    <nav>
-        <ul class="navlist">
-            <li><a href="{% url 'index:home' %}">Home</a></li>
-            <li><a href="{% url 'store:home' %}">Store</a></li>
-
-            {% if user.is_authenticated %}
-                <li><a href="{% url 'index:get_member' user.id %}">{{ user.username }}</a></li>
-            {% else %}
-                <li><a href="{% url 'index:login_member' %}">Member</a></li>
-            {% endif %}
-
-            <li><a href="{% url 'blogs:home' %}">Blogs</a></li>
-            <li><a href="{% url 'teams:home' %}">Teams</a></li>
-        </ul>
-    </nav>
 
     {% block content %}{% endblock %}
 
