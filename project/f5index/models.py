@@ -9,6 +9,8 @@ class Member(AbstractUser):
         choices=USER_TYPES,
         default='fan_other',
     )
+    is_verified = models.BooleanField(default=False)
+    verification_code = models.CharField(max_length=20, blank=True, null=True)
 
     def __str__(self):
         return self.username
