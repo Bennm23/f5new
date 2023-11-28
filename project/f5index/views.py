@@ -2,6 +2,7 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .forms import CreateUserForm, EditUserForm, LoginUserForm
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from f5blogs.models import BlogPost
 from f5teams.models import Team
 from .models import Member
@@ -93,3 +94,15 @@ def logout_member(request):
 
 def verify_sent(request):
     return render(request, 'f5index/verify_sent.html')
+
+def verify_user(request, verification_code):
+    user = get_object_or_404(Member, verification_code=verification_code)
+    
+    if user.is_verified:
+        messages.success(request, 'Your account is already verified. You can now log in.')
+    else:
+        user.is_verified = True
+        user.save()
+        messages.success(request, 'Your account has been successfully verified. You can now log in.')
+
+    return render(request, 'f5index/verify_user.html', {'messages': messages.get_messages(request)})

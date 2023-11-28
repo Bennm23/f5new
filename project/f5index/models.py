@@ -1,3 +1,4 @@
+from audioop import reverse
 import string, random
 from django.db import models
 from .constants import USER_TYPES
@@ -36,7 +37,8 @@ class Member(AbstractUser):
 
     def send_verification_email(self):
         subject = 'First Five Verify'
-        message = f'Your verification code is: {self.verification_code}'
+        verification_url = reverse('index:verify_user', args=[self.verification_code])
+        message = f'To verify your account, click on the following link: {verification_url}'
         send_mail(
             subject,
             message,
