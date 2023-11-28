@@ -50,7 +50,6 @@ class LoginUserForm(AuthenticationForm):
 
 
 class EditUserForm(ModelForm):
-
     class Meta:
         model = Member
-        fields = ['email', 'user_type', 'username']
+        fields = ['bio',]
