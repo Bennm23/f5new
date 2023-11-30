@@ -100,7 +100,7 @@ DATABASES = {
         'NAME': 'firstfive',
         'USER': 'firstfive',
         'PASSWORD': 'first_five',
-        'HOST': 'localhost',
+        'HOST': 'db', # Note: Use service name defined in dockerfile
         'PORT': '5432',
     }
 }
