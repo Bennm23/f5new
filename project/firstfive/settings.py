@@ -60,7 +60,17 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'firstfive.urls'
 
+# Authentication and session configurations
 AUTH_USER_MODEL= 'f5index.Member'
+
+# Expire user session after 30mins
+SESSION_COOKIE_AGE = 1800
+
+# Renew session when user send ANY request
+SESSION_SAVE_EVERY_REQUEST = True
+
+# Expire session when the user closes their browser
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 TEMPLATES = [
     {
@@ -120,7 +130,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/New_York'
+
 
 USE_I18N = True
 
