@@ -1,5 +1,13 @@
 press ctrl+shift+v to get a nice view 
 
+
+Our style guide:
+js function naming = under_score
+html ID tags = under_score
+html class  names = under_Score
+
+
+
 Style Guide = https://github.com/HackSoftware/Django-Styleguide
 
 **Models**
