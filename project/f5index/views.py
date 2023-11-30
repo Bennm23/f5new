@@ -12,7 +12,6 @@ def index(request):
     context = {}
     return render(request, "f5index/index.html", context)
 
-@login_required(login_url='index:login_member')
 def get_member(request, member_id):
     member = get_object_or_404(Member, pk=member_id)
 
