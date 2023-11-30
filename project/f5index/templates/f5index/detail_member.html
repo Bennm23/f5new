@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block loadcss %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'f5index/f5user.css' %}">
+{% endblock %}
 
 {% block title %}
 Member
@@ -15,12 +19,27 @@ Member
                 <a class="button_link positive" href="{% url 'index:logout_member'%}">Logout</a>
             </div>
         {% else %}
-            <h1>{{ member.username }}!</h1><br />
-            <p>Bio: {{ member.bio }}</p>
+        <div class="profile_card">
+            <div class="profile_username">
+                <h2>{{ member.username }}</h2>
+            </div>
+            <div class="profile_pic">
+                <img src="{{ member.pic_url }}" />
+            </div>
+            <div class="profile_bio">
+                <p>{{ member.bio }}</p>
+            </div>
+        </div> 
         {% endif %}
     {% else %}
-        <h1>{{ member.username }}!</h1><br />
-        <p>Bio: {{ member.bio }}</p>
+        <div class="profile_card">
+            <div class="profile_username">
+                <h2>{{ member.username }}</h2>
+            </div>
+            <div class="user_profile">
+                <img src="{{ member.pic_url }}" />
+            </div>
+        </div> 
     {% endif %}
 </div>
 

@@ -1,0 +1,33 @@
+.profile_card {
+  background-color: white;
+  color: black;
+  padding: 2rem 1rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.profile_pic {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.profile_pic img {
+  aspect-ratio: 1 / 1;
+  border-radius: 50%;
+  width: 30%;
+  padding: 1rem;
+}
+
+.profile_bio {
+  text-align: center;
+}
+
+.profile_username {
+  padding: 0 2rem;
+}
