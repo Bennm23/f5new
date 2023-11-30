@@ -3,14 +3,33 @@
 {% block loadcss %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'f5blogs/f5blogs.css' %}">
+    <link rel="stylesheet" href="{% static 'project/modals.css' %}">
 {% endblock %}
 
+{% block loadjs %}
+    <script src="{% static 'project/modals.js' %}"></script>
+{% endblock %}
 
 
 {% block title %}
 {% endblock %}
 
 {% block content %}
+<div class="modal_wrapper" id="confirm_delete_div">
+    <form class="confirm_delete_form" method="post" action="{% url 'blogs:delete' blog.id %}">
+        {% csrf_token %}
+        <div class="container">
+            <h1>Delete Blog</h1>
+            <p> Are you sure you want to delete this blog? </p>
+
+            <div>
+                <button type="reset" onclick="hideConfirmDelete()" class="delete_cancel_button">Cancel</button>
+                <button type="submit" onclick="hideConfirmDelete()" class="delete_confirm_button">Delete</button>
+            </div>
+        </div>
+    </form>
+</div>
+
 <div class="section">
 <div class="blog_detail">
     <h2>{{blog.title}}</h2>
@@ -18,7 +37,7 @@
     {% if user == blog.author %}
     <div class="button_link_group">
         <a href="{% url 'blogs:edit' blog.id %}" class="button_link neutral">Edit blog</a> |
-        <a href="{% url 'blogs:delete' blog.id %}" class="button_link neutral">Delete blog</a>
+        <a class="modal_link neutral" onclick="showConfirmDelete()">Delete blog</a>
     </div>
     {% endif %}
 
