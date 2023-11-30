@@ -1,4 +1,5 @@
-from .models import Member
+from django import forms
+from .models import Member, SupportSubmission
 from django_recaptcha.fields import ReCaptchaField
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
@@ -7,6 +8,13 @@ from django.forms import ModelForm, widgets
 class CreateUserForm(UserCreationForm):
     captcha = ReCaptchaField()
 
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.set_verification_code()  # Set the verification code
+        if commit:
+            user.save()
+        return user
+ 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Set placeholder and remove help text for the 'email' field
@@ -50,7 +58,18 @@ class LoginUserForm(AuthenticationForm):
 
 
 class EditUserForm(ModelForm):
-
     class Meta:
         model = Member
-        fields = ['email', 'user_type', 'username']
+        fields = ['pic_url', 'bio',]
+
+class SupportSubmissionForm(ModelForm):
+    captcha = ReCaptchaField()
+
+    class Meta:
+        model = SupportSubmission
+        fields = ['email', 'cell', 'message']
+        widgets = {
+            'email': forms.EmailInput(attrs={'placeholder': 'Your email'}),
+            'cell': forms.TextInput(attrs={'placeholder': 'Your cell number'}),
+            'message': forms.Textarea(attrs={'placeholder': 'Describe your issue or message'}),
+        }
