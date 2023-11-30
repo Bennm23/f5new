@@ -1,11 +1,11 @@
 
 // Toggle visibility of search forms on searchables.
 function toggleSearchForm() {
-  var searchFormContainer = document.getElementById("searchFormContainer");
-  if (searchFormContainer.style.display === "none" || searchFormContainer.style.display === "") {
-    searchFormContainer.style.display = "block";
+  var search_form_container = document.getElementById("search_form_container");
+  if (search_form_container.style.display === "none" || search_form_container.style.display === "") {
+    search_form_container.style.display = "block";
   } else {
-    searchFormContainer.style.display = "none";
+    search_form_container.style.display = "none";
   }
 }
 
