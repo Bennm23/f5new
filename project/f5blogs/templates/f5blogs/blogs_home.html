@@ -16,7 +16,7 @@ Articles
         <button class="filter" onclick="toggleSearchForm()">View filters <i class="fa fa-filter"></i></button>
     </div>
 
-    <div id="searchFormContainer" class="search_form_container">
+    <div id="search_form_container" class="search_form_container">
         <form method="get" action="{% url 'blogs:home' %}">
             {{ search_form.as_p }}
             <button class="submit" type="submit">Search</button>

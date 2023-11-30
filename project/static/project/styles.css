@@ -8,6 +8,12 @@ body {
 .container {
     max-width: 95%;
     margin: 0 auto;
+    transition: filter 0.3s ease;
+}
+
+.container.blur {
+    filter: blur(5px); /* Adjust this based on your design */
+    pointer-events: none;
 }
 
 .section {
