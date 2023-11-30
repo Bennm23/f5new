@@ -238,6 +238,15 @@ button:focus {
     color: tomato;
 }
 
+.delete {
+    color: rgb(180, 30, 30);
+    border: 1px solid rgb(180, 30, 30);
+}
+
+.cancel {
+    color: darkgrey;
+}
+
 .horizontal_divider {
     width: 0.3rem;
     height: auto;
