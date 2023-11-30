@@ -13,7 +13,17 @@ Member
 <div class="section">
     {% if member.is_authenticated %}
         {% if request.user == member %}
-            <h1>Howdy, {{ member.username }}!</h1><br />
+            <div class="profile_card">
+                <div class="profile_username">
+                    <h2>@{{ member.username }}</h2>
+                </div>
+                <div class="profile_pic">
+                    <img src="{{ member.pic_url }}" />
+                </div>
+                <div class="profile_bio">
+                    <p>{{ member.bio }}</p>
+                </div>
+            </div> 
             <div class="button_link_group">
                 <a class="button_link positive" href="{% url 'index:edit_member' %}">Edit profile</a>
                 <a class="button_link positive" href="{% url 'index:logout_member'%}">Logout</a>
@@ -21,7 +31,7 @@ Member
         {% else %}
         <div class="profile_card">
             <div class="profile_username">
-                <h2>{{ member.username }}</h2>
+                <h2>@{{ member.username }}</h2>
             </div>
             <div class="profile_pic">
                 <img src="{{ member.pic_url }}" />
@@ -34,7 +44,7 @@ Member
     {% else %}
         <div class="profile_card">
             <div class="profile_username">
-                <h2>{{ member.username }}</h2>
+                <h2>@{{ member.username }}</h2>
             </div>
             <div class="user_profile">
                 <img src="{{ member.pic_url }}" />

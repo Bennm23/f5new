@@ -58,7 +58,7 @@ def edit_member(request):
         form = EditUserForm(request.POST, instance=request.user)  
         if form.is_valid():  
             form.save()  
-            return redirect('index:login_member')  # Redirect to a success page or another URL
+            return redirect('index:get_member', member_id=request.user.id)
     else:  
         form = EditUserForm(instance=request.user)  
     context = {  
