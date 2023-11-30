@@ -16,6 +16,10 @@ COPY ./project .
 # Copy the entrypoint script into the container at /app
 COPY entrypoint.sh .
 
+# Install wait-for-it
+ADD https://github.com/vishnubob/wait-for-it/raw/master/wait-for-it.sh /wait-for-it.sh
+RUN chmod +x /wait-for-it.sh
+
 # Change permissions
 RUN chmod +x entrypoint.sh
 
