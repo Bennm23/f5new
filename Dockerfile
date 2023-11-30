@@ -17,8 +17,8 @@ COPY ./project .
 COPY entrypoint.sh .
 
 # Install wait-for-it
-ADD https://github.com/vishnubob/wait-for-it/raw/master/wait-for-it.sh /wait-for-it.sh
-RUN chmod +x /wait-for-it.sh
+ADD https://github.com/vishnubob/wait-for-it/raw/master/wait-for-it.sh /usr/bin/wait-for-it.sh
+RUN chmod +x /usr/bin/wait-for-it.sh
 
 # Change permissions
 RUN chmod +x entrypoint.sh

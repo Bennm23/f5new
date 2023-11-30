@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Wait for the database to be ready
-/usr/bin/wait-for-it db:5432
+/usr/bin/wait-for-it.sh db:5432
 
 # Load environment variables from .env file
 if [ -f ".env" ]; then
