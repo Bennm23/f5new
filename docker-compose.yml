@@ -5,7 +5,7 @@ services:
     build: .
     command: ./entrypoint.sh
     volumes:
-      - .:/app
+      - firstfive_data: /app
     ports:
       - "8000:8000"
     depends_on:
@@ -17,3 +17,8 @@ services:
     image: postgres:14.9
     env_file:
       - .env
+    volumes:
+      - postgres_data: /var/lib/postgresql/data
+
+  volumes:
+    postgres_data:
