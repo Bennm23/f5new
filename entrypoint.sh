@@ -10,9 +10,9 @@ fi
 
 # Apply migrations
 python /app/project/manage.py makemigrations
-python /app/project/manage.py migrate
-
-python /app/project/manage.py createsuperuser --noinput
+python /app/project/manage.py migrate --no-input
+python /app/project/manage.py create_superuser
+python /app/project/manage.py populate_teams
 
 # Start the Django development server
 python /app/project/manage.py runserver 0.0.0.0:8000
