@@ -12,5 +12,7 @@ fi
 python /app/project/manage.py makemigrations
 python /app/project/manage.py migrate
 
+python /app/project/manage.py createsuperuser --noinput
+
 # Start the Django development server
 python /app/project/manage.py runserver 0.0.0.0:8000
