@@ -1,11 +1,15 @@
 version: '3'
 
+volumes:
+  web_data:
+  postgres_data:
+
 services:
   web:
     build: .
     command: ./entrypoint.sh
     volumes:
-      - firstfive_data: /app
+      - web_data:/app
     ports:
       - "8000:8000"
     depends_on:
@@ -18,8 +22,4 @@ services:
     env_file:
       - .env
     volumes:
-      - postgres_data: /var/lib/postgresql/data
-
-volumes:
-  firstfive_data:
-  postgres_data:
+      - postgres_data:/var/lib/postgresql/data
