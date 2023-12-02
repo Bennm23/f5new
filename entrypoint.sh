@@ -8,8 +8,16 @@ if [ -f ".env" ]; then
   export $(cat .env | xargs)
 fi
 
-# Apply migrations
+
+# Apply migrations for each app
+python manage.py makemigrations f5index
+python manage.py makemigrations f5store
+python manage.py makemigrations f5blogs
+python manage.py makemigrations f5teams
+
+# Redundent
 python /app/manage.py makemigrations
+
 python /app/manage.py migrate --no-input
 python /app/manage.py create_superuser
 python /app/manage.py populate_teams
