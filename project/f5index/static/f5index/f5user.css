@@ -8,7 +8,8 @@
   justify-content: center;
   align-items: center;
   gap: 1rem;
-  max-width: 100%;
+  max-width: 80%;
+  width: 50%;
   margin: 0 auto;
 }
 
@@ -20,14 +21,54 @@
 .profile_pic img {
   aspect-ratio: 1 / 1;
   border-radius: 50%;
-  width: 30%;
+  border: 2px solid black;
+  width: 250px;
   padding: 1rem;
 }
 
 .profile_bio {
   text-align: center;
+  width: 60%;
 }
 
 .profile_username {
   padding: 0 2rem;
+}
+
+.tab-container {
+    display: flex;
+    flex-direction: column;
+    max-width: 800px; /* Adjust as needed */
+    margin: 0 auto;
+}
+
+.tab-header {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.tab {
+    flex: 1;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.tab:hover {
+    background-color: #ddd;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@media only screen and (max-width: 680px) {
+    .profile_card {
+        width: auto;
+    }
 }
