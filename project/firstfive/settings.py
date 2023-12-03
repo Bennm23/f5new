@@ -100,7 +100,7 @@ DATABASES = {
         'NAME': 'firstfive',
         'USER': 'firstfive',
         'PASSWORD': 'first_five',
-        'HOST': 'db', # Note: Use service name defined in dockerfile
+        'HOST': 'db' if os.getenv('POSTGRES_DB') == 'firstfive' else 'localhost', # Note: Use service name defined in dockerfile
         'PORT': '5432',
     }
 }
