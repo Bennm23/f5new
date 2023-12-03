@@ -37,7 +37,7 @@ class Member(AbstractUser):
 
     def send_verification_email(self):
         subject = 'First Five Verify'
-        verification_url = reverse('index:verify_user', args=[self.verification_code])
+        verification_url = reverse('members:verify_user', args=[self.verification_code])
         message = f'To verify your account, click on the following link: f5rugby.com:8000{verification_url}'
         send_mail(
             subject,
