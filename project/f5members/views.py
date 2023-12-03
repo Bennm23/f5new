@@ -23,7 +23,16 @@ def index(request):
 
     # Render the template with the provided context
     return render(request, 'f5members/members_home.html', context)
+    
+def dashboard(request, member_username):
+    # Get the user with the provided username, or return a 404 response if not found
+    user = get_object_or_404(User, username=member_username)
 
+    context = {
+        'user': user,
+    }
+    return render(request, 'f5members/dashboard.html', context)
+    
 def get_member(request, member_id):
     member = get_object_or_404(Member, pk=member_id)
 
