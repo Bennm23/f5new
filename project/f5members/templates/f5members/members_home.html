@@ -15,5 +15,12 @@ Members
     <p>Members have helped write <span class="metric">{{ blog_count }}</span> blogs.<p>
     <p>The community has helped maintain <span class="metric">{{ team_count }}</span> teams.<p>
     <p>We have covered <span class="metric">15</span> events in our effort to document the american rugby landscape.<p>
+    
+    <br />
+    <hr />
+    <div class="button_link_group">
+        What do you mean you 
+        <a href="{% url 'members:create_member' %}" class="button_link neutral">don't have an account? <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+    </div>
 </div>
 {% endblock %}

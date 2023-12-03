@@ -43,8 +43,8 @@ Member
                         </div>
                     </div>
                     <div class="button_link_group">
-                        <a class="button_link positive" href="{% url 'index:edit_member' %}">Edit profile</a>
-                        <a class="button_link positive" href="{% url 'index:logout_member'%}">Logout</a>
+                        <a class="button_link positive" href="{% url 'members:edit_member' %}">Edit profile</a>
+                        <a class="button_link positive" href="{% url 'members:logout_member'%}">Logout</a>
                     </div>
                 {% else %}
                     <div class="profile_card">
@@ -72,7 +72,7 @@ Member
                     <div class="profile_username">
                         <h2>@{{ member.username }}</h2>
                         <div class="button_link_group">
-                            <a href="{% url 'index:create_member' %}" class="button_link positive">Create your account!</a>
+                            <a href="{% url 'members:create_member' %}" class="button_link positive">Create your account!</a>
                         </div>
                     </div>
                 </div>
