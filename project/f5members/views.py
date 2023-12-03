@@ -32,27 +32,6 @@ def dashboard(request, member_username):
         'user': user,
     }
     return render(request, 'f5members/dashboard.html', context)
-    
-def get_member(request, member_id):
-    member = get_object_or_404(Member, pk=member_id)
-
-    # Get user's blogs
-    user_blogs = None
-    if request.user.is_authenticated and request.user == member:
-        user_blogs = BlogPost.objects.filter(author=request.user).order_by('-create_date')
-
-    # Get user's teams
-    user_teams = None
-    if request.user.is_authenticated and request.user == member:
-        user_teams = Team.objects.filter(members__id=request.user.id)
-
-    context = {
-        'member': member,
-        'user_blogs': user_blogs,
-        'user_teams': user_teams,
-    }
-
-    return render(request, 'f5members/detail_member.html', context)
 
 def create_member(request):  
     if request.user.is_authenticated:
@@ -78,7 +57,7 @@ def edit_member(request):
         form = EditUserForm(request.POST, instance=request.user)  
         if form.is_valid():  
             form.save()  
-            return redirect('members:get_member', member_id=request.user.id)
+            return redirect('members:dashboard', member_username=request.user.username)
     else:  
         form = EditUserForm(instance=request.user)  
     context = {  
@@ -86,7 +65,7 @@ def edit_member(request):
     }  
     return render(request, 'f5members/edit_member.html', context)
 
-def login_member(request):  
+def login_member(request):
     if request.user.is_authenticated:
         return redirect('members:home')
 
@@ -103,7 +82,7 @@ def login_member(request):
                 if user.is_verified:
                     # Log the user in
                     login(request, user)
-                    return redirect('blogs:home')  # Redirect to a success page or another URL
+                    return redirect('members:dashboard', member_username=request.user.username)  # Redirect to a success page or another URL
                 else:
                     return redirect('members:verify_sent')  # Redirect to the verification screen
             else:

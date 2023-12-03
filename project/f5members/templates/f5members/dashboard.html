@@ -21,15 +21,6 @@ Dashboard / {{ user.username }}
         <div class="greet">Welcome</div>
         <div class="username">{{ user.username }}</div>
     </div>
-
-    <div class="stats">
-        <h3>Your Stats</h3>
-        <ul>
-            <li>User Type: <div class="badge neutral">{{ user.get_user_type_str }}</div></li>
-            <li>Email: {{ user.email }}</li>
-            <li>Verified: {% if user.is_verified %} <div class="badge">Yes<div> {% else %} No {% endif %}</li>
-        </ul>
-    </div>
 </div>
 
 {% endblock %}
