@@ -1,7 +1,7 @@
 import os
 from django.core.management.base import BaseCommand
 from django.core.management import call_command
-from f5index.models import Member
+from f5members.models import Member
 
 class Command(BaseCommand):
     help = 'Create a superuser using the Member model'

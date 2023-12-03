@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'localflavor',
     'django_recaptcha',
     'f5index',
+    'f5members',
     'f5store',
     'f5blogs',
     'f5teams',
@@ -61,7 +62,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'firstfive.urls'
 
 # Authentication and session configurations
-AUTH_USER_MODEL= 'f5index.Member'
+AUTH_USER_MODEL= 'f5members.Member'
 
 # Expire user session after 30mins
 SESSION_COOKIE_AGE = 1800

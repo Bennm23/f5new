@@ -1,17 +1,16 @@
 {% extends "base.html" %}
 
+{% block loadcss %}
+
+{% endblock %}
 
 {% block title %}
-Home
+Members
 {% endblock %}
 
 {% block content %}
 <div class="section">
-    <h1>First Five Rugby</h1>
-</div>
-
-<hr>
-<div class="section">
+    <h2>Members area</h2>
     <p>There are a total of <span class="metric">{{ user_count }}</span> members.</p>
     <p>Members have helped write <span class="metric">{{ blog_count }}</span> blogs.<p>
     <p>The community has helped maintain <span class="metric">{{ team_count }}</span> teams.<p>
@@ -24,17 +23,4 @@ Home
         <a href="{% url 'members:create_member' %}" class="button_link neutral">don't have an account? <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
     </div>
 </div>
-
-<hr>
-<div class="section">
-    <h1>Blogs</h1>
-</div>
-
-<hr>
-<div class="section">
-    <h1>Store</h1>
-</div>
-
 {% endblock %}
-
-

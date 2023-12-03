@@ -1,5 +1,13 @@
 press ctrl+shift+v to get a nice view 
 
+When DB is messed up
+1) install django-extensions
+2) add django-extensions to settings.py
+if first time do 3 and 4
+3) go into postgres as psql
+4) alter user firstfive createdb; //Maybe also grant all permissions on user firstfive
+5) run ./manage.py reset_db
+
 
 Our style guide:
 js function naming = camelCase

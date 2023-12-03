@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from .forms import TeamForm, TeamSearchForm
 from .models import Team
-from f5index.models import Member
+from f5members.models import Member
 
 # Create your views here.
 
@@ -34,7 +34,7 @@ def index(request):
     return render(request, 'f5teams/teams_home.html', {'teams': teams, 'search_form': search_form, **context})
 
 
-@login_required(login_url='index:login_member')
+@login_required(login_url='members:login_member')
 def create(request):
     form = None
     if request.method == 'POST':
@@ -62,7 +62,7 @@ def detail(request, team_id):
     }
     return render(request, 'f5teams/detail_team.html', context)
 
-@login_required(login_url='index:login_member')
+@login_required(login_url='members:login_member')
 def edit(request, team_id):
     team = get_object_or_404(Team, pk=team_id)
     if request.method == 'POST':
@@ -82,7 +82,7 @@ def edit(request, team_id):
         }
         return render(request, 'f5teams/edit_team.html', context)
 
-@login_required(login_url='index:login_member')
+@login_required(login_url='members:login_member')
 def delete(request, team_id):
     team = get_object_or_404(Team, pk=team_id)
 
@@ -91,7 +91,7 @@ def delete(request, team_id):
     return HttpResponseRedirect(reverse('teams:home'))
 
 
-@login_required(login_url='index:login_member')
+@login_required(login_url='members:login_member')
 def join(request, team_id, member_id):
     team = get_object_or_404(Team, pk=team_id)
     member = get_object_or_404(Member, pk=member_id)
@@ -101,7 +101,7 @@ def join(request, team_id, member_id):
     return HttpResponseRedirect(reverse('teams:home'))
 
 
-@login_required(login_url='index:login_member')
+@login_required(login_url='members:login_member')
 def leave(request, team_id, member_id):
     team = get_object_or_404(Team, pk=team_id)
     member = get_object_or_404(Member, pk=member_id)
