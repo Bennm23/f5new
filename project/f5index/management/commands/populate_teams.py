@@ -11,7 +11,7 @@ class Command(BaseCommand):
             return
 
         east_coast_teams = [
-            {'team_name': 'New York Athletic Club', 'city': 'New York', 'state': 'NY', 'bio': 'A competitive rugby club in New York City.'},
+            {'team_name': 'First Five Rugby Club', 'city': 'BullRush', 'state': 'VA', 'bio': 'A non-existing yet unstoppable rugby club. Record: undefeated;'},
             {'team_name': 'Old Blue Rugby Club', 'city': 'New York', 'state': 'NY', 'bio': 'An established rugby club based in New York City.'},
             {'team_name': 'Boston Rugby Club', 'city': 'Boston', 'state': 'MA', 'bio': 'Representing the rugby spirit in the historic city of Boston.'},
             {'team_name': 'Life University Rugby', 'city': 'Marietta', 'state': 'GA', 'bio': 'Home of a successful collegiate rugby program in Georgia.'},

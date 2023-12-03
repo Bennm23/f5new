@@ -252,6 +252,10 @@ button:focus {
     color: white;
 }
 
+.primary {
+    color: green;
+}
+
 .positive {
     color: skyblue;
 }
