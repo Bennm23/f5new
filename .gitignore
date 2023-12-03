@@ -7,6 +7,8 @@ project/firstfive/__pycache__/*
 
 **/__pycache__/*
 
+**/migrations/__pycache__/*
 **/migrations/*
+!**/migrations/__init__.py
 
 .env
