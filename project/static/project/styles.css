@@ -62,11 +62,27 @@ nav.open {
     margin-bottom: 2.5rem;
 }
 
+.brand_title {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    align-items: center;
+}
+
 .brand_title h1 {
     margin: 0;
     font-size: 1.5rem;
     font-size: 1.8em;
     font-style: italic;
+}
+
+.control_list {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
 }
 
 .toggle_button {
@@ -88,8 +104,15 @@ nav.open {
     flex-direction: column;
     list-style-type: none;
     padding: 0;
-    margin: 0;
+    margin: 10% 0 0 0;
     gap: 1rem;
+}
+
+.navlist .member {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-bottom: 1rem;
 }
 
 .navlist li {
