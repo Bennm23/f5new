@@ -37,11 +37,11 @@ def dashboard(request, member_username):
     if profile.is_staff:
         # Admin user, render admin dashboard
         template_name = 'f5members/admin_dashboard.html'
-    elif user.user_type == 'player':
+    elif profile.user_type == 'player':
         template_name = 'f5members/player_dashboard.html'
-    elif user.user_type == 'coach':
+    elif profile.user_type == 'coach':
         template_name = 'f5members/coach_dashboard.html'
-    elif user.user_type == 'fan_other':
+    elif profile.user_type == 'fan_other':
         template_name = 'f5members/fan_dashboard.html'
     else:
         # Handle other cases or provide a default template

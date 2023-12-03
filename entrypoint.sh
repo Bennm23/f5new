@@ -13,6 +13,7 @@ python /app/manage.py makemigrations
 
 python /app/manage.py migrate --no-input
 python /app/manage.py create_superuser
+python /app/manage.py create_mockusers
 python /app/manage.py populate_teams
 
 # Start the Django development server
