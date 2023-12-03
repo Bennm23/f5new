@@ -10,6 +10,10 @@
     gap: .75rem;
 }
 
+.profile img {
+    width: 150px;
+}
+
 .stats {
     display: flex;
     flex-direction: column;
