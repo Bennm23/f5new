@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'localflavor',
     'django_recaptcha',
     'f5index',
-    'f5members'
+    'f5members',
     'f5store',
     'f5blogs',
     'f5teams',
