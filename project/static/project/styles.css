@@ -264,6 +264,24 @@ button:focus {
     color: tomato;
 }
 
+.dead {
+    color: lightgray;
+}
+
+.dead::after {
+    content: ''; /* pseudo-elements must always have a `content` */
+    position: absolute; /* lets us position it with respect to the `.fancy-strikethrough */
+
+    /* placement */
+    left: 0;
+    top: 50%;
+
+    /* make it a line */
+    height: 1px;
+    width: 100%;
+    background: red;
+}
+
 .delete {
     color: rgb(180, 30, 30);
     border: 1px solid rgb(180, 30, 30);

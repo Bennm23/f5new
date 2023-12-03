@@ -7,18 +7,25 @@
 {% endblock %}
 
 {% block title %}
-Dashboard / {{ user.username }}
+Dashboard / @{{ profile.username }}
 {% endblock %}
 
 {% block content %}
 <div class="section">
     <div class="profile_img">
-        <img src="{{ user.pic_url }}" alt="{{ user.username }} Profile Picture" class="img_fluid">
+        <img src="{{ profile.pic_url }}" alt="{{ profile.username }} Profile Picture" class="img_fluid">
     </div>
     
     <div class="profile_greeting">
-        <div class="greet">Welcome</div>
-        <div class="username">{{ user.username }}</div>
+        <div class="greet">Profile</div>
+        <div class="username">@{{ profile.username }}</div>
+        {% if is_editable %}
+            <div class="user_type">Private view</div>
+            <a href="{% url 'members:edit_member' %}">Edit Profile</a>
+        {% else %}
+            <div class="user_type">Public view</div>
+            <s>Edit Profile</s>
+        {% endif %}
     </div>
 </div>
 

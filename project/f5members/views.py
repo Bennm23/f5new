@@ -26,9 +26,15 @@ def index(request):
     
 def dashboard(request, member_username):
     # Get the user with the provided username, or return a 404 response if not found
-    user = get_object_or_404(Member, username=member_username)
+    profile = get_object_or_404(Member, username=member_username)
     
-    if user.is_staff:
+    # Check if the user is authenticated
+    is_authenticated = request.user.is_authenticated
+    
+    # Check if the authenticated user is the same as the user being viewed
+    is_editable = is_authenticated and request.user == profile
+    
+    if profile.is_staff:
         # Admin user, render admin dashboard
         template_name = 'f5members/admin_dashboard.html'
     elif user.user_type == 'player':
@@ -41,7 +47,8 @@ def dashboard(request, member_username):
         # Handle other cases or provide a default template
         template_name = 'f5members/base_dashboard.html'
 
-    context = {'user': user}
+    context = {'profile': profile, 'is_editable': is_editable}
+
 
     return render(request, template_name, context)
 
