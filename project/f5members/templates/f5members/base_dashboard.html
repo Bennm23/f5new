@@ -1,0 +1,29 @@
+<!-- project/f5members/templates/f5members/base_dashboard.html -->
+{% extends "base.html" %}
+
+{% block loadcss %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'f5members/f5members.css' %}">
+{% endblock %}
+
+{% block title %}
+Dashboard / {{ user.username }}
+{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="profile_img">
+        <img src="{{ user.pic_url }}" alt="{{ user.username }} Profile Picture" class="img_fluid">
+    </div>
+    
+    <div class="profile_greeting">
+        <div class="greet">Welcome</div>
+        <div class="username">{{ user.username }}</div>
+    </div>
+</div>
+
+<!-- Additional common content can go here -->
+{% block additional_content %}{% endblock %}
+
+{% endblock %}
+

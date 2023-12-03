@@ -27,11 +27,23 @@ def index(request):
 def dashboard(request, member_username):
     # Get the user with the provided username, or return a 404 response if not found
     user = get_object_or_404(Member, username=member_username)
+    
+    if user.is_staff:
+        # Admin user, render admin dashboard
+        template_name = 'f5members/admin_dashboard.html'
+    elif user.user_type == 'player':
+        template_name = 'f5members/player_dashboard.html'
+    elif user.user_type == 'coach':
+        template_name = 'f5members/coach_dashboard.html'
+    elif user.user_type == 'fan_other':
+        template_name = 'f5members/fan_dashboard.html'
+    else:
+        # Handle other cases or provide a default template
+        template_name = 'f5members/base_dashboard.html'
 
-    context = {
-        'user': user,
-    }
-    return render(request, 'f5members/dashboard.html', context)
+    context = {'user': user}
+
+    return render(request, template_name, context)
 
 def create_member(request):  
     if request.user.is_authenticated:

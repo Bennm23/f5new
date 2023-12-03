@@ -276,7 +276,6 @@ button:focus {
 }
 
 .results_list {
-    padding-top: 1.5rem;
     display: flex;
     flex-direction: column;
     list-style-type: none;

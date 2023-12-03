@@ -10,23 +10,27 @@
 
 {% block content %}
 <div class="section">
-    <h1>{{team.team_name}}</h1>
+    <div class="team_profile">
+        <h2>{{team.team_name}}</h2>
 
-    {% if user.is_authenticated and user in team_members %}
-    <div class="button_link_group">
-        <a href="{% url 'teams:edit' team.id %}" class="button_link neutral">Edit team</a> |
-        <a href="{% url 'teams:delete' team.id %}" class="button_link neutral">Delete team</a>
+        {% if user.is_authenticated and user in team_members %}
+        <div class="button_link_group">
+            <a href="{% url 'teams:edit' team.id %}" class="button_link neutral">Edit team</a> |
+            <a href="{% url 'teams:delete' team.id %}" class="button_link neutral">Delete team</a>
+        </div>
+        {% endif %}
     </div>
-    {% endif %}
+</div>
 
-    <div >
-        <h3>Content</h3>
+<div class="section">
+    <div class="team_bio">
+        <hr/>
+        <h3>Club history</h3>
         <p>{{ team.bio |safe }}
     </div>
 </div>
 
 <div class="section">
-
     {% if user.is_authenticated and user not in team_members %}
     <div class="button_link_group">
         <a href="{% url 'teams:join' team.id user.id %}" class="button_link neutral">Join team</a>
@@ -38,8 +42,9 @@
     </div>
     {% endif %}
 
-    <div >
-        <h2>Members</h2>
+    <div class="team_members">
+        <hr />
+        <h3>Members</h3>
 
         <div class="members_list results_list">
             {% for member in  team_members %}
