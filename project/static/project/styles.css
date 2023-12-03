@@ -112,7 +112,6 @@ nav.open {
     display: flex;
     flex-direction: column;
     gap: 1rem;
-    padding-bottom: 1rem;
 }
 
 .navlist li {
