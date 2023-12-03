@@ -6,6 +6,23 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import CreateUserForm, EditUserForm, LoginUserForm
+from f5members.models import Member 
+
+def index(request):
+    # Retrieve the counts from the database
+    user_count = Member.objects.count()
+    blog_count = BlogPost.objects.count()
+    team_count = Team.objects.count()
+
+    # Prepare the context to be passed to the template
+    context = {
+        'user_count': user_count,
+        'blog_count': blog_count,
+        'team_count': team_count,
+    }
+
+    # Render the template with the provided context
+    return render(request, 'f5members/members_home.html', context)
 
 def get_member(request, member_id):
     member = get_object_or_404(Member, pk=member_id)

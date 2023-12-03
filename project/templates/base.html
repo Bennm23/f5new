@@ -23,9 +23,9 @@
         <li><a href="{% url 'store:home' %}"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Store</a></li>
 
         {% if user.is_authenticated %}
-            <li><a href="{% url 'index:get_member' user.id %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ user.username }}</a></li>
+            <li><a href="{% url 'members:get_member' user.id %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> {{ user.username }}</a></li>
         {% else %}
-            <li><a href="{% url 'index:login_member' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Member</a></li>
+            <li><a href="{% url 'members:home' %}"><i class="fa fa-user-circle-o" aria-hidden="true"></i> Member</a></li>
         {% endif %}
 
         <li><a href="{% url 'blogs:home' %}"><i class="fa fa-rss" aria-hidden="true"></i> Blogs</a></li>

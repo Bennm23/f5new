@@ -9,7 +9,7 @@ class Team(models.Model):
     city = models.CharField(max_length=200, null=True)
     state = models.CharField(max_length=2, choices=STATE_CHOICES, null=True)
     bio = RichTextField(blank=True, null=True)
-    members = models.ManyToManyField('f5index.Member')
+    members = models.ManyToManyField('f5members.Member')
 
 
     def __str__(self) -> str:
