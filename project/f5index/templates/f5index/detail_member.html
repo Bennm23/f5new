@@ -5,118 +5,182 @@
     <link rel="stylesheet" href="{% static 'f5index/f5user.css' %}">
 {% endblock %}
 
+{% block loadjs %}
+    {% load static %}
+    <script src="{% static 'project/tabs.js' %}"></script>
+{% endblock %}
+
 {% block title %}
 Member
 {% endblock %}
 
 {% block content %}
-<div class="section">
-    {% if member.is_authenticated %}
-        {% if request.user == member %}
-            <div class="profile_card">
-                <div class="profile_username">
-                    <h2>@{{ member.username }}</h2>
-                </div>
-                <div class="profile_pic">
-                    <img src="{{ member.pic_url }}" />
-                </div>
-                <div class="profile_bio">
-                    <p>{{ member.bio }}</p>
-                </div>
-            </div> 
-            <div class="button_link_group">
-                <a class="button_link positive" href="{% url 'index:edit_member' %}">Edit profile</a>
-                <a class="button_link positive" href="{% url 'index:logout_member'%}">Logout</a>
-            </div>
-        {% else %}
-        <div class="profile_card">
-            <div class="profile_username">
-                <h2>@{{ member.username }}</h2>
-            </div>
-            <div class="profile_pic">
-                <img src="{{ member.pic_url }}" />
-            </div>
-            <div class="profile_bio">
-                <p>{{ member.bio }}</p>
-            </div>
-        </div> 
-        {% endif %}
-    {% else %}
-        <div class="profile_card">
-            <div class="profile_username">
-                <h2>@{{ member.username }}</h2>
-            </div>
-            <div class="user_profile">
-                <img src="{{ member.pic_url }}" />
-            </div>
-        </div> 
-    {% endif %}
-</div>
-
-{% if not user_blogs is None %}
-<hr>
-<div class="section">
-    <h2>My Blogs</h2>
-    {% if request.user == member %}
-        {% if member.is_authenticated %}
-        <div class="button_link_group">
-            <a href="{% url 'blogs:create' %}" class="button_link positive">Create your own!</a>
-        </div>
-        {% endif %}
-    {% endif %}
-
-    <div class="results_list">
-        {% for blog in user_blogs %}
-        <div class="list_item">
-            <details>
-                <summary>
-                    <a href="{% url 'blogs:detail' blog.id %}" class="button_link default">{{blog.title}}</a>
-                    <div class="float_right_div">
-                        <h5>Created On: {{blog.create_date}}</h5>
-                    </div>
-                </summary>
-                <p class="shorty">{{ blog.content | truncatewords:15 | safe}}</p>
-            </details>
-        </div>
-        {% empty %}
-        <h3>No blogs, such empty here :/</h3>
-        {% endfor %}
+<div class="tab-container">
+    <!-- Tab Header -->
+    <div class="tab-header">
+        <div class="tab" data-tab-id="profile" onclick="showTab('profile')">Profile</div>
+        <div class="tab" data-tab-id="blogs" onclick="showTab('blogs')">Blogs</div>
+        <div class="tab" data-tab-id="teams" onclick="showTab('teams')">Teams</div>
     </div>
-</div>
-{% endif %}
 
-{% if not user_teams is None %}
-<hr>
-<div class="section">
-
-    <h2>My Teams</h2>
-
-    {% if request.user == member %}
-        {% if user.is_authenticated %}
-        <div class="button_link_group">
-            <a href="{% url 'teams:create' %}" class="button_link positive">Create your own!</a>
-        </div>
-        {% endif %}
-    {% endif %}
-
-    <div class="results_list">
-        {% for team in user_teams %}
-        <div class="list_item">
-            <details>
-                <summary>
-                    <a href="{% url 'teams:detail' team.id %}" class="button_link default">{{team.team_name}}</a>
-                    <div class="float_right_div">
-                        <h5>{{team.city}}, {{team.state}}</h5>
+    <!-- Tab Content -->
+    <div id="profile" class="tab-content active">
+        <!-- Profile content -->
+        <div class="section">
+            {% if member.is_authenticated %}
+                {% if request.user == member %}
+                    <div class="profile_card">
+                        <div class="profile_pic">
+                            <img src="{{ member.pic_url }}" />
+                        </div>
+                        <!-- Your existing profile content here -->
+                        <div class="profile_username">
+                            <h2>@{{ member.username }}</h2>
+                        </div>
+                        
+                        <div class="profile_bio">
+                            <p>{{ member.bio }}</p>
+                        </div>
                     </div>
-                </summary>
-                <p class="shorty">{{ team.bio | truncatewords:15 | safe}}</p>
-            </details>
+                    <div class="button_link_group">
+                        <a class="button_link positive" href="{% url 'index:edit_member' %}">Edit profile</a>
+                        <a class="button_link positive" href="{% url 'index:logout_member'%}">Logout</a>
+                    </div>
+                {% else %}
+                    <div class="profile_card">
+                        <div class="profile_pic">
+                            <img src="{{ member.pic_url }}" />
+                        </div>
+                        <!-- Your existing profile content here -->
+                        <div class="profile_username">
+                            <h2>@{{ member.username }}</h2>
+                            <div class="button_link_group">
+                                <a href="{% url 'teams:create' %}" class="button_link positive">Create your own!</a>
+                            </div>
+                        </div>
+                        <div class="profile_bio">
+                            <p>{{ member.bio }}</p>
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                <div class="profile_card">
+                    <div class="user_profile">
+                        <img src="{{ member.pic_url }}" />
+                    </div>
+                    <!-- Your existing profile content here -->
+                    <div class="profile_username">
+                        <h2>@{{ member.username }}</h2>
+                        <div class="button_link_group">
+                            <a href="{% url 'index:create_member' %}" class="button_link positive">Create your account!</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
         </div>
-        {% empty %}
-        <h3>Oh No! You haven't joined any teams...</h3>
-        {% endfor %}
     </div>
-</div>
-{% endif %}
 
+    <div id="blogs" class="tab-content">
+        <!-- Blogs content -->
+        <div class="section">
+            {% if request.user.is_authenticated %}
+                {% if request.user == member %}
+                    <h3>My Blogs</h3>
+                    <div class="button_link_group">
+                        <a href="{% url 'blogs:create' %}" class="button_link positive">Create your own!</a>
+                    </div>
+                {% else %}
+                    <h3>{{ member.username }}'s Blogs</h3>
+                    <p>Create an account to <a class="button-link positive" href="{% url 'blogs:create' %}">write a blog</a>!</p>
+                {% endif %}
+            {% else %}
+                <h3>{{ member.username }} has not written any blogs.</h3>
+                <p>Create an account to <a class="button-link positive" href="{% url 'blogs:create' %}">write a blog</a>!</p>
+            {% endif %}
+
+            <div class="results_list">
+                <!-- Your existing blogs content here -->
+                {% for blog in user_blogs %}
+                    <div class="list_item">
+                        <details>
+                            <summary>
+                                <a href="{% url 'blogs:detail' blog.id %}" class="button_link default">{{ blog.title }}</a>
+                                <div class="float_right_div">
+                                    <h5>Created On: {{ blog.create_date }}</h5>
+                                </div>
+                            </summary>
+                            <p class="shorty">{{ blog.content | truncatewords:15 | safe }}</p>
+                        </details>
+                    </div>
+                {% empty %}
+                    <!-- The message indicating no blogs should only be displayed if the user is authenticated and not the account owner -->
+                    {% if request.user.is_authenticated and request.user != member %}
+                        <h3>{{ member.username }} has not written any blogs.</h3>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <div id="teams" class="tab-content">
+        <!-- Teams content -->
+        <div class="section">
+            {% if request.user.is_authenticated %}
+                {% if request.user == member %}
+                    <h3>My Teams</h3>
+                    <div class="button_link_group">
+                        <a href="{% url 'teams:create' %}" class="button_link positive">Create your own!</a>
+                    </div>
+                    {% if user_teams %}
+                        <div class="results_list">
+                            <!-- Your existing teams content here -->
+                            {% for team in user_teams %}
+                                <div class="list_item">
+                                    <details>
+                                        <summary>
+                                            <a href="{% url 'teams:detail' team.id %}" class="button_link default">{{ team.team_name }}</a>
+                                            <div class="float_right_div">
+                                                <h5>{{ team.city }}, {{ team.state }}</h5>
+                                            </div>
+                                        </summary>
+                                        <p class="shorty">{{ team.bio | truncatewords:15 | safe }}</p>
+                                    </details>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <h3>You have not created any teams. Create one now!</h3>
+                    {% endif %}
+                {% else %}
+                    <h3>{{ member.username }}'s Teams</h3>
+                    {% if user_teams %}
+                        <div class="results_list">
+                            <!-- Your existing teams content here -->
+                            {% for team in user_teams %}
+                                <div class="list_item">
+                                    <details>
+                                        <summary>
+                                            <a href="{% url 'teams:detail' team.id %}" class="button_link default">{{ team.team_name }}</a>
+                                            <div class="float_right_div">
+                                                <h5>{{ team.city }}, {{ team.state }}</h5>
+                                            </div>
+                                        </summary>
+                                        <p class="shorty">{{ team.bio | truncatewords:15 | safe }}</p>
+                                    </details>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <p>{{ member.username }} has not created any teams. Create an account to create/join a team!</p>
+                    {% endif %}
+                {% endif %}
+            {% else %}
+                <h3>{{ member.username }}'s Teams</h3>
+                <p>Create an account to <a class="button-link positive" href="{% url 'teams:create' %}">create/join a team</a>!</p>
+            {% endif %}
+        </div>
+    </div>
+
+</div>
 {% endblock %}
+
