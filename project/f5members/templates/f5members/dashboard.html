@@ -1,0 +1,39 @@
+<!-- project/f5members/templates/f5members/dashboard.html -->
+{% extends "base.html" %}
+
+{% block loadcss %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'f5members/f5members.css' %}">
+{% endblock %}
+
+{% block title %}
+Dashboard / {{ user.username }}
+{% endblock %}
+
+
+{% block content %}
+<div class="section">
+    <h2>Welcome, {{ user.username }}!</h2>
+    
+    <div class="user_wrapper">
+        <div class="profile">
+            <h3>Your Profile</h3>
+            <img src="{{ user.pic_url }}" alt="{{ user.username }} Profile Picture" class="img-fluid rounded-circle">
+            <p>{{ user.bio }}</p>
+        </div>
+
+        <div class="stats">
+            <h3>Your Stats</h3>
+            <ul>
+                <li>User Type: {{ user.get_user_type_str }}</li>
+                <li>Email: {{ user.email }}</li>
+                <li>Verified: {% if user.is_verified %} Yes {% else %} No {% endif %}</li>
+            </ul>
+        </div>
+    </div>
+
+    <hr>
+
+</div>
+{% endblock %}
+

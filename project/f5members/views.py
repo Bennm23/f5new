@@ -26,7 +26,7 @@ def index(request):
     
 def dashboard(request, member_username):
     # Get the user with the provided username, or return a 404 response if not found
-    user = get_object_or_404(User, username=member_username)
+    user = get_object_or_404(Member, username=member_username)
 
     context = {
         'user': user,
