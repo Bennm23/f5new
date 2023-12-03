@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+Edit account
+{% endblock %}
+
+{% block content %}
+<div class="section">
+  <div class="form_wrapper auth_form">
+    <h2>Edit account</h2>
+    <form method="post" action="{% url 'index:edit_member' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="submit" type="submit">Submit</button>
+      <div class="button_link_group">
+        <a href="{% url 'index:home' %}" class="button_link positive">Want to bail?</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}

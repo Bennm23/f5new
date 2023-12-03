@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+Create account
+{% endblock %}
+
+{% block content %}
+<div class="section">
+  <div class="form_wrapper auth_form">
+    <h2>Create account</h2>
+    <form method="post" action="{% url 'index:create_member' %}">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button class="submit" type="submit">Create</button>
+      <div class="button_link_group">
+        <a href="{% url 'index:login_member' %}" class="button_link positive">Already have an account?</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
