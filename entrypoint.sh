@@ -11,6 +11,7 @@ fi
 
 # Apply migrations for each app
 python manage.py makemigrations f5index
+python manage.py makemigrations f5members
 python manage.py makemigrations f5store
 python manage.py makemigrations f5blogs
 python manage.py makemigrations f5teams
