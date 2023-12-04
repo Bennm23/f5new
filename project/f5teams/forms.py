@@ -2,7 +2,6 @@ from django import forms
 from .models import Team, Match
 from localflavor.us.us_states import STATE_CHOICES 
 from django.forms import ModelForm, widgets
-from address.models import AddressField
 
 class TeamSearchForm(forms.Form):
     team_name = forms.CharField(label='Team Name', required=False)
@@ -17,7 +16,6 @@ class TeamForm(ModelForm):
 class MatchForm(ModelForm):
     class Meta:
         model = Match
-        match_date = AddressField()
         fields = ['home_team', 'away_team', 'match_date', 'match_location']
         widgets = {
             'match_date': forms.DateTimeInput(attrs={'type':'datetime-local'}),
