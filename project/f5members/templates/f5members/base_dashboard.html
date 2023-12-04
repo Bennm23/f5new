@@ -12,21 +12,13 @@ Dashboard / @{{ profile.username }}
 
 {% block content %}
 <div class="section">
-    <div class="profile_img">
-        <img src="{{ profile.pic_url }}" alt="{{ profile.username }} Profile Picture" class="img_fluid">
+    <div class="profile_banner" style="background-image: url('{{ user.pic_url }}');>
     </div>
-    
-    <div class="profile_greeting">
-        <div class="greet">Profile</div>
-        <div class="username">@{{ profile.username }}</div>
-        {% if is_editable %}
-            <div class="user_type">Private view</div>
-            <a href="{% url 'members:edit_member' %}">Edit Profile</a>
-        {% else %}
-            <div class="user_type">Public view</div>
-            <s>Edit Profile</s>
-        {% endif %}
-    </div>
+    {% if is_editable %}
+        <a href="{% url 'members:edit_member' %}">Edit Profile</a>
+    {% else %}
+        <div class="user_type">Public Profile</div>
+    {% endif %}
 </div>
 
 <!-- Additional common content can go here -->

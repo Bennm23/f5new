@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block loadcss %}
-
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'f5members/f5members.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -9,18 +10,74 @@ Members
 {% endblock %}
 
 {% block content %}
+<div class="section_container">
 <div class="section">
-    <h2>Members area</h2>
-    <p>There are a total of <span class="metric">{{ user_count }}</span> members.</p>
-    <p>Members have helped write <span class="metric">{{ blog_count }}</span> blogs.<p>
-    <p>The community has helped maintain <span class="metric">{{ team_count }}</span> teams.<p>
-    <p>We have covered <span class="metric">15</span> events in our effort to document the american rugby landscape.<p>
-    
-    <br />
-    <hr />
-    <div class="button_link_group">
-        What do you mean you 
-        <a href="{% url 'members:create_member' %}" class="button_link neutral">don't have an account? <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+    <div class="members_area">
+        <div class="section_title">
+            <h2>Members area</h2>
+        </div>
+
+        <div class="members_stats">
+            <p>There are a total of <span class="metric">{{ user_count }}</span> members.</p>
+            <p>Members have helped write <span class="metric">{{ blog_count }}</span> blogs.</p>
+            <p>The community maintains <span class="metric">{{ team_count }}</span> teams.</p>
+            <p>Met with <span class="metric">25</span> athletes to build progress plans.</p>
+            <p>We have covered <span class="metric">15</span> local rugby events.</p>
+            <p>Digitally archived <span class="metric">45</span> vintage rugby jerseys.</p>
+            <p>Enitor has helped <span class="metric">30</span> players find help.</p>
+        </div>
+    </div>
+</div>
+
+
+    <div class="section">
+        <div class="section_title">
+            <h2>Coach account</h2>
+        </div>
+        <ul class="section_list">
+            <li>Starter coach resources</li>
+            <li>Bulk team gear support</li>
+            <li>Training guides and footage</li>
+            <li>Insights into successful teams</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <div class="section_title">
+            <h2>Player account</h2>
+        </div>
+        <ul class="section_list">
+            <li>Introduction to rugby resources</li>
+            <li>Information on player options</li>
+            <li>Nutritional guides</li>
+            <li>Strength programs</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <div class="section_title">
+            <h2>Fan account</h2>
+        </div>
+        <ul class="section_list">
+            <li>Team engagement and following</li>
+            <li>Regular blogs, articles, and videos</li>
+            <li>Community interaction and opportunities</li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <div class="section_title">
+            <h2>Team services</h2>
+        </div>
+        <ul class="section_list">
+            <li>Only available to teams. Message us.</li>
+            <li>Create a 501(c) fund for your team.</li>
+            <li>Complete top-to-bottom marketing services</li>
+            <li>Team page on our website and visibility.</li>
+            <li>Complimentry school rugby history videos</li>
+            <li>Recruitment packages and exchange programs</li>
+        </ul>
     </div>
 </div>
 {% endblock %}
+

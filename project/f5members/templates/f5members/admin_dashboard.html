@@ -4,5 +4,33 @@
 {% block additional_content %}
     <!-- Specific content for the player dashboard -->
     <div class="user_type">Admin</div>
+    
+    <br />
+    <br />
+    
+    {% if is_editable %}
+    <div class="section">
+        <div class="section_title">
+            <h3>User submissions</h3>
+        </div>
+        <div class="result_table">
+            <table>
+                <caption>User Submissions</caption>
+                <tr>
+                    <th>Email</th>
+                    <th>Cell</th>
+                    <th>Message</th>
+                </tr>
+                {% for submission in user_submissions %}
+                    <tr>
+                        <td>{{ submission.email }}</td>
+                        <td>{{ submission.cell }}</td>
+                        <td>{{ submission.message|slice:":10"|safe }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    {% endif %}
 {% endblock %}
 

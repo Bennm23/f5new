@@ -2,6 +2,7 @@ from .models import Member
 from f5teams.models import Team
 from f5blogs.models import BlogPost
 from django.contrib import messages
+from f5index.models import SupportSubmission
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import get_object_or_404, redirect, render
@@ -37,18 +38,22 @@ def dashboard(request, member_username):
     if profile.is_staff:
         # Admin user, render admin dashboard
         template_name = 'f5members/admin_dashboard.html'
+        # Get the list of submissions for the admin
+        submissions = SupportSubmission.objects.all()
+        context = {'profile': profile, 'is_editable': is_editable, 'user_submissions': submissions}
     elif profile.user_type == 'player':
         template_name = 'f5members/player_dashboard.html'
+        context = {'profile': profile, 'is_editable': is_editable}
     elif profile.user_type == 'coach':
         template_name = 'f5members/coach_dashboard.html'
+        context = {'profile': profile, 'is_editable': is_editable}
     elif profile.user_type == 'fan_other':
         template_name = 'f5members/fan_dashboard.html'
+        context = {'profile': profile, 'is_editable': is_editable}
     else:
         # Handle other cases or provide a default template
         template_name = 'f5members/base_dashboard.html'
-
-    context = {'profile': profile, 'is_editable': is_editable}
-
+        context = {'profile': profile, 'is_editable': is_editable}
 
     return render(request, template_name, context)
 
