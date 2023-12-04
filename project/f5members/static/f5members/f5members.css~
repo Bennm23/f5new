@@ -32,16 +32,18 @@
     gap: .5rem;
 }
 
+.section_list {
+    margin-top: 1rem;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
 .metric {
     font-size: 1.3em;
     font-style: italic;
     font-family: 'Courier New';
-}
-
-.item_summary {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 @media only screen and (max-width: 680px) {

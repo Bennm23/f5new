@@ -17,12 +17,11 @@
             {% for submission in user_submissions %}
                 <div class="list_item">
                     <details>
-                        <summary class="item_summary">
-                            <div>
+                        <summary>
+                            
                             <h4>Email: {{ submission.email }}</h4>
                             <h5>Cell: {{ submission.cell }}</h5>
-                            </div>
-                            <div class="button_link_group">
+                            <div class="float_right_div">
                                 <a href="#" class="button_link default">View Details</a>
                             </div>
                         </summary>
