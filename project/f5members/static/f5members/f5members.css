@@ -12,6 +12,11 @@
     background-repeat: no-repeat;
 }
 
+.profile_banner img {
+    border-radius: 8px;
+    box-shadow: darkred 7px 20px 6rem 2px;
+}
+
 .section_container {
     width: 60%;
     margin: 0 auto;
