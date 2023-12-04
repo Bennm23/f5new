@@ -23,7 +23,9 @@
                             <h5>Cell: {{ submission.cell }}</h5>
                             </div>
                             <div class="button_link_group">
-                                <a href="#" class="button_link default">View Details</a>
+                                <a href="#" class="button_link positive">View</a>|
+                                <a href="#" class="button_link neutral">Del</a>|
+                                <a href="#" class="button_link primary">Archive</a>
                             </div>
                         </summary>
                         <p class="shorty">{{ submission.message | truncatewords:15 | safe }}</p>
