@@ -3,6 +3,7 @@ body {
     color: whitesmoke;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     margin: 0;
+    letter-spacing: .1rem;
 }
 
 .container {
