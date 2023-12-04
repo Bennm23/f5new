@@ -16,7 +16,7 @@ Dashboard / @{{ profile.username }}
         <img src={{profile.pic_url}} height="100px"/>
     </div>
     {% if is_editable %}
-        <a href="{% url 'members:edit_member' %}">Edit Profile</a>
+        <a class="button_link default" href="{% url 'members:edit_member' %}">Edit Profile</a>
     {% else %}
         <div class="user_type">Public Profile</div>
     {% endif %}
