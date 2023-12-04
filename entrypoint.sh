@@ -15,6 +15,7 @@ python /app/manage.py migrate --no-input
 python /app/manage.py create_superuser
 python /app/manage.py create_mockusers
 python /app/manage.py populate_teams
+python /app/manage.py create_mocksubmissions
 
 # Start the Django development server
 python /app/manage.py runserver 0.0.0.0:8000

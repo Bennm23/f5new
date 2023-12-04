@@ -6,33 +6,37 @@ Home
 {% endblock %}
 
 {% block content %}
-<div class="section">
-    <h1>First Five Rugby</h1>
-</div>
+<div class="section_container">
 
-<hr>
 <div class="section">
-    <p>There are a total of <span class="metric">{{ user_count }}</span> members.</p>
-    <p>Members have helped write <span class="metric">{{ blog_count }}</span> blogs.<p>
-    <p>The community has helped maintain <span class="metric">{{ team_count }}</span> teams.<p>
-    <p>We have covered <span class="metric">15</span> events in our effort to document the american rugby landscape.<p>
-    
-    <br />
-    <hr />
-    <div class="button_link_group">
-        What do you mean you 
-        <a href="{% url 'members:create_member' %}" class="button_link neutral">don't have an account? <i class="fa fa-user-circle-o" aria-hidden="true"></i></a>
+    <div class="special_area">
+        <div class="section_title">
+            <h2>News</h2>
+        </div>
+
+        <div class="special_stats">
+            <p>Example blog 1</p>
+        </div>
     </div>
 </div>
 
-<hr>
 <div class="section">
-    <h1>Blogs</h1>
-</div>
+    <div class="special_area">
+        <div class="section_title">
+            <h2>First Five Stats</h2>
+        </div>
 
-<hr>
-<div class="section">
-    <h1>Store</h1>
+        <div class="special_stats">
+            <p>There are a total of <span class="metric">{{ user_count }}</span> members.</p>
+            <p>Members have helped write <span class="metric">{{ blog_count }}</span> blogs.</p>
+            <p>The community maintains <span class="metric">{{ team_count }}</span> teams.</p>
+            <p>Met with <span class="metric">25</span> athletes to build progress plans.</p>
+            <p>We have covered <span class="metric">15</span> local rugby events.</p>
+            <p>Digitally archived <span class="metric">45</span> vintage rugby jerseys.</p>
+            <p>Enitor has helped <span class="metric">30</span> players find help.</p>
+        </div>
+    </div>
+</div>
 </div>
 
 {% endblock %}

@@ -220,6 +220,36 @@ button:focus {
     outline: none;
 }
 
+.special_area {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.section_container {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.section_title {
+    border: 1px solid white;
+    padding: 5px;
+}
+
+.special_stats {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.metric {
+    color: #15f7ff;
+    font-size: 1.3em;
+    -webkit-text-stroke-width: thick;
+    font-style: italic;
+    font-family: 'Courier New';
+}
+
 
 @media only screen and (max-width: 680px) {
     .form_wrapper {
@@ -238,6 +268,11 @@ button:focus {
     .brand_bar {
         padding-left: 1rem;
         padding-right: 1rem;
+    }
+
+    .section_container {
+        width: auto;
+        margin: 0 auto;
     }
 }
 
