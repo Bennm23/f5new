@@ -312,3 +312,6 @@ button:focus {
         gap: .5rem;
     }
 }
+::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+}

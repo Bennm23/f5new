@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block loadcss %}
+
+{% endblock %}
+
+{% block loadjs %}
+    <link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/themes/redmond/jquery-ui.css" rel="Stylesheet" />
+    <script language="javascript" type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script> 
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.6/jquery-ui.min.js"></script> 
+
+    {{ form.media }}
+
+{% endblock %}
+
+{% block title %}
+
+{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="form_wrapper auth_form">
+
+        <h2>Create Match</h2>
+        <form method="post" action="{% url 'teams:create_match' %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+        <button class="submit" type="submit">Create</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}
+
+
+
+

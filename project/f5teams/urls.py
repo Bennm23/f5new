@@ -11,6 +11,8 @@ urlpatterns = [
     path('<int:team_id>/delete', views.delete, name='delete'),
     path('<int:team_id>/join/<int:member_id>', views.join, name='join'),
     path('<int:team_id>/leave/<int:member_id>', views.leave, name='leave'),
+    path('match/createMatch/', views.createMatch, name='create_match'),
+    path('match/<int:match_id>/detail', views.detailMatch, name='detail_match'),
 
 
 ]

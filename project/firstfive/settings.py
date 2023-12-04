@@ -164,3 +164,20 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# LOCATION_FIELD = {
+#     'map.provider': 'google',
+#     'map.zoom': 13,
+
+#     'search.provider': 'nominatim',
+#     'search.suffix': '',
+
+#     # Google
+#     'provider.google.api': '//maps.google.com/maps/api/js?sensor=false',
+#     'provider.google.api_key': 'AIzaSyDHpcT2LeYnawCxb6sLKpKZBSDZr9btn2Y',
+#     'provider.google.map.type': 'ROADMAP',
+
+# }
+
+GOOGLE_API_KEY = 'AIzaSyDHpcT2LeYnawCxb6sLKpKZBSDZr9btn2Y'#Replace with real restricted API key
