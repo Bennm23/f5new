@@ -303,6 +303,24 @@ button:focus {
     color: lightgray;
 }
 
+.price {
+    color: green;
+    font-size: .7rem;
+}
+
+.ad_wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: .25rem;
+    flex-wrap: wrap;
+}
+
+.two_split {
+    display: grid;
+    grid-template-columns: auto .4fr;
+    gap: 1rem;
+}
+
 .dead::after {
     content: ''; /* pseudo-elements must always have a `content` */
     position: absolute; /* lets us position it with respect to the `.fancy-strikethrough */
@@ -389,5 +407,9 @@ button:focus {
         display: flex;
         flex-direction: column;
         gap: .5rem;
+    }
+    
+    .two_split {
+        grid-template-columns: 1fr;
     }
 }
