@@ -29,33 +29,38 @@ def dashboard(request, member_username):
     # Get the user with the provided username, or return a 404 response if not found
     profile = get_object_or_404(Member, username=member_username)
     
-    # Check if the user is authenticated
-    is_authenticated = request.user.is_authenticated
-    
-    # Check if the authenticated user is the same as the user being viewed
-    is_editable = is_authenticated and request.user == profile
-    
     if profile.is_staff:
         # Admin user, render admin dashboard
         template_name = 'f5members/admin_dashboard.html'
         # Get the list of submissions for the admin
         submissions = SupportSubmission.objects.all()
-        context = {'profile': profile, 'is_editable': is_editable, 'user_submissions': submissions}
+        context = {'profile': profile, 'user_submissions': submissions}
     elif profile.user_type == 'player':
         template_name = 'f5members/player_dashboard.html'
-        context = {'profile': profile, 'is_editable': is_editable}
+        context = {'profile': profile} 
     elif profile.user_type == 'coach':
         template_name = 'f5members/coach_dashboard.html'
-        context = {'profile': profile, 'is_editable': is_editable}
+        context = {'profile': profile}
     elif profile.user_type == 'fan_other':
         template_name = 'f5members/fan_dashboard.html'
-        context = {'profile': profile, 'is_editable': is_editable}
+        context = {'profile': profile}
     else:
         # Handle other cases or provide a default template
         template_name = 'f5members/base_dashboard.html'
-        context = {'profile': profile, 'is_editable': is_editable}
+        context = {'profile': profile}
 
     return render(request, template_name, context)
+
+def public_profile(request, member_username) :
+    
+    # Get the user with the provided username, or return a 404 response if not found
+    profile = get_object_or_404(Member, username=member_username)
+    
+    template_name = 'f5members/profile.html'
+    context = {'profile': profile}
+
+    return render(request, template_name, context)
+
 
 def create_member(request):  
     if request.user.is_authenticated:

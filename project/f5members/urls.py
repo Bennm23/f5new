@@ -12,4 +12,5 @@ urlpatterns = [
     path('editMember/', views.edit_member, name='edit_member'),
     path('verifySent/', views.verify_sent, name="verify_sent"),
     path('verify/<str:verification_code>/', views.verify_user, name='verify_user'),
+    path('profile/<str:member_username>/', views.public_profile, name='public_profile')
 ]
