@@ -7,34 +7,23 @@
     
     <br />
     <br />
-    
-    <div class="section">
-        <div class="section_title">
-            <h3>User submissions</h3>
+    <div class="sm_container">
+        <div class="section">
+            <div class="section_title">
+                <h2>Support requests</h2>
+            </div>
         </div>
-        <div class="results_list">
-            {% for submission in user_submissions %}
-                <div class="list_item">
-                    <details>
-                        <summary class="item_summary">
-                            <div>
-                            <h4>Email: {{ submission.email }}</h4>
-                            <h5>Cell: {{ submission.cell }}</h5>
-                            </div>
-                            <div class="button_link_group">
-                                <a href="#" class="button_link positive">View</a>|
-                                <a href="#" class="button_link neutral">Del</a>|
-                                <a href="#" class="button_link primary">Archive</a>
-                            </div>
-                        </summary>
-                        <p class="shorty">{{ submission.message | truncatewords:15 | safe }}</p>
-                    </details>
-                </div>
-            {% empty %}
-                <p>No submissions yet.</hp>
-            {% endfor %}
+        <div class="section">
+            <div class="section_title">
+                <h2>Team requests</h2>
+            </div>
         </div>
-    </div>
+        <div class="section">
+            <div class="section_title">
+                <h2>Blog requests</h2>
+            </div>
+        </div>
+    </div> 
 
 {% endblock %}
 
