@@ -48,26 +48,26 @@ def dashboard(request, member_username):
     # If the user doesn't belong to any specific group, redirect to the error page
     return error(request)
 
-@group_access_only("Staff", view_to_return="members:error", message="Only Staff are allowed to access this page.")
+@group_access_only("Staff", view_to_return="members:error", message="Must have Staff role to access this page.")
 def admin_dashboard(request, member_username):
     profile = get_object_or_404(Member, username=member_username)
     submissions = SupportSubmission.objects.all()
     context = {'profile': profile, 'user_submissions': submissions}
     return render(request, 'f5members/admin_dashboard.html', context)
 
-@group_access_only("Player", view_to_return="members:error", message="Only Players are allowed to access this page!")
-def player_dashboard(request, member_username):
-    profile = get_object_or_404(Member, username=member_username)
-    context = {'profile': profile}
-    return render(request, 'f5members/player_dashboard.html', context)
-
-@group_access_only("Coach", view_to_return="members:error", message="Only Coaches are allowed to access this page!")
+@group_access_only("Coach", view_to_return="members:error", message="Must have Coach role to access this page.")
 def coach_dashboard(request, member_username):
     profile = get_object_or_404(Member, username=member_username)
     context = {'profile': profile}
     return render(request, 'f5members/coach_dashboard.html', context)
 
-@group_access_only("Fan", view_to_return="members:error", message="Just Fans are allowed to access this page!")
+@group_access_only("Player", view_to_return="members:error", message="Must have Player role to access this page.")
+def player_dashboard(request, member_username):
+    profile = get_object_or_404(Member, username=member_username)
+    context = {'profile': profile}
+    return render(request, 'f5members/player_dashboard.html', context)
+
+@group_access_only("Fan", view_to_return="members:error", message="Must have Fan role to access this page.")
 def fan_dashboard(request, member_username):
     profile = get_object_or_404(Member, username=member_username)
     context = {'profile': profile}
