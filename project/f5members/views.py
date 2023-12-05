@@ -2,6 +2,7 @@ from .models import Member
 from f5teams.models import Team
 from f5blogs.models import BlogPost
 from django.contrib import messages
+from f5index.models import SupportSubmission
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import get_object_or_404, redirect, render
@@ -23,27 +24,43 @@ def index(request):
 
     # Render the template with the provided context
     return render(request, 'f5members/members_home.html', context)
+    
+def dashboard(request, member_username):
+    # Get the user with the provided username, or return a 404 response if not found
+    profile = get_object_or_404(Member, username=member_username)
+    
+    if profile.is_staff:
+        # Admin user, render admin dashboard
+        template_name = 'f5members/admin_dashboard.html'
+        # Get the list of submissions for the admin
+        submissions = SupportSubmission.objects.all()
+        context = {'profile': profile, 'user_submissions': submissions}
+    elif profile.user_type == 'player':
+        template_name = 'f5members/player_dashboard.html'
+        context = {'profile': profile} 
+    elif profile.user_type == 'coach':
+        template_name = 'f5members/coach_dashboard.html'
+        context = {'profile': profile}
+    elif profile.user_type == 'fan_other':
+        template_name = 'f5members/fan_dashboard.html'
+        context = {'profile': profile}
+    else:
+        # Handle other cases or provide a default template
+        template_name = 'f5members/base_dashboard.html'
+        context = {'profile': profile}
 
-def get_member(request, member_id):
-    member = get_object_or_404(Member, pk=member_id)
+    return render(request, template_name, context)
 
-    # Get user's blogs
-    user_blogs = None
-    if request.user.is_authenticated and request.user == member:
-        user_blogs = BlogPost.objects.filter(author=request.user).order_by('-create_date')
+def public_profile(request, member_username) :
+    
+    # Get the user with the provided username, or return a 404 response if not found
+    profile = get_object_or_404(Member, username=member_username)
+    
+    template_name = 'f5members/profile.html'
+    context = {'profile': profile}
 
-    # Get user's teams
-    user_teams = None
-    if request.user.is_authenticated and request.user == member:
-        user_teams = Team.objects.filter(members__id=request.user.id)
+    return render(request, template_name, context)
 
-    context = {
-        'member': member,
-        'user_blogs': user_blogs,
-        'user_teams': user_teams,
-    }
-
-    return render(request, 'f5members/detail_member.html', context)
 
 def create_member(request):  
     if request.user.is_authenticated:
@@ -69,7 +86,7 @@ def edit_member(request):
         form = EditUserForm(request.POST, instance=request.user)  
         if form.is_valid():  
             form.save()  
-            return redirect('members:get_member', member_id=request.user.id)
+            return redirect('members:dashboard', member_username=request.user.username)
     else:  
         form = EditUserForm(instance=request.user)  
     context = {  
@@ -77,7 +94,7 @@ def edit_member(request):
     }  
     return render(request, 'f5members/edit_member.html', context)
 
-def login_member(request):  
+def login_member(request):
     if request.user.is_authenticated:
         return redirect('members:home')
 
@@ -94,7 +111,7 @@ def login_member(request):
                 if user.is_verified:
                     # Log the user in
                     login(request, user)
-                    return redirect('blogs:home')  # Redirect to a success page or another URL
+                    return redirect('members:dashboard', member_username=request.user.username)  # Redirect to a success page or another URL
                 else:
                     return redirect('members:verify_sent')  # Redirect to the verification screen
             else:

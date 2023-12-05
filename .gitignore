@@ -12,3 +12,4 @@ project/firstfive/__pycache__/*
 !**/migrations/__init__.py
 
 .env
+.vscode/*

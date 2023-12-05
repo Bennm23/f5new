@@ -1,0 +1,29 @@
+<!-- project/f5members/templates/f5members/base_dashboard.html -->
+{% extends "base.html" %}
+
+{% block loadcss %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'f5members/f5members.css' %}">
+{% endblock %}
+
+{% block title %}
+Dashboard / @{{ profile.username }}
+{% endblock %}
+
+{% block content %}
+<div class="section">
+    <div class="profile_banner">
+        <img src={{profile.pic_url}} height="100px"/>
+    </div>
+    {% if is_editable %}
+        <a class="button_link default" href="{% url 'members:edit_member' %}">Edit Profile</a>
+    {% else %}
+        <div class="user_type">Public Profile</div>
+    {% endif %}
+</div>
+
+<!-- Additional common content can go here -->
+{% block additional_content %}{% endblock %}
+
+{% endblock %}
+
