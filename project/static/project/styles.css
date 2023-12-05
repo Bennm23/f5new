@@ -7,18 +7,19 @@ body {
 }
 
 .container {
-    max-width: 95%;
+    width: 95%;
     margin: 0 auto;
     transition: filter 0.3s ease;
+}
+
+.sm_container {
+    width: 60%;
+    margin: 0 auto;
 }
 
 .container.blur {
     filter: blur(5px); /* Adjust this based on your design */
     pointer-events: none;
-}
-
-.section {
-    padding-bottom: 5rem;
 }
 
 .section * {
@@ -29,6 +30,14 @@ body {
     display: flex;
     gap: 1rem;
     align-items: center;
+}
+
+.feature_slider {
+    margin-top: 1rem;
+}
+
+.slider_image{
+    max-width: 100%; 
 }
 
 .errorlist {
@@ -272,6 +281,10 @@ button:focus {
     }
 
     .section_container {
+        width: auto;
+        margin: 0 auto;
+    }
+    .sm_container {
         width: auto;
         margin: 0 auto;
     }
