@@ -24,6 +24,42 @@
     text-decoration: underline;
 }
 
+.team_profile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.team_bio {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.team_members {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.team_profile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.team_bio {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
+.team_members {
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
+
 .matchup_list {
     margin-top: 1%;
 }
