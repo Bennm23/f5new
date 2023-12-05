@@ -18,8 +18,9 @@ Dashboard / {{ profile.username }}
     </div>
     
     <div class="profile_greeting">
-        <div class="greet">Welcome</div>
+        <div class="greet">Member</div>
         <div class="username">{{ profile.username }}</div>
+        <p>Role: {{ profile.get_user_type_str() }}</p>
     </div>
 </div>
 
