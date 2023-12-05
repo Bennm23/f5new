@@ -3,6 +3,11 @@
 {% block loadcss %}
     {% load static%}
     <link rel="stylesheet" href="{% static 'f5teams/f5teams.css' %}">
+    <link rel="stylesheet" href="{% static 'project/modals.css' %}">
+{% endblock %}
+
+{% block loadjs %}
+    <script src="{% static 'project/modals.js' %}"></script>
 {% endblock %}
 
 {% block title %}
@@ -10,13 +15,31 @@
 
 {% block content %}
 
+<div class="modal_wrapper" id="popup_content">
+    <form class="modal_form" method="post" action="{% url 'teams:submit_score_report' match.id %}">
+        {% csrf_token %}
+        <div class="container">
+            {{score_report_form.as_p}}
+
+            <div class="button_link_group modal_combo">
+                <button type="reset" onclick="hidePopupContent()" class="cancel">Cancel</button>
+                <button type="submit" onclick="hidePopupContent()" class="accept_button">Submit</button>
+            </div>
+        </div>
+    </form> 
+</div>
 <div class="score_reports">
-
     <h2>Score Reports</h2>
+    {% for report in reported_scores %}
 
-    <p> 12 - 10 </p>
-    <p> 18 - 15 </p>
+        <p>{{report.home_team_score}} - {{report.away_team_score}} TIMES = {{report.use_count}}</p>
 
+    {% empty %}
+
+        <p>Uh oh no score reports</p>
+    {% endfor %}
+
+    <button type="input" onclick="showPopupContent()">Submit Score Report</button>
 </div>
 
 <div class="section">

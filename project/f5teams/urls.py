@@ -13,6 +13,7 @@ urlpatterns = [
     path('<int:team_id>/leave/<int:member_id>', views.leave, name='leave'),
     path('match/createMatch/', views.createMatch, name='create_match'),
     path('match/<int:match_id>/detail', views.detailMatch, name='detail_match'),
+    path('match/<int:match_id>/submitScoreReport', views.submitScoreReport, name='submit_score_report')
 
 
 ]

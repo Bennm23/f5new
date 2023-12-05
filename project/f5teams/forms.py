@@ -1,5 +1,5 @@
 from django import forms
-from .models import Team, Match
+from .models import Team, Match, ScoreReport
 from localflavor.us.us_states import STATE_CHOICES 
 from django.forms import ModelForm, widgets
 
@@ -20,3 +20,9 @@ class MatchForm(ModelForm):
         widgets = {
             'match_date': forms.DateTimeInput(attrs={'type':'datetime-local'}),
         }
+
+class ScoreReportForm(ModelForm):
+
+    class Meta:
+        model = ScoreReport
+        fields = ['home_team_score', 'away_team_score']

@@ -309,6 +309,16 @@ button:focus {
     font-size: .7rem;
 }
 
+.delete {
+    color: rgb(180, 30, 30);
+    border: 1px solid rgb(180, 30, 30);
+}
+
+.accept_button {
+    color: rgb(63, 180, 30);
+    border: 1px solid rgb(30, 180, 113);
+}
+
 .ad_wrapper {
     display: flex;
     flex-direction: row;
@@ -335,12 +345,6 @@ button:focus {
     width: 100%;
     background: red;
 }
-
-.delete {
-    color: rgb(180, 30, 30);
-    border: 1px solid rgb(180, 30, 30);
-}
-
 .cancel {
     color: darkgrey;
 }

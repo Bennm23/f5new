@@ -1,17 +1,17 @@
-const CONFIRM_DELETE_DIV="confirm_delete_div";
+const POPUP_CONTENT_DIV="popup_content";
 
-function showConfirmDelete() {
-    var confirmDeleteDiv = document.getElementById(CONFIRM_DELETE_DIV);
-    confirmDeleteDiv.style.display = "block";
+function showPopupContent() {
+    var popupContent = document.getElementById(POPUP_CONTENT_DIV);
+    popupContent.style.display = "block";
 }
 
-function hideConfirmDelete() {
-    var confirmDeleteDiv = document.getElementById(CONFIRM_DELETE_DIV);
-    confirmDeleteDiv.style.display = "none";
+function hidePopupContent() {
+    var popupContent = document.getElementById(POPUP_CONTENT_DIV);
+    popupContent.style.display = "none";
 }
 
 window.onclick = function(event) {
-    var modal = document.getElementById(CONFIRM_DELETE_DIV);
+    var modal = document.getElementById(POPUP_CONTENT_DIV);
     if (event.target === modal) {
         modal.style.display = "none";
     }

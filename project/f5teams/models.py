@@ -35,3 +35,22 @@ class Match(models.Model):
     match_location = models.TextField(max_length=100, blank=True, null=True)
 
 
+class ScoreReport(models.Model):
+    home_team = models.ForeignKey(
+        Team,
+        on_delete=models.SET_NULL,
+        related_name='score_report_home_team',
+        null=True
+    )
+
+    away_team = models.ForeignKey(
+        Team,
+        on_delete=models.SET_NULL,
+        related_name='score_report_away_team',
+        null=True
+    )
+
+    home_team_score = models.PositiveIntegerField()
+    away_team_score = models.PositiveIntegerField()
+    use_count = models.PositiveIntegerField()
+
