@@ -5,9 +5,11 @@ from django.contrib import messages
 from f5index.models import SupportSubmission
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import Group
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import CreateUserForm, EditUserForm, LoginUserForm
 from f5members.models import Member 
+from .decorators import group_access_only
 
 def index(request):
     # Retrieve the counts from the database
@@ -24,43 +26,60 @@ def index(request):
 
     # Render the template with the provided context
     return render(request, 'f5members/members_home.html', context)
-    
+
+@login_required(login_url='members:login_member')
 def dashboard(request, member_username):
-    # Get the user with the provided username, or return a 404 response if not found
     profile = get_object_or_404(Member, username=member_username)
     
     if profile.is_staff:
-        # Admin user, render admin dashboard
-        template_name = 'f5members/admin_dashboard.html'
-        # Get the list of submissions for the admin
-        submissions = SupportSubmission.objects.all()
-        context = {'profile': profile, 'user_submissions': submissions}
-    elif profile.user_type == 'player':
-        template_name = 'f5members/player_dashboard.html'
-        context = {'profile': profile} 
-    elif profile.user_type == 'coach':
-        template_name = 'f5members/coach_dashboard.html'
-        context = {'profile': profile}
-    elif profile.user_type == 'fan_other':
-        template_name = 'f5members/fan_dashboard.html'
-        context = {'profile': profile}
-    else:
-        # Handle other cases or provide a default template
-        template_name = 'f5members/base_dashboard.html'
-        context = {'profile': profile}
-
-    return render(request, template_name, context)
-
-def public_profile(request, member_username) :
+        return admin_dashboard(request, member_username)
     
+    user_groups = Group.objects.filter(user=profile)
+
+    if user_groups.exists():
+        group_name = user_groups.first().name
+        if group_name == 'Player':
+            return player_dashboard(request, member_username)
+        elif group_name == 'Coach':
+            return coach_dashboard(request, member_username)
+        elif group_name == 'Fan':
+            return fan_dashboard(request, member_username)
+
+    # If the user doesn't belong to any specific group, redirect to the error page
+    return error(request)
+
+@group_access_only("Staff", view_to_return="members:error", message="Only Staff are allowed to access this page.")
+def admin_dashboard(request, member_username):
+    profile = get_object_or_404(Member, username=member_username)
+    submissions = SupportSubmission.objects.all()
+    context = {'profile': profile, 'user_submissions': submissions}
+    return render(request, 'f5members/admin_dashboard.html', context)
+
+@group_access_only("Player", view_to_return="members:error", message="Only Players are allowed to access this page!")
+def player_dashboard(request, member_username):
+    profile = get_object_or_404(Member, username=member_username)
+    context = {'profile': profile}
+    return render(request, 'f5members/player_dashboard.html', context)
+
+@group_access_only("Coach", view_to_return="members:error", message="Only Coaches are allowed to access this page!")
+def coach_dashboard(request, member_username):
+    profile = get_object_or_404(Member, username=member_username)
+    context = {'profile': profile}
+    return render(request, 'f5members/coach_dashboard.html', context)
+
+@group_access_only("Fan", view_to_return="members:error", message="Just Fans are allowed to access this page!")
+def fan_dashboard(request, member_username):
+    profile = get_object_or_404(Member, username=member_username)
+    context = {'profile': profile}
+    return render(request, 'f5members/fan_dashboard.html', context)
+
+def public_profile(request, member_username):
     # Get the user with the provided username, or return a 404 response if not found
     profile = get_object_or_404(Member, username=member_username)
     
-    template_name = 'f5members/profile.html'
     context = {'profile': profile}
 
-    return render(request, template_name, context)
-
+    return render(request, 'f5members/profile.html', context)
 
 def create_member(request):  
     if request.user.is_authenticated:
@@ -96,7 +115,7 @@ def edit_member(request):
 
 def login_member(request):
     if request.user.is_authenticated:
-        return redirect('members:home')
+        return redirect('members:dashboard', member_username=request.user.username)
 
     form = None
 
@@ -139,4 +158,7 @@ def verify_user(request, verification_code):
         user.save()
         messages.success(request, 'Your account has been successfully verified. What are you waiting for?')
 
-    return render(request, 'f5members/verify_user.html', {'messages': messages.get_messages(request)})
+    return render(request, 'f5members/verify_user.html')
+
+def error(request):
+    return render(request, 'f5members/error.html')
