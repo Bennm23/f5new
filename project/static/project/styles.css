@@ -26,6 +26,10 @@ body {
     margin: 0;
 }
 
+.section {
+    margin-bottom: 3rem;
+}
+
 .section_header {
     display: flex;
     gap: 1rem;
