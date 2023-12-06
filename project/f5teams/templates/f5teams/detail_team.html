@@ -39,6 +39,9 @@
         {% if user.is_authenticated and user not in team_members %}
         <div class="button_link_group">
             <a href="{% url 'teams:join' team.id user.id %}" class="button_link neutral">Join team</a>
+        </div>
+        {% elif user.is_authenticated and user in team_members %}
+        <div class="button_link_group">
             <a href="{% url 'teams:leave' team.id user.id %}" class="button_link neutral">Leave team</a>
         </div>
         {% else %}

@@ -32,7 +32,15 @@
     <h2>Score Reports</h2>
     {% for report in reported_scores %}
 
-        <p>{{report.home_team_score}} - {{report.away_team_score}} TIMES = {{report.use_count}}</p>
+        {% if forloop.first %}
+            <p>
+                {{report.home_team_score}} - {{report.away_team_score}}
+                <i class="fa fa-star fa-lg" aria-hidden="true"></i>
+                <i class="fa fa-check fa-lg" aria-hidden="true"></i>
+            </p>
+        {% else %}
+            <p>{{report.home_team_score}} - {{report.away_team_score}}</p>
+        {% endif %}
 
     {% empty %}
 
@@ -40,6 +48,8 @@
     {% endfor %}
 
     <button type="input" onclick="showPopupContent()">Submit Score Report</button>
+    <p><i class="fa fa-star fa-lg"></i> Most Reported </p>
+    <p><i class="fa fa-check fa-lg"></i> Verified Score </p>
 </div>
 
 <div class="section">

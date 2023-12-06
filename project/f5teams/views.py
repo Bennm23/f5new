@@ -152,7 +152,7 @@ def detailMatch(request, match_id):
 
     scoreReports = ScoreReport.objects.filter(
         Q(home_team = match.home_team) | Q(away_team = match.away_team)
-    ).order_by('-use_count')[:5]
+    ).order_by('-use_count')[:3]
 
     context = {
         'match': match,
@@ -161,6 +161,7 @@ def detailMatch(request, match_id):
     }
     return render(request, 'f5teams/detail_match.html', context)
 
+@login_required(login_url='members:login_member')
 def submitScoreReport(request, match_id):
     match = get_object_or_404(Match, pk=match_id)
 
