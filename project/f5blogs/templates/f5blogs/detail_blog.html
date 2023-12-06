@@ -16,7 +16,7 @@ Blog Detail
 {% endblock %}
 
 {% block content %}
-<div class="modal_wrapper" id="confirm_delete_div">
+<div class="modal_wrapper" id="popup_content">
     <form class="modal_form" method="post" action="{% url 'blogs:delete' blog.id %}">
         {% csrf_token %}
         <div class="container">
@@ -24,8 +24,8 @@ Blog Detail
             <p> Are you sure you want to delete this blog? </p>
 
             <div class="button_link_group modal_combo">
-                <button type="reset" onclick="hideConfirmDelete()" class="cancel">Cancel</button>
-                <button type="submit" onclick="hideConfirmDelete()" class="delete">Delete</button>
+                <button type="reset" onclick="hidePopupContent()" class="cancel">Cancel</button>
+                <button type="submit" onclick="hidePopupContent()" class="delete">Delete</button>
             </div>
         </div>
     </form>
@@ -38,7 +38,7 @@ Blog Detail
     {% if user == blog.author %}
     <div class="button_link_group">
         <a href="{% url 'blogs:edit' blog.id %}" class="button_link neutral">Edit blog</a> |
-        <a class="modal_link neutral" onclick="showConfirmDelete()">Delete blog</a>
+        <a class="modal_link neutral" onclick="showPopupContent()">Delete blog</a>
     </div>
     {% endif %}
 

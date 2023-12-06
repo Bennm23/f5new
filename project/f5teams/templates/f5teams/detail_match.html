@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{% block loadcss %}
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'f5teams/f5teams.css' %}">
+    <link rel="stylesheet" href="{% static 'project/modals.css' %}">
+{% endblock %}
+
+{% block loadjs %}
+    <script src="{% static 'project/modals.js' %}"></script>
+{% endblock %}
+
+{% block title %}
+{% endblock %}
+
+{% block content %}
+
+<div class="modal_wrapper" id="popup_content">
+    <form class="modal_form" method="post" action="{% url 'teams:submit_score_report' match.id %}">
+        {% csrf_token %}
+        <div class="container">
+            {{score_report_form.as_p}}
+
+            <div class="button_link_group modal_combo">
+                <button type="reset" onclick="hidePopupContent()" class="cancel">Cancel</button>
+                <button type="submit" onclick="hidePopupContent()" class="accept_button">Submit</button>
+            </div>
+        </div>
+    </form> 
+</div>
+<div class="score_reports">
+    <h2>Score Reports</h2>
+    {% for report in reported_scores %}
+
+        {% if forloop.first %}
+            <p>
+                {{report.home_team_score}} - {{report.away_team_score}}
+                <i class="fa fa-star fa-lg" aria-hidden="true"></i>
+                <i class="fa fa-check fa-lg" aria-hidden="true"></i>
+            </p>
+        {% else %}
+            <p>{{report.home_team_score}} - {{report.away_team_score}}</p>
+        {% endif %}
+
+    {% empty %}
+
+        <p>Uh oh no score reports</p>
+    {% endfor %}
+
+    <button type="input" onclick="showPopupContent()">Submit Score Report</button>
+    <p><i class="fa fa-star fa-lg"></i> Most Reported </p>
+    <p><i class="fa fa-check fa-lg"></i> Verified Score </p>
+</div>
+
+<div class="section">
+    <div class="matchup_details">
+        <h2 class="matchup_header">
+            <a href="{% url 'teams:detail' match.home_team.id %}">{{match.home_team}}</a> 
+            vs 
+            <a href="{% url 'teams:detail' match.away_team.id %}">{{match.away_team}}</a>
+        </h2>
+
+        <div class="matchup_detail">
+            <h4>Match Location</h4>
+            <p>{{match.match_location}}</p>
+        </div>
+        <div class="matchup_detail">
+            <h4>Match Date</h4>
+            <p>{{match.match_date}}</p>
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

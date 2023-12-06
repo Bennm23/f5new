@@ -39,6 +39,9 @@
         {% if user.is_authenticated and user not in team_members %}
         <div class="button_link_group">
             <a href="{% url 'teams:join' team.id user.id %}" class="button_link neutral">Join team</a>
+        </div>
+        {% elif user.is_authenticated and user in team_members %}
+        <div class="button_link_group">
             <a href="{% url 'teams:leave' team.id user.id %}" class="button_link neutral">Leave team</a>
         </div>
         {% else %}
@@ -62,4 +65,57 @@
     </div>
 </div>
 
+<div class="section">
+    <h2>Upcoming Matchups</h2>
+    <div class="matchup_list">
+        {% for match in upcoming_matches %}
+            <div class="member_list_item">
+
+            
+                {% if match.home_team == team %}
+                    <p>{{match.home_team}} vs <a href="{% url 'teams:detail' match.away_team.id %}">{{match.away_team}}</a></p>
+                {% else %}
+                    <p><a href="{% url 'teams:detail' match.home_team.id %}">{{match.home_team}}</a> @ {{match.away_team}}</p>
+                {% endif %}
+
+                <a href="{% url 'teams:detail_match' match.id %}">View Matchup</a>
+                <div class="match_location_info">
+                        <p> {{match.match_date}} </p>
+                        <p> {{match.match_location}}</p>
+                </div>
+            </div>
+        {% empty %}
+            <h3> No Matches </h3>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+<div class="section">
+    <h2>Past Matchups</h2>
+    <div class="matchup_list">
+        {% for match in past_matches %}
+            <div class="member_list_item">
+
+            
+                {% if match.home_team == team %}
+                    <p>{{match.home_team}} vs <a href="{% url 'teams:detail' match.away_team.id %}">{{match.away_team}}</a></p>
+                {% else %}
+                    <p><a href="{% url 'teams:detail' match.home_team.id %}">{{match.home_team}}</a> @ {{match.away_team}}</p>
+                {% endif %}
+
+                <a href="{% url 'teams:detail_match' match.id %}">View Matchup</a>
+                <div class="match_location_info">
+                        <p> {{match.match_date}} </p>
+                        <p> {{match.match_location}}</p>
+                </div>
+            </div>
+        {% empty %}
+            <h3> No Matches </h3>
+
+        {% endfor %}
+
+    </div>
+</div>
 {% endblock %}
