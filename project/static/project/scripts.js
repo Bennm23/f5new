@@ -9,11 +9,17 @@ function toggleSearchForm() {
   }
 }
 
-// Toggle visibility of site menu on all pages.
 function toggleMenu() {
-  const nav = document.querySelector("nav");
-  const content = document.querySelector(".container");
+  var hidden_object = document.querySelector('.nav_wrapper_hidden');
+  var togglerButton = document.getElementById('toggler_button');
 
-  nav.classList.toggle("open");
-  content.classList.toggle("blur");
+  if (hidden_object.style.display === 'flex') {
+    hidden_object.style.display = 'none';
+    togglerButton.classList.remove('fa-xmark');
+    togglerButton.classList.add('fa-bars');
+  } else {
+    hidden_object.style.display = 'flex';
+    togglerButton.classList.remove('fa-bars');
+    togglerButton.classList.add('fa-xmark');
+  }
 }
