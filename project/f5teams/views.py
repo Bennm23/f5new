@@ -72,7 +72,7 @@ def detail(request, team_id):
         'team': team,
         'team_members': team.members.all,
         'upcoming_matches' : upcoming_matchups,
-        'past_matches': past_matchups
+        'match_history': past_matchups
     }
     return render(request, 'f5teams/detail_team.html', context)
 
