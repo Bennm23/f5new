@@ -6,39 +6,15 @@
 {% endblock %}
 
 {% block title %}
-Recent Products
+Store
 {% endblock %}
 
 {% block content %}
-<div class="section">
-    <div class="section_header">
-        <h2>Products</h2>
-        <button class="filter" onclick="toggleSearchForm()">View filters <i class="fa fa-filter"></i></button>
-    </div>
-
-	<div id="search_form_container" class="search_form_container">
-        <form method="get" action="{% url 'store:home' %}">
-            {{ search_form.as_p }}
-            <button class="submit" type="submit">Search</button>
-        </form>
-    </div>
-
-    <div class="results_list">
-        {% for product in products %}
-        <div class="list_item">
-            <details>
-                <summary>
-                    <a href="{% url 'store:product_detail' product.id %}" class="button_link default">{{ product.name }}</a>
-                    <div class="float_right_div">
-                        <h5>Price: ${{ product.price }}</h5>
-                    </div>
-                </summary>
-                <p class="shorty">{{ product.description | truncatewords:15 | safe }}</p>
-            </details>
+<div class="service_wrapper">
+    <div class="service_jumbo">
+        <div class="in_margins_60">
+            <h1 class="service_title">Store</h1>
         </div>
-        {% empty %}
-        <h3>There are no products to show :/</h3>
-        {% endfor %}
     </div>
-{% endblock %}
 </div>
+{% endblock %}
