@@ -52,6 +52,6 @@ class ScoreReport(models.Model):
 
     home_team_score = models.PositiveIntegerField()
     away_team_score = models.PositiveIntegerField()
-    use_count = models.PositiveIntegerField()
-    is_verified = models.BooleanField()
+    use_count = models.PositiveIntegerField(default=1)#Default to 1, on creation there must be at least one report
+    is_verified = models.BooleanField(default=False)
 
