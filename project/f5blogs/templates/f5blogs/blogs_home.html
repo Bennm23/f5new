@@ -17,35 +17,45 @@ Articles
         </div>
     </div>
 </div>
-<div class="section">
-    <div class="section_header">
-        <h2>Articles</h2>
-        <button class="filter" onclick="toggleSearchForm()">View filters <i class="fa fa-filter"></i></button>
-    </div>
+<div class="data_list_wrapper">
+    <div class="in_margins_60">
+        <div class="data_list">
+            <div class="data_obj">
+                <div class="data_tag">
+                    <p>Community</p>
+                </div>
+                <div class="data_obj_img">
+                    <img src="https://i.imgur.com/84WNLVO.jpeg" />
+                </div>
+                <div class="data_obj_desc">
+                    <p>This is a short blog preview.</p>
+                </div>
+            </div>
 
-    <div id="search_form_container" class="search_form_container">
-        <form method="get" action="{% url 'blogs:home' %}">
-            {{ search_form.as_p }}
-            <button class="submit" type="submit">Search</button>
-        </form>
-    </div>
+            <div class="data_obj">
+                <div class="data_tag">
+                    <p>Teams</p>
+                </div>
+                <div class="data_obj_img">
+                    <img src="https://i.imgur.com/sbWIuq4.jpg" />
+                </div>
+                <div class="data_obj_desc">
+                    <p>This is a another blog preview.</p>
+                </div>
+            </div>
 
-    <div class="results_list">
-        {% for blog in recent_blogs %}
-        <div class="list_item">
-            <details>
-                <summary>
-                    <a href="{% url 'blogs:detail' blog.id %}" class="button_link default">{{blog.title}}</a>
-                    <div class="float_right_div">
-                        <h5>Created On: {{blog.create_date}}</h5>
-                    </div>
-                </summary>
-                <p class="shorty">{{ blog.content | truncatewords:15 | safe}}</p>
-            </details>
+            <div class="data_obj">
+                <div class="data_tag">
+                    <p>Coaching</p>
+                </div>
+                <div class="data_obj_img">
+                    <img src="https://i.imgur.com/ADYm3WA.jpeg" />
+                </div>
+                <div class="data_obj_desc">
+                    <p>This is the last blog preview.</p>
+                </div>
+            </div>
         </div>
-        {% empty %}
-        <h3>There are no blogs to show :/</h3>
-        {% endfor %}
     </div>
 </div>
 {% endblock %}
