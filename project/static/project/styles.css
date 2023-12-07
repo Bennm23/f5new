@@ -53,8 +53,37 @@ body {
     margin: 0 auto;
 }
 
+.section_data_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+}
+
+.data_card {
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    padding: 1rem 2rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 25vh;
+}
+
+.card_meta {
+    font-size: .75em;
+    color: #525252;
+}
+
 .section {
     margin-top: 3rem;
+}
+
+.section_title {
+    margin: 0;
+    font-weight: 400;
+}
+
+.section_title_wrapper {
+    padding-bottom: 1rem;
 }
 
 .service_wrapper {
@@ -211,31 +240,12 @@ button:focus {
 
 
 @media only screen and (max-width: 680px) {
-    .form_wrapper {
-        width: 100%;
-        margin: 0;
+   .in_margins_60 {
+        width: 90%;
     }
 
-    .auth_form {
-        max-width: 100%; 
-    }
-
-    .search_form_container {
-        width: 80%;
-    }
-
-    .brand_bar {
-        padding-left: 1rem;
-        padding-right: 1rem;
-    }
-
-    .section_container {
-        width: auto;
-        margin: 0 auto;
-    }
-    .sm_container {
-        width: auto;
-        margin: 0 auto;
+    .in_margins_70 {
+        width: 90%;
     }
 }
 
