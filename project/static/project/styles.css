@@ -247,6 +247,12 @@ button:focus {
     .in_margins_70 {
         width: 90%;
     }
+
+    .section_data_wrapper {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
 }
 
 .button_link_group {
