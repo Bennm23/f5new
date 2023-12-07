@@ -1,12 +1,20 @@
 const POPUP_CONTENT_DIV="popup_content";
 
 function showPopupContent() {
-    var popupContent = document.getElementById(POPUP_CONTENT_DIV);
-    popupContent.style.display = "block";
+    popupById(POPUP_CONTENT_DIV)
 }
 
 function hidePopupContent() {
-    var popupContent = document.getElementById(POPUP_CONTENT_DIV);
+    hideById(POPUP_CONTENT_DIV)
+}
+
+function popupById(elementId) {
+    var popupContent = document.getElementById(elementId);
+    popupContent.style.display = "block";
+}
+
+function hideById(elementId) {
+    var popupContent = document.getElementById(elementId);
     popupContent.style.display = "none";
 }
 

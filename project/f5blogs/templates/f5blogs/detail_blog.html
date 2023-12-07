@@ -15,7 +15,7 @@
 Blog Detail
 {% endblock %}
 
-{% block content %}
+{% block modals %}
 <div class="modal_wrapper" id="popup_content">
     <form class="modal_form" method="post" action="{% url 'blogs:delete' blog.id %}">
         {% csrf_token %}
@@ -30,7 +30,9 @@ Blog Detail
         </div>
     </form>
 </div>
+{% endblock %}
 
+{% block content %}
 <div class="section">
 <div class="blog_detail">
     <h2>{{blog.title}}</h2>

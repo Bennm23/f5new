@@ -13,8 +13,7 @@
 {% block title %}
 {% endblock %}
 
-{% block content %}
-
+{% block modals %}
 <div class="modal_wrapper" id="popup_content">
     <form class="modal_form" method="post" action="{% url 'teams:submit_score_report' match.id %}">
         {% csrf_token %}
@@ -28,6 +27,9 @@
         </div>
     </form> 
 </div>
+{% endblock %}
+
+{% block content %}
 <div class="score_reports">
     <h2>Score Reports</h2>
     {% for report in reported_scores %}
