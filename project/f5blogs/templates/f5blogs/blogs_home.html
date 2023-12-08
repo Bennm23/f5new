@@ -10,35 +10,64 @@ Articles
 {% endblock %}
 
 {% block content %}
-<div class="section">
-    <div class="section_header">
-        <h2>Articles</h2>
-        <button class="filter" onclick="toggleSearchForm()">View filters <i class="fa fa-filter"></i></button>
-    </div>
-
-    <div id="search_form_container" class="search_form_container">
-        <form method="get" action="{% url 'blogs:home' %}">
-            {{ search_form.as_p }}
-            <button class="submit" type="submit">Search</button>
-        </form>
-    </div>
-
-    <div class="results_list">
-        {% for blog in recent_blogs %}
-        <div class="list_item">
-            <details>
-                <summary>
-                    <a href="{% url 'blogs:detail' blog.id %}" class="button_link default">{{blog.title}}</a>
-                    <div class="float_right_div">
-                        <h5>Created On: {{blog.create_date}}</h5>
-                    </div>
-                </summary>
-                <p class="shorty">{{ blog.content | truncatewords:15 | safe}}</p>
-            </details>
+<div class="service_wrapper">
+    <div class="service_jumbo">
+        <div class="in_margins_60">
+            <h1 class="service_title">Blogs</h1>
         </div>
-        {% empty %}
-        <h3>There are no blogs to show :/</h3>
-        {% endfor %}
+    </div>
+</div>
+
+<div class="section">
+    <div class="in_margins_60">
+        <div class="section_title_wrapper">
+            <h2 class="section_title">Latest news</h2>
+        </div>
+        <div class="section_data_wrapper">
+
+            <div class="data_card">
+                <div class="card_title">
+                    Simple Card Title
+                </div>
+                <div class="card_meta">
+                    <div class="card_date">
+                    Author Name
+                    </div>
+                    <div class="card_date">
+                    December 06th, 2023
+                    </div>
+                </div>
+            </div>
+
+            <div class="data_card">
+                <div class="card_title">
+                    Another Card Title That Could Be Longer
+                </div>
+                <div class="card_meta">
+                    <div class="card_date">
+                    Author Name
+                    </div>
+                    <div class="card_date">
+                    December 05th, 2023
+                    </div>
+                </div>
+            </div>
+
+            <div class="data_card">
+                <div class="card_title">
+                    Lastly just another title.
+                </div>
+                <div class="card_meta">
+                    <div class="card_date">
+                    Author Name
+                    </div>
+                    <div class="card_date">
+                    December 03th, 2023
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 </div>
 {% endblock %}

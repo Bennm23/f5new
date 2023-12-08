@@ -7,12 +7,18 @@ from django.db.models import Q
 from .forms import TeamForm, TeamSearchForm, MatchForm, ScoreReportForm
 from .models import Team, Match, ScoreReport
 from f5members.models import Member
-from datetime import datetime
+from datetime import datetime, timezone
 
 # Create your views here.
 
 def index(request):
     teams = Team.objects.all()
+
+    recent_matches = Match.objects.all().order_by('-match_date')[:5]
+    recent_scores = []
+
+    for match in recent_matches:
+        recent_scores.append(match.get_best_score_report())
 
     # Handle the search form
     search_form = TeamSearchForm(request.GET)
@@ -29,11 +35,15 @@ def index(request):
             teams = teams.filter(state=state)
 
     # Additional context for authenticated users
-    context = {'teams': teams}
+    context = {
+        'teams': teams,
+        'search_form': search_form,
+        'recent_scores' : recent_scores,
+    }
     #if request.user.is_authenticated:
     #    context['my_teams'] = Team.objects.filter(members__id=request.user.id)
 
-    return render(request, 'f5teams/teams_home.html', {'teams': teams, 'search_form': search_form, **context})
+    return render(request, 'f5teams/teams_home.html', context)
 
 
 @login_required(login_url='members:login_member')
@@ -146,16 +156,14 @@ def createMatch(request):
 
 
 def detailMatch(request, match_id):
-    match = get_object_or_404(Match, pk=match_id)
+    foundMatch = get_object_or_404(Match, pk=match_id)
 
     scoreReport = ScoreReportForm()
 
-    scoreReports = ScoreReport.objects.filter(
-        Q(home_team = match.home_team) | Q(away_team = match.away_team)
-    ).order_by('-use_count')[:3]
+    scoreReports = ScoreReport.objects.filter(match=foundMatch).order_by('-use_count')[:3]
 
     context = {
-        'match': match,
+        'match': foundMatch,
         'score_report_form': scoreReport,
         'reported_scores': scoreReports,
     }
@@ -163,7 +171,7 @@ def detailMatch(request, match_id):
 
 @login_required(login_url='members:login_member')
 def submitScoreReport(request, match_id):
-    match = get_object_or_404(Match, pk=match_id)
+    foundMatch = get_object_or_404(Match, pk=match_id)
 
     if request.method != "POST":
         return
@@ -174,26 +182,24 @@ def submitScoreReport(request, match_id):
 
         submittedReport = scoreReport.save(commit=False)
         alreadyExists = ScoreReport.objects.filter(
-                            Q(home_team=match.home_team) &
-                            Q(away_team=match.away_team) &
+                            Q(match=foundMatch)&
                             Q(home_team_score=submittedReport.home_team_score) &
                             Q(away_team_score=submittedReport.away_team_score)
                         ).exists()
         
 
         if alreadyExists:
-            matchedObject = ScoreReport.objects.get(
-                                Q(home_team=match.home_team) &
-                                Q(away_team=match.away_team) &
-                                Q(home_team_score=submittedReport.home_team_score) &
-                                Q(away_team_score=submittedReport.away_team_score)
-                            )
+            matchedObject = ScoreReport.objects.filter(
+                            Q(match=foundMatch)&
+                            Q(home_team_score=submittedReport.home_team_score) &
+                            Q(away_team_score=submittedReport.away_team_score))
+
             matchedObject.use_count = matchedObject.use_count + 1
+            matchedObject.last_update = timezone.now()
             matchedObject.save()
         else:
-            submittedReport.home_team = match.home_team
-            submittedReport.away_team = match.away_team
             submittedReport.use_count = 1
+            submittedReport.match = foundMatch
             submittedReport.save()
 
     return HttpResponseRedirect(reverse('teams:detail_match', args=(match_id, )))

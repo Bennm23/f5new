@@ -1,0 +1,32 @@
+.home_feature {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.top_blog {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.side_blogs {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.blog {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.top_meta_wrapper {
+    font-size: .75em;
+}
+
+.blog_meta {
+    font-size: .75em;
+}

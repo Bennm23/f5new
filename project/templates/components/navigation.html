@@ -1,0 +1,63 @@
+<div class="nav_wrapper">
+    <div class="in_margins_70">
+        <div class="spread">
+            <div class="nav_toggler" onclick="toggleMenu()">
+                <i id="toggler_button" class="fa-solid fa-bars"></i>
+            </div>
+            <div class="nav_apps">
+
+                {% if user.is_authenticated %}
+                <div class="app">
+                    <div class="auth">
+                        <a class="link_white" href="{% url 'members:logout_member' %}">Logout</a>
+                    </div>
+                </div>
+                {% else %}
+                 <div class="app">
+                    <div class="auth">
+                        <a class="link_white" href="{% url 'members:login_member' %}">Login</a>
+                        <a class="link_white" href="{% url 'members:create_member' %}">Signup</a>
+                    </div>
+                </div>
+                {% endif %}
+
+                <div class="app">
+                    <div class="brand">
+                        <h1 id="title"><a class="brand_link" href="{% url 'index:home' %}">F5R</a></h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% if user.is_authenticated %}
+<div class="account_wrapper">
+    <div class="in_margins_70">
+        <div class="spread">
+            <div class="blank">
+
+            </div>
+            <div>
+                <a class="link_white" href="{% url 'members:dashboard'%}">@{{ user.username }}</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<div class="nav_wrapper_hidden">
+    <div class="in_margins_70">
+        <div class="nav_group">
+            <h1 class="section_title">First Five</h1>
+            <ul class="nav_list">
+                <li><a class="link_white" href="{% url 'index:home' %}">Home</a></li>
+                <li><a class="link_white" href="{% url 'blogs:home' %}">Blogs</a></li>
+                <li><a class="link_white" href="{% url 'teams:home' %}">Teams</a></li>
+                <li><a class="link_white" href="{% url 'store:home' %}">Store</a></li>
+                <li><a class="link_white" href="{% url 'members:home' %}">Members</a></li>
+                <li><a class="link_white" href="{% url 'index:contact_support' %}">Support</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

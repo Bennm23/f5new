@@ -1,83 +1,70 @@
 {% extends "base.html" %}
 
+{% block loadcss %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'f5index/f5index.css' %}">
+{% endblock %}
+
+{% block loadjs %}
+    {% load static %}
+    <script src="{% static 'f5index/f5index.js' %}"></script>
+{% endblock %}
 
 {% block title %}
 Home
 {% endblock %}
 
 {% block content %}
-<div class="section_container">
-    <div class="section">
-        <div class="special_area">
-            <div class="section_title">
-                <h2>First Five Stats</h2>
-            </div>
+<div class="section">
+    <div class="in_margins_60">
+        <h2 class="section_title">Latest News</h2>
 
-            <div class="special_stats">
-                <p>There are a total of <span class="metric">{{ user_count }}</span> members.</p>
-                <p>Members have helped write <span class="metric">{{ blog_count }}</span> blogs.</p>
-                <p>The community maintains <span class="metric">{{ team_count }}</span> teams.</p>
-                <p>Met with <span class="metric">25</span> athletes to build progress plans.</p>
-                <p>We have covered <span class="metric">15</span> local rugby events.</p>
-                <p>Digitally archived <span class="metric">45</span> vintage rugby jerseys.</p>
-                <p>Enitor has helped <span class="metric">30</span> players find help.</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="two_split">
-        <div class="section">
-            <div class="special_area">
-                <div class="section_title">
-                    <h2>News</h2>
+        <div class="home_feature">
+            <div class="top_blog">
+                <div class="tag">Community</div>
+                <div class="blog_title">
+                    Classic Rugby Clash Between The Roosters & Richmond
                 </div>
-
-                <div class="special_stats">
-                    <p>Example blog 1</p>
+                <div class="top_blog_img">
+                    <img src="https://i.imgur.com/84WNLVO.jpeg" width="100%" />
+                </div>
+                <div class="blog_meta">
+                    <div class="blog_date">Dec 7th, 2023</div>
                 </div>
             </div>
-        </div>
-        <div class="section">
-            <div class="special_area">
-                <div class="section_title">
-                    <h2>Livewire</h2>
-                </div>
-                <div class="ad_wrapper" id="ad_wrapper">
-                    <div class="ad_source">
-                        <a href="#">
-                        <img src="https://media1.giphy.com/media/lORulWik72L7O/giphy.gif" height="50px"></a>
+            <div class="side_blogs">
+                <div class="blog">
+                    <div class="tag">Teams</div>
+                    <div class="blog_title">
+                        NOVA WRFC Celebrate 40th Anniversary
                     </div>
-                    <div class="ad_source">
-                        <a href="#">
-                        <img src="https://media4.giphy.com/media/JOGdCQbWOSxF7jQ6Rt/giphy.gif" height="50px"></a>
+                    <div class="blog_img">
+                        <img src="https://i.imgur.com/3NRqJop.jpeg" width="100%"/>
                     </div>
-                    <div class="ad_source">
-                        <a href="#">
-                        <img src="https://media1.giphy.com/media/wlygmLCpI7Rfy/200w.webp" height="50px"></a>
-                    </div>
-                    <div class="ad_source">
-                        <a href="#">
-                        <img src="https://media0.giphy.com/media/YRWbg0nCqacUhji9NF/giphy.gif" height="50px"></a>
-                    </div>
-                    <div class="ad_source">
-                        <a href="#">
-                        <img src="https://media4.giphy.com/media/B2TQhDtdNX7R9e6kN2/giphy.gif" height="50px"></a>
-                    </div>
-                    <div class="ad_source">
-                        <a href="#">
-                        <img src="https://media3.giphy.com/media/KA593kO0JvXMs/giphy.gif" height="50px"></a>
+                    <div class="blog_meta">
+                        <div class="blog_date">Dec 4th, 2023</div>
                     </div>
                 </div>
-                <div class="special_stats">
-                    <p>Daily ad: <span class="metric price">$19.00</span></p>
-                    <p>Weekend ad: <span class="metric price">$29.00</span></p>
-                    <p>Weekly ad: <span class="metric price">$100.00</span></p>
+                <div class="blog">
+                    <div class="tag">Players</div>
+                    <div class="blog_title">
+                        Take Back Control of Your Rugby Lifestyle
+                    </div>
+                    <div class="blog_img">
+                        <img src="https://i.imgur.com/z3zkVUQ.png" width="100%"/>
+                    </div>
+                    <div class="blog_meta">
+                        <div class="blog_date">Dec 3th, 2023</div>
+                    </div>
                 </div>
             </div>
         </div>
+
     </div>
 </div>
+<div class="section">
 
+</div>
 {% endblock %}
 
 
