@@ -35,6 +35,10 @@ Teams
                 <p class="shorty">{{ team.bio | truncatewords:15 | safe}}</p>
             </details>
         </div>
+        {% empty %}
+            <h3> No Teams </h3>
+
+        {% endfor %}
     </div>
 </div>
 </div>
