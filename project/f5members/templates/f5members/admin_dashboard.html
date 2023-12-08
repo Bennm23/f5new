@@ -1,29 +1,18 @@
 <!-- project/f5members/templates/f5members/player_dashboard.html -->
 {% extends "f5members/base_dashboard.html" %}
 
+{% block additional_sections %}
+<div class="dash_section">
+    <div class="dash_title">
+        User Submission
+    </div>
+    <div class="dash_data">
+        Any user request will show up here with it's status.
+    </div>
+</div>
+{% endblock %}
+
 {% block additional_content %}
-    <!-- Specific content for the player dashboard -->
-    <div class="user_type">Admin</div>
-    
-    <br />
-    <br />
-    <div class="sm_container">
-        <div class="section">
-            <div class="section_title">
-                <h2>Support requests</h2>
-            </div>
-        </div>
-        <div class="section">
-            <div class="section_title">
-                <h2>Team requests</h2>
-            </div>
-        </div>
-        <div class="section">
-            <div class="section_title">
-                <h2>Blog requests</h2>
-            </div>
-        </div>
-    </div> 
 
 {% endblock %}
 

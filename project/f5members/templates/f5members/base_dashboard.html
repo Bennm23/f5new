@@ -12,8 +12,42 @@ Dashboard / @{{ profile.username }}
 
 {% block content %}
 <div class="section">
-    <div class="profile_banner">
-        <img src={{profile.pic_url}} height="100px"/>
+    <div class="in_margins_60">
+        <div class="section_title">
+            Welcome, @{{ profile.username }}
+        </div>
+        <div class="dash_wrapper">
+            {% block additional_sections %}{% endblock %}
+            <hr>
+            <div class="dash_section">
+                <div class="dash_title">
+                    Blogs
+                </div>
+                <div class="dash_data">
+                    {% for blog in blogs %}
+                        <div class="dash_blog">
+                            <div>This is The Blogs Gran Title</div>
+                            <div>Dec 6th, 2023</div>
+                            <div>Blog Image</div>
+                            <div>Blog Description long text goes here</div>
+                        </div>
+                    {% empty %}
+                        <div class="empty_message">
+                            Any blogs you write or pin will show up here.
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="dash_section">
+                <div class="dash_title">
+                    Teams
+                </div>
+                <div class="dash_data">
+                    Any teams you follow or manage will show up here.
+                </div>
+            </div>
+        </div> <!-- end of dash wrapper -->
     </div>
 </div>
 

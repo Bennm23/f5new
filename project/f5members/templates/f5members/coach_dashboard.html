@@ -1,8 +1,32 @@
 <!-- project/f5members/templates/f5members/player_dashboard.html -->
 {% extends "f5members/base_dashboard.html" %}
 
-{% block additional_content %}
-    <!-- Specific content for the player dashboard -->
-    <div class="user_type">Coach</div>
+{% block additional_sections %}
+<div class="dash_section">
+    <div class="dash_title">
+        Managed Teams
+    </div>
+    <div class="dash_data">
+        Any teams you manage will appear here.
+    </div>
+</div>
+
+<div class="dash_section">
+    <div class="dash_title">
+        Recruits
+    </div>
+    <div class="dash_data">
+        Any players you have marked will show up here.
+    </div>
+</div>
+
+<div class="dash_section">
+    <div class="dash_title">
+        Training resources
+    </div>
+    <div class="dash_data">
+        Any resources you have aquired will appear here.
+    </div>
+</div>
 {% endblock %}
 

@@ -13,14 +13,28 @@ Dashboard / {{ profile.username }}
 
 {% block content %}
 <div class="section">
-    <div class="profile_img">
-        <img src="{{ profile.pic_url }}" alt="{{ profile.username }} Profile Picture" class="img_fluid" height="100px">
-    </div>
-    
-    <div class="profile_greeting">
-        <div class="greet">Member</div>
-        <div class="username">{{ profile.username }}</div>
-        <p>Role: {{ profile.get_user_type_str }}</p>
+    <div class="in_margins_60">
+        <div class="section_title">
+            Username: @{{ profile.username }}
+        </div>
+        <div class="dash_wrapper">
+            <div class="dash_section">
+                <div class="dash_title">
+                    Featured
+                </div>
+                <div class="dash_data">
+                    You can hsow off your achievements here.
+                </div>
+            </div>
+            <div class="dash_section">
+                <div class="dash_title">
+                    Highlights
+                </div>
+                <div class="dash_data">
+                    You best scores and top records will show here.
+                </div>
+            </div>
+        </div> <!-- end of dash wrapper -->
     </div>
 </div>
 
