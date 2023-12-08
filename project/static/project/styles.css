@@ -267,7 +267,7 @@ button:focus {
 }
 
 .default {
-    color: white;
+    color: black;
 }
 
 .primary {
@@ -347,7 +347,7 @@ button:focus {
 
 .result_list li a {
     text-decoration: none;
-    color: white;
+    color: black;
 }
 
 .result_list li a:hover {

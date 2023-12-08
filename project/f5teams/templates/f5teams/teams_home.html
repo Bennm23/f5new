@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 
 {% block loadcss %}
+    {% load static%}
+    <link rel="stylesheet" href="{% static 'f5teams/f5teams.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -8,10 +10,46 @@ Teams
 {% endblock %}
 
 {% block content %}
+<div class="service_wrapper">
+    <div class="service_jumbo">
+        <div class="in_margins_60">
+            <h1 class="service_title">Teams</h1>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="in_margins_60">
+        <div class="section_title_wrapper">
+            <h2 class="section_title">Recent Match Results</h2>
+        </div>
+
+        <div class="match_results">
+        {% for report in recent_scores %}
+            <div class="match_result">
+            <div class="team_1">
+                <div>{{report.match.home_team.team_name}}</div>
+                <div>{{report.home_team_score}}</div>
+            </div>
+            <div class="team_vs">
+                VS
+            </div>
+            <div class="team_2">
+                <div>{{report.away_team_score}}</div>
+                <div>{{report.match.away_team.team_name}}</div>
+            </div>
+            </div>
+        {% empty %}
+
+            <li>There are no reports</li>
+        {% endfor %}
+        </div>
+    </div>
+</div>
 <div class="section">
 <div class="in_margins_60">
     <div class="section_header">
-        <h2 class="section_title">Clubs</h2>
+        <h2 class="section_title">Teams</h2>
         <button class="filter" onclick="toggleSearchForm()">View filters <i class="fa fa-filter"></i></button>
     </div>
 
@@ -41,7 +79,7 @@ Teams
         {% endfor %}
     </div>
 </div>
-</div>
+</div> 
 {% endblock %}
 
 
