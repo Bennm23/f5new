@@ -3,12 +3,48 @@
 {% block loadcss %}
     {% load static%}
     <link rel="stylesheet" href="{% static 'f5teams/f5teams.css' %}">
+    <link rel="stylesheet" href="{% static 'project/modals.css' %}">
 {% endblock %}
+
+{% block loadjs %}
+    <script src="{% static 'project/modals.js' %}"></script>
+{% endblock %}
+
 
 {% block title %}
 {% endblock %}
 
+{% block modals%}
+<div class="modal_wrapper" id="leave_team_popup">
+    <form class="modal_form" method="post" action="{% url 'teams:leave' team.id user.id %}">
+        {% csrf_token %}
+        <div class="container">
+            <h1>Leave Team</h1>
+            <p> Are you sure you want to leave this team?</p>
+            <div class="button_link_group modal_combo">
+                <button type="reset" onclick="hideById('leave_team_popup')" class="cancel">Cancel</button>
+                <button type="submit" onclick="hideById('leave_team_popup')" class="delete">Leave</button>
+            </div>
+        </div>
+    </form> 
+</div>
+<div class="modal_wrapper" id="delete_team_popup">
+    <form class="modal_form" method="post" action="{% url 'teams:delete' team.id %}">
+        {% csrf_token %}
+        <div class="container">
+            <h1>Delete Team</h1>
+            <p> Are you sure you want to delete this team?</p>
+            <div class="button_link_group modal_combo">
+                <button type="reset" onclick="hideById('delete_team_popup')" class="cancel">Cancel</button>
+                <button type="submit" onclick="hideById('delete_team_popup')" class="delete">Delete</button>
+            </div>
+        </div>
+    </form> 
+</div>
+{% endblock %}
+
 {% block content %}
+
 <div class="section">
     <div class="team_profile">
         <h2>{{team.team_name}}</h2>
@@ -16,7 +52,7 @@
         {% if user.is_authenticated and user in team_members %}
         <div class="button_link_group">
             <a href="{% url 'teams:edit' team.id %}" class="button_link neutral">Edit team</a> |
-            <a href="{% url 'teams:delete' team.id %}" class="button_link neutral">Delete team</a>
+            <a class="modal_link neutral" onclick="popupById('delete_team_popup')">Delete team</a>
         </div>
         {% endif %}
     </div>
@@ -39,7 +75,10 @@
         {% if user.is_authenticated and user not in team_members %}
         <div class="button_link_group">
             <a href="{% url 'teams:join' team.id user.id %}" class="button_link neutral">Join team</a>
-            <a href="{% url 'teams:leave' team.id user.id %}" class="button_link neutral">Leave team</a>
+        </div>
+        {% elif user.is_authenticated and user in team_members %}
+        <div class="button_link_group">
+            <a class="modal_link neutral" onclick="popupById('leave_team_popup')">Leave team</a>
         </div>
         {% else %}
         <div class="button_link_group">
@@ -59,6 +98,70 @@
                 <p>This team has no members yet. <a class="button_link primary" href="{% url 'index:contact_support' %}">Know the coach?</a></p>
             {% endfor %}
         </div>
+    </div>
+</div>
+
+<div class="section">
+    <h2>Upcoming Matchups</h2>
+    <div class="matchup_list">
+        {% for match in upcoming_matches %}
+            <div class="member_list_item">
+            
+                {% if match.home_team == team %}
+                    {% if match.away_team == None %}
+                        <p>{{match.home_team}} vs {{match.away_team}}</p>
+                    {% else %}
+                        <p>{{match.home_team}} vs <a href="{% url 'teams:detail' match.away_team.id %}">{{match.away_team}}</a></p>
+                    {% endif %}
+                {% else %}
+                    {% if match.home_team == None %}
+                        <p>{{match.home_team}} @ {{match.away_team}}</p>
+                    {% else %}
+                        <p><a href="{% url 'teams:detail' match.home_team.id %}">{{match.home_team}}</a> @ {{match.away_team}}</p>
+                    {% endif %}
+                {% endif %}
+
+                <a href="{% url 'teams:detail_match' match.id %}">View Matchup</a>
+                <div class="match_location_info">
+                    <p> {{match.match_date}} </p>
+                    <p> {{match.match_location}}</p>
+                </div>
+            </div>
+        {% empty %}
+            <h3> No Upcoming Matches </h3>
+        {% endfor %}
+    </div>
+</div>
+
+<div class="section">
+    <h2>Match History</h2>
+    <div class="matchup_list">
+        {% for match in match_history %}
+            <div class="member_list_item">
+            
+                {% if match.home_team == team %}
+                    {% if match.away_team == None %}
+                        <p>{{match.home_team}} vs {{match.away_team}}</p>
+                    {% else %}
+                        <p>{{match.home_team}} vs <a href="{% url 'teams:detail' match.away_team.id %}">{{match.away_team}}</a></p>
+                    {% endif %}
+                {% else %}
+                    {% if match.home_team == None %}
+                        <p>{{match.home_team}} @ {{match.away_team}}</p>
+                    {% else %}
+                        <p><a href="{% url 'teams:detail' match.home_team.id %}">{{match.home_team}}</a> @ {{match.away_team}}</p>
+                    {% endif %}
+                {% endif %}
+
+                <a href="{% url 'teams:detail_match' match.id %}">View Matchup</a>
+                <div class="match_location_info">
+                    <p> {{match.match_date}} </p>
+                    <p> {{match.match_location}}</p>
+                </div>
+            </div>
+        {% empty %}
+            <h3> No Past Matches </h3>
+        {% endfor %}
     </div>
 </div>
 
