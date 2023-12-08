@@ -28,48 +28,44 @@ def index(request):
     return render(request, 'f5members/members_home.html', context)
 
 @login_required(login_url='members:login_member')
-def dashboard(request, member_username):
-    profile = get_object_or_404(Member, username=member_username)
+def dashboard(request):
+    profile = get_object_or_404(Member, pk=request.user.id)
     
     if profile.is_staff:
-        return admin_dashboard(request, member_username)
+        return admin_dashboard(request, profile)
     
     user_groups = Group.objects.filter(user=profile)
 
     if user_groups.exists():
         group_name = user_groups.first().name
         if group_name == 'Player':
-            return player_dashboard(request, member_username)
+            return player_dashboard(request, profile)
         elif group_name == 'Coach':
-            return coach_dashboard(request, member_username)
+            return coach_dashboard(request, profile)
         elif group_name == 'Fan':
-            return fan_dashboard(request, member_username)
+            return fan_dashboard(request, profile)
 
     # If the user doesn't belong to any specific group, redirect to the error page
     return error(request)
 
 @group_access_only("Staff", view_to_return="members:error", message="Must have Staff role to access this page.")
-def admin_dashboard(request, member_username):
-    profile = get_object_or_404(Member, username=member_username)
+def admin_dashboard(request, profile):
     submissions = SupportSubmission.objects.all()
     context = {'profile': profile, 'user_submissions': submissions}
     return render(request, 'f5members/admin_dashboard.html', context)
 
 @group_access_only("Coach", view_to_return="members:error", message="Must have Coach role to access this page.")
-def coach_dashboard(request, member_username):
-    profile = get_object_or_404(Member, username=member_username)
+def coach_dashboard(request, profile):
     context = {'profile': profile}
     return render(request, 'f5members/coach_dashboard.html', context)
 
 @group_access_only("Player", view_to_return="members:error", message="Must have Player role to access this page.")
-def player_dashboard(request, member_username):
-    profile = get_object_or_404(Member, username=member_username)
+def player_dashboard(request, profile):
     context = {'profile': profile}
     return render(request, 'f5members/player_dashboard.html', context)
 
 @group_access_only("Fan", view_to_return="members:error", message="Must have Fan role to access this page.")
-def fan_dashboard(request, member_username):
-    profile = get_object_or_404(Member, username=member_username)
+def fan_dashboard(request, profile):
     context = {'profile': profile}
     return render(request, 'f5members/fan_dashboard.html', context)
 
@@ -83,7 +79,7 @@ def public_profile(request, member_username):
 
 def create_member(request):  
     if request.user.is_authenticated:
-        return redirect('members:dashboard', member_username=request.user.username)
+        return redirect('members:dashboard')
     form = None
     if request.method == 'POST':  
         form = CreateUserForm(request.POST)  
@@ -105,7 +101,7 @@ def edit_member(request):
         form = EditUserForm(request.POST, instance=request.user)  
         if form.is_valid():  
             form.save()  
-            return redirect('members:dashboard', member_username=request.user.username)
+            return redirect('members:dashboard')
     else:  
         form = EditUserForm(instance=request.user)  
     context = {  
@@ -115,7 +111,7 @@ def edit_member(request):
 
 def login_member(request):
     if request.user.is_authenticated:
-        return redirect('members:dashboard', member_username=request.user.username)
+        return redirect('members:dashboard')
 
     form = None
 
@@ -130,7 +126,7 @@ def login_member(request):
                 if user.is_verified:
                     # Log the user in
                     login(request, user)
-                    return redirect('members:dashboard', member_username=request.user.username)  # Redirect to a success page or another URL
+                    return redirect('members:dashboard')  # Redirect to a success page or another URL
                 else:
                     return redirect('members:verify_sent')  # Redirect to the verification screen
             else:
