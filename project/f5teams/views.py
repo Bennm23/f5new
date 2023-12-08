@@ -7,7 +7,7 @@ from django.db.models import Q
 from .forms import TeamForm, TeamSearchForm, MatchForm, ScoreReportForm
 from .models import Team, Match, ScoreReport
 from f5members.models import Member
-from datetime import datetime, timezone
+from datetime import timezone, datetime
 
 # Create your views here.
 
@@ -195,7 +195,7 @@ def submitScoreReport(request, match_id):
                             Q(away_team_score=submittedReport.away_team_score))
 
             matchedObject.use_count = matchedObject.use_count + 1
-            matchedObject.last_update = timezone.now()
+            matchedObject.last_update = datetime.now()
             matchedObject.save()
         else:
             submittedReport.use_count = 1
