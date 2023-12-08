@@ -86,6 +86,10 @@ body {
     padding-bottom: 1rem;
 }
 
+.section_image {
+    margin: 2rem 0;
+}
+
 .service_wrapper {
     height: 40vh;
     background-color: #000000;

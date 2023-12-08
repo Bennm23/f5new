@@ -2,6 +2,7 @@
 
 {% block loadcss %}
     {% load static %}
+    <link rel="stylesheet" href="{% static 'f5index/f5index.css' %}">
 {% endblock %}
 
 {% block loadjs %}
@@ -16,10 +17,53 @@ Home
 {% block content %}
 <div class="section">
     <div class="in_margins_60">
-        <div class="jumbo_wrapper">
-            <h1 class="jumbo_title">First Five</h1>
+        <h2 class="section_title">Latest News</h2>
+
+        <div class="home_feature">
+            <div class="top_blog">
+                <div class="tag">Community</div>
+                <div class="blog_title">
+                    Classic Rugby Clash Between The Roosters & Richmond
+                </div>
+                <div class="top_blog_img">
+                    <img src="https://i.imgur.com/84WNLVO.jpeg" width="100%" />
+                </div>
+                <div class="blog_meta">
+                    <div class="blog_date">Dec 7th, 2023</div>
+                </div>
+            </div>
+            <div class="side_blogs">
+                <div class="blog">
+                    <div class="tag">Teams</div>
+                    <div class="blog_title">
+                        NOVA WRFC Celebrate 40th Anniversary
+                    </div>
+                    <div class="blog_img">
+                        <img src="https://i.imgur.com/3NRqJop.jpeg" width="100%"/>
+                    </div>
+                    <div class="blog_meta">
+                        <div class="blog_date">Dec 4th, 2023</div>
+                    </div>
+                </div>
+                <div class="blog">
+                    <div class="tag">Players</div>
+                    <div class="blog_title">
+                        Take Back Control of Your Rugby Lifestyle
+                    </div>
+                    <div class="blog_img">
+                        <img src="https://i.imgur.com/z3zkVUQ.png" width="100%"/>
+                    </div>
+                    <div class="blog_meta">
+                        <div class="blog_date">Dec 3th, 2023</div>
+                    </div>
+                </div>
+            </div>
         </div>
+
     </div>
+</div>
+<div class="section">
+
 </div>
 {% endblock %}
 
