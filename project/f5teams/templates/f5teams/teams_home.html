@@ -27,22 +27,24 @@ Teams
         
         <div class="match_results">
             {% for report in recent_scores %}
-            <div class="match_record">
-                <div class="match_result">
-                    <div id="home" class="team">
-                        <div>{{report.match.home_team.team_name}}</div>
-                        <div class="score">{{report.home_team_score}}</div>
+            <a href="{% url 'teams:detail_match' report.match.id %}">
+                <div class="match_record">
+                    <div class="match_result">
+                        <div id="home" class="team">
+                            <div>{{report.match.home_team.team_name}}</div>
+                            <div class="score">{{report.home_team_score}}</div>
+                        </div>
+                        <div id="away" class="team">
+                            <div>{{report.match.away_team.team_name}}</div>
+                            <div class="score">{{report.away_team_score}}</div>
+                        </div>
                     </div>
-                    <div id="away" class="team">
-                        <div>{{report.match.away_team.team_name}}</div>
-                        <div class="score">{{report.away_team_score}}</div>
+                    <div class="match_meta">
+                        <div>Competition Name</div>
+                        <div>{{report.match.match_date}}</div>
                     </div>
                 </div>
-                <div class="match_meta">
-                    <div>Competition Name</div>
-                    <div>{{report.match.match_date}}</div>
-                </div>
-            </div>
+            </a>
             {% empty %}
             <div class="match_record">
                 <div class="match_result">
