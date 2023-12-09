@@ -118,7 +118,13 @@
 }
 
 .score {
-    font-size: 2rem;
+    font-size: 1.5rem;
+}
+
+.team {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
 }
 
 .match_result .team {

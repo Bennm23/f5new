@@ -31,7 +31,7 @@ Teams
                 <div class="match_result">
                     <div id="home" class="team">
                         <div>{{report.match.home_team.team_name}}</div>
-                        <div>{{report.home_team_score}}</div>
+                        <div class="score">{{report.home_team_score}}</div>
                     </div>
                     <div id="away" class="team">
                         <div>{{report.match.away_team.team_name}}</div>
@@ -40,7 +40,7 @@ Teams
                 </div>
                 <div class="match_meta">
                     <div>Competition Name</div>
-                    <div class="score">{{report.match.match_date}}</div>
+                    <div>{{report.match.match_date}}</div>
                 </div>
             </div>
             {% empty %}
