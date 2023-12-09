@@ -49,8 +49,18 @@
 }
 
 .account_wrapper {
+    padding: 1rem 0;
+    background: black;
+}
+
+.account_links {
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+}
+
+#username {
     background: darkred;
-    padding: .25rem 0;
 }
 
 .app .auth {

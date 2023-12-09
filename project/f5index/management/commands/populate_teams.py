@@ -1,5 +1,7 @@
 from django.core.management.base import BaseCommand
-from f5teams.models import Team
+from django.utils import timezone
+from random import randint, sample
+from f5teams.models import Team, Match, ScoreReport 
 
 class Command(BaseCommand):
     help = 'Populate the database with 10 teams from the East Coast'
@@ -30,4 +32,47 @@ class Command(BaseCommand):
             self.stdout.write(self.style.SUCCESS(f'Team created: {team_data["team_name"]}'))
 
         self.stdout.write(self.style.SUCCESS('Database successfully populated with East Coast teams.'))
+
+        # Check if matches are already populated
+        if Match.objects.exists():
+            self.stdout.write(self.style.SUCCESS('Matches are already populated. Aborting...'))
+            return
+
+        # Fetch all teams
+        teams = list(Team.objects.all())
+        if len(teams) < 2:
+            self.stdout.write(self.style.ERROR('Not enough teams to create matches.'))
+            return
+
+        # Randomly pair teams
+        while len(teams) >= 2:
+            home, away = sample(teams, 2)
+            match_date = timezone.now()  # Assuming matches are starting from now, adjust as needed
+            match_location = f"{home.city} Stadium"  # Example match location
+
+            # Create a match
+            match = Match.objects.create(
+                home_team=home,
+                away_team=away,
+                match_date=match_date,
+                match_location=match_location
+            )
+
+            # Generate and verify scores
+            home_score = randint(0, 50)  # Random score, adjust range as needed
+            away_score = randint(0, 50)
+            ScoreReport.objects.create(
+                match=match,
+                home_team_score=home_score,
+                away_team_score=away_score,
+                is_verified=True  # Mark as verified
+            )
+
+            self.stdout.write(self.style.SUCCESS(f'Match created: {home} vs {away} with scores {home_score}-{away_score}'))
+
+            # Remove paired teams from the list
+            teams.remove(home)
+            teams.remove(away)
+
+        self.stdout.write(self.style.SUCCESS('All matches and scores are successfully created.'))
 
