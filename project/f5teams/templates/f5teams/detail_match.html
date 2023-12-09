@@ -30,62 +30,57 @@
 {% endblock %}
 
 {% block content %}
+
 <div class="section">
     <div class="in_margins_60">
-        <div class="team_matchup">
-            <div class="team_relation spread">
-                <div class="relation">Home</div>
-                <div class="relation">Away</div>
+        <div class="match_wrapper">
+            <div class="match_section">
+                <div class="section_title">
+                    Matchup
+                </div>
+                <div class="match_primary">
+                    <a class="team" href="{% url 'teams:detail' match.home_team.id %}">{{ match.home_team.team_name }}</a>
+                    <div class="score">{{ match.get_best_score_report.home_team_score }}</div>
+
+                    <a class="team" href="{% url 'teams:detail' match.away_team.id %}">{{ match.away_team.team_name }}</a>
+                    <div class="score">{{ match.get_best_score_report.away_team_score }}</div>
+                </div>
+                <div class="match_meta">
+                    <div class="meta_data">
+                        {{ match.match_date }}
+                    </div>
+                    <div class="meta_data">
+                        {{ match.match_location }}
+                    </div>
+                </div>
             </div>
-            <div class="teams spread">
-                <a class="team" href="{% url 'teams:detail' match.home_team.id %}">{{match.home_team}}</a>
-                <a class="team" href="{% url 'teams:detail' match.away_team.id %}">{{match.away_team}}</a> 
+            <div class="match_section">
+                <div class="section_title">
+                    Live scores
+                </div>
+                <p>The following were submitted during the match by fans.</p>
+                <div class="scores_list">
+                    {% for report in reported_scores %}
+                        {% if forloop.first %}
+                            <div class="score_record">
+                                {{report.home_team_score}} - {{report.away_team_score}} 
+                                <i class="fa fa-star fa-lg" aria-hidden="true"></i>
+                                <i class="fa fa-check fa-lg" aria-hidden="true"></i>,
+                            </div>
+                        {% else %}
+                            <div class="score_record">{{report.home_team_score}} - {{report.away_team_score}},</div>
+                        {% endif %}
+                    {% empty %}
+                        <div class="score_record">No scores submitted by fans during this match.</div>
+                    {% endfor %}
+                </div>
+                <div class="submit">
+                    <button type="input" onclick="showPopupContent()">Submit Score Report</button>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="score_reports">
-    <h2>Score Reports</h2>
-    {% for report in reported_scores %}
-
-        {% if forloop.first %}
-            <p>
-                {{report.home_team_score}} - {{report.away_team_score}}
-                <i class="fa fa-star fa-lg" aria-hidden="true"></i>
-                <i class="fa fa-check fa-lg" aria-hidden="true"></i>
-            </p>
-        {% else %}
-            <p>{{report.home_team_score}} - {{report.away_team_score}}</p>
-        {% endif %}
-
-    {% empty %}
-
-        <p>Uh oh no score reports</p>
-    {% endfor %}
-
-    <button type="input" onclick="showPopupContent()">Submit Score Report</button>
-    <p><i class="fa fa-star fa-lg"></i> Most Reported </p>
-    <p><i class="fa fa-check fa-lg"></i> Verified Score </p>
-</div>
-
-<div class="section">
-    <div class="matchup_details">
-        <h2 class="matchup_header">
             
-            vs 
-            <a href="{% url 'teams:detail' match.away_team.id %}">{{match.away_team}}</a>
-        </h2>
-
-        <div class="matchup_detail">
-            <h4>Match Location</h4>
-            <p>{{match.match_location}}</p>
-        </div>
-        <div class="matchup_detail">
-            <h4>Match Date</h4>
-            <p>{{match.match_date}}</p>
         </div>
     </div>
-
 </div>
 
 {% endblock %}
