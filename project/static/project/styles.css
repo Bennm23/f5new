@@ -14,12 +14,7 @@ body {
     margin: 0;
 }
 
-.jumbo_title {
-    font-size: 2.5em;
-    font-weight: 400;
-    font-family: 'IBM Plex Sans', sans-serif;
-}
-
+/* SMALL LAYOUT ELEMENTS */
 .spread {
     display: flex;
     flex-direction: row;
@@ -27,19 +22,12 @@ body {
     align-items: center;
 }
 
-.link_black {
-    color: #000000;
-}
-
-.link_black:visited {
-    color: #000000;
-}
-
-.link_white {
+/* LINKS AND COLORS */
+.white_link {
     color: #ffffff;
 }
 
-.link_white:visited {
+.white_link:visited {
     color: #ffffff;
 }
 
@@ -153,55 +141,6 @@ body {
     color: tomato;
 }
 
-.dead {
-    color: lightgray;
-}
-
-.price {
-    color: green;
-    font-size: .7rem;
-}
-
-.delete {
-    color: rgb(180, 30, 30);
-    border: 1px solid rgb(180, 30, 30);
-}
-
-.accept_button {
-    color: rgb(63, 180, 30);
-    border: 1px solid rgb(30, 180, 113);
-}
-
-.ad_wrapper {
-    display: flex;
-    flex-direction: row;
-    gap: .25rem;
-    flex-wrap: wrap;
-}
-
-.two_split {
-    display: grid;
-    grid-template-columns: auto .4fr;
-    gap: 1rem;
-}
-
-.dead::after {
-    content: ''; /* pseudo-elements must always have a `content` */
-    position: absolute; /* lets us position it with respect to the `.fancy-strikethrough */
-
-    /* placement */
-    left: 0;
-    top: 50%;
-
-    /* make it a line */
-    height: 1px;
-    width: 100%;
-    background: red;
-}
-.cancel {
-    color: darkgrey;
-}
-
 .horizontal_divider {
     width: 0.3rem;
     height: auto;
@@ -266,11 +205,4 @@ body {
         flex-direction: column;
         gap: .5rem;
     }
-    
-    .two_split {
-        grid-template-columns: 1fr;
-    }
-}
-::-webkit-calendar-picker-indicator {
-    filter: invert(1);
 }

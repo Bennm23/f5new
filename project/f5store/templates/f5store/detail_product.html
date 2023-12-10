@@ -16,8 +16,8 @@
 
         {% if user.is_authenticated %}
         <div class="button_link_group">
-            <a href="{% url 'store:product_edit' product.id %}" class="button_link neutral">Edit product</a> |
-            <a href="{% url 'store:product_delete' product.id %}" class="button_link neutral">Delete product</a>
+            <a href="{% url 'store:product_edit' product.id %}" class="button_link">Edit product</a> |
+            <a href="{% url 'store:product_delete' product.id %}" class="button_link">Delete product</a>
         </div>
         {% endif %}
 
