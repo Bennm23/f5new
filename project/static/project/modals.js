@@ -10,7 +10,7 @@ function hidePopupContent() {
 
 function popupById(elementId) {
     var popupContent = document.getElementById(elementId);
-    popupContent.style.display = "block";
+    popupContent.style.display = "flex";
 }
 
 function hideById(elementId) {

@@ -8,11 +8,15 @@
   width: 100vw; /* Full width */
   height: 100vh; /* Full height */
   overflow: auto; /* Enable scroll if needed */
-  background-color: rgba(217, 207, 207, 0.4);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.75);
 }
 
 .modal_combo {
-  justify-content: space-around;
+  display: flex;
+  gap: 1rem;
 }
 
 /* Set a style for all buttons */
@@ -31,15 +35,15 @@
 /* Confirm Delete Entry Form */
 .modal_form {
   background-color: #000000;
-  margin: 30vh auto 0 auto;
+  color: white;
+  padding: 1rem;
   border: 1px solid white;
-  width: 80%; /* Could be more or less, depending on screen size */
 }
 
 /* Change styles for cancel button and delete button on extra small screens */
 @media screen and (max-width: 680px) {
   .modal_form {
-    width: 80%;
+    width: 95%;
   }
 }
 
