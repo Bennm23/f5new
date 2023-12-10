@@ -29,7 +29,14 @@ Store
             {% for product in recent_products %}
                 <div class="data_card">
                     <div class="card_title">{{ product.name }}</div>
-                    <!-- Additional product details here -->
+                    <div class="card_meta">
+                        <div class="card_date">
+                            {{ product.price }}
+                        </div>
+                        <div class="card_date">
+                            {{ product.created_at | date:"F d, Y" }}
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
         </div>
@@ -37,7 +44,7 @@ Store
 </div>
 
 <!-- Category Filters Section -->
-<div class="section">
+<div id="store_search" class="section">
     <div class="in_margins_60">
         <div class="section_title_wrapper">
             <h2 class="section_title">Category Filters</h2>
