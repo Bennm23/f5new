@@ -10,13 +10,16 @@ def index(request):
     recent_blogs = BlogPost.objects.order_by('-create_date')[:3]
 
     # Fetch all blogs and tags (for category filtering)
-    blogs = BlogPost.objects.all()
+    blogs = BlogPost.objects.all().order_by('-create_date')
     tags = Tag.objects.all()
 
-    # If a category filter is applied, filter blogs by category
+    # If a category filter is applied, filter blogs by category except for all category.
     category_filter = request.GET.get('category')
     if category_filter:
-        blogs = blogs.filter(tags__name=category_filter)
+        if category_filter == 'all':
+        blogs = blogs.order_by('-create_date')  
+        else:
+            blogs = blogs.filter(tags__name=category_filter) 
     
     context = {
         'filter_tags': tags,

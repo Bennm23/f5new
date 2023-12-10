@@ -44,7 +44,7 @@ Articles
     </div>
 </div>
 
-<div class="section">
+<div id="blog_search" class="section">
     <div class="in_margins_60">
         <div class="section_title_wrapper">
             <h2 class="section_title">Category Filters</h2>
@@ -61,6 +61,36 @@ Articles
                 </li>
                 {% endfor %}
             </ul>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+    <div class="in_margins_60">
+        <div class="section_title_wrapper">
+            {% if not selected_category or selected_category == 'all' %}
+                <h2 class="section_title">Results for: All</h2>
+            {% else %}
+                <h2 class="section_title">Results for: {{ selected_category }}</h2>
+            {% endif %}
+            
+        </div>
+        <div class="section_data_wrapper">
+           {% for blog in blogs %}
+                <div class="data_card">
+                    <div class="card_title">
+                        {{ blog.title }}
+                    </div>
+                    <div class="card_meta">
+                        <div class="card_date">
+                            {{ blog.author }}
+                        </div>
+                        <div class="card_date">
+                            {{ blog.create_date|date:"F d, Y" }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %} 
         </div>
     </div>
 </div>
