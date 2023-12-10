@@ -35,6 +35,12 @@ input:focus {
     outline: none;
 }
 
+select {
+    padding: 0.5rem;
+    background: black;
+    color: white;
+}
+
 .submit {
     padding: .75rem .25rem;
     background-color: black;
