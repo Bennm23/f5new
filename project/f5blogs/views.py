@@ -17,7 +17,7 @@ def index(request):
     category_filter = request.GET.get('category')
     if category_filter:
         if category_filter == 'all':
-        blogs = blogs.order_by('-create_date')  
+            blogs = blogs.order_by('-create_date')  
         else:
             blogs = blogs.filter(tags__name=category_filter) 
     
