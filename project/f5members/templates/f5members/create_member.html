@@ -6,17 +6,18 @@ Create account
 
 {% block content %}
 <div class="section">
-  <div class="form_wrapper auth_form">
-    <h2>Create account</h2>
-    <form method="post" action="{% url 'members:create_member' %}">
-      {% csrf_token %}
-      {{ form.as_p }}
-      <button class="submit" type="submit">Create</button>
-      <div class="button_link_group">
-        <a href="{% url 'members:login_member' %}" class="button_link">Already have an account?</a>
-      </div>
-    </form>
+  <div class="in_margins_60">
+    <h2 class="section_title">Create</h2>
+    <div class="form_wrapper">
+      <form class="authform" method="post" action="{% url 'members:create_member' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="submit" type="submit">Create</button>
+        <div class="button_link_group">
+          <a href="{% url 'members:login_member' %}" class="button_link">Already created an account?</a>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
-
 {% endblock %}
