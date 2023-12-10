@@ -1,7 +1,12 @@
 {% extends "base.html" %}
 
+{% block loadcss %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'project/forms.css' %}">
+{% endblock %}
+
 {% block title %}
-Create account
+Create
 {% endblock %}
 
 {% block content %}

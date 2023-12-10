@@ -10,6 +10,10 @@
     margin: 0;
 }
 
+.authform p label {
+    display: block;
+}
+
 .form_wrapper {
     height: 70vh;
     width: 100%;
@@ -19,8 +23,9 @@
 }
 
 .submit {
-    padding: 1rem;
+    padding: .75rem .25rem;
     background-color: black;
+    outline: none;
+    border: none;
     color: white;
-    width: fit-content;
 }
