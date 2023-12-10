@@ -14,7 +14,7 @@ python /app/manage.py makemigrations
 python /app/manage.py migrate --no-input
 python /app/manage.py create_allusers_allgroups
 python /app/manage.py populate_teams
-python /app/manage.py populate_submissions
+python /app/manage.py populate_alot
 
 # Start the Django development server
 python /app/manage.py runserver 0.0.0.0:8000

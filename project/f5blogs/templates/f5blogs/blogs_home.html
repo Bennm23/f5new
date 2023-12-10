@@ -52,12 +52,12 @@ Articles
         <div class="section_data_wrapper">
             <ul class="filter_list">
                 <li>
-                    <a class="filter_link{% if not selected_category or selected_category == 'all' %} selected{% endif %}" href="?category=all">All</a>
+                    <a class="filter_link{% if not selected_category or selected_category == 'all' %} selected{% endif %}" href="?category=all#blog_search">All</a>
                 </li>
                 
                 {% for tag in filter_tags %}
                 <li>
-                    <a class="filter_link{% if selected_category == tag.name %} selected{% endif %}" href="?category={{ tag.name }}">{{ tag.name }}</a>
+                    <a class="filter_link{% if selected_category == tag.name %} selected{% endif %}" href="?category={{ tag.name }}#blog_search">{{ tag.name }}</a>
                 </li>
                 {% endfor %}
             </ul>

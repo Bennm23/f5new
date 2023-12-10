@@ -3,43 +3,30 @@ from django.shortcuts import get_object_or_404, render
 from django.urls import reverse
 
 from .forms import ProductForm, ProductSearchForm
-from .models import Product
+from .models import Product, Category, Material
 
 def index(request):
-    # Initialize the form
-    form = ProductSearchForm(request.GET)
+    # Fetch the most recent three products for the 'recent_products' context
+    recent_products = Product.objects.all().order_by('-id')[:3]
 
-    # Get all products by default
+    # Initialize the rest of the products for the 'products' context
     products = Product.objects.all()
 
-    # If the form is submitted and valid, apply filters
-    if form.is_valid():
-        # Filter by search query
-        search_query = form.cleaned_data.get('search_query')
-        if search_query:
-            products = products.filter(name__icontains=search_query)
+    # If there's a category filter in the request, apply it
+    category_filter = request.GET.get('category')
+    if category_filter == 'all':
+        products = products.order_by('-created_at')  
+    else:
+        products = products.filter(categories__name=category_filter)
 
-        # Filter by category
-        category = form.cleaned_data.get('categories')
-        if category:
-            products = products.filter(categories=category)
-
-        # Filter by material
-        material = form.cleaned_data.get('materials')
-        if material:
-            products = products.filter(materials=material)
-
-        # Filter by price range
-        min_price = form.cleaned_data.get('min_price')
-        max_price = form.cleaned_data.get('max_price')
-        if min_price is not None:
-            products = products.filter(price__gte=min_price)
-        if max_price is not None:
-            products = products.filter(price__lte=max_price)
+    # Get all categories for the filter options in the template
+    categories = Category.objects.all()
 
     context = {
-        'search_form': form,
-        'products': products
+        'categories': categories,
+        'products': products,
+        'recent_products': recent_products,
+        'selected_category': category_filter,
     }
     return render(request, 'f5store/products_home.html', context)
 
