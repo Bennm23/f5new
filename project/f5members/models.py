@@ -6,7 +6,7 @@ from django.core.mail import send_mail
 from django.contrib.auth.models import AbstractUser
 
 class Member(AbstractUser):    
-    pic_url = models.CharField(max_length=50, default="https://i.imgur.com/HjV3a2J.jpg")
+    pic_url = models.CharField(max_length=50, default="https://i.imgur.com/rpPbzOp.png")
     bio = models.TextField(max_length=500, blank=True)
     user_type = models.CharField(
         max_length=20,

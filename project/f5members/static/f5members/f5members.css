@@ -1,9 +1,14 @@
-.profile_banner {
-    width: 100px;
+.dash_banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.dash_banner_img {
+    border-radius: 50%;
+    width: 150px;
     aspect-ratio: 1 / 1;
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 }
 
 .section_list {
