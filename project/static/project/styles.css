@@ -125,12 +125,6 @@ body {
     gap: .25rem;
 }
 
-.horizontal_divider {
-    width: 0.3rem;
-    height: auto;
-    display: inline-block;
-}
-
 .results_list {
     display: flex;
     flex-direction: column;
