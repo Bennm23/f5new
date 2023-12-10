@@ -11,7 +11,7 @@ class TeamSearchForm(forms.Form):
 class TeamForm(ModelForm):
     class Meta:
         model = Team
-        fields = ['team_name', 'bio', 'state', 'city']
+        fields = ['team_name', 'profile_photo', 'bio', 'state', 'city']
 
 class MatchForm(ModelForm):
     class Meta:

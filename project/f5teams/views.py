@@ -118,11 +118,11 @@ def delete(request, team_id):
 @login_required(login_url='members:login_member')
 def join(request, team_id):
     team = get_object_or_404(Team, pk=team_id)
-    member = get_object_or_404(Member, pk=request.user.member_id)
+    member = get_object_or_404(Member, pk=request.user.id)
 
     team.members.add(member)
 
-    return HttpResponseRedirect(reverse('teams:detail_team', args=(team_id, )))
+    return HttpResponseRedirect(reverse('teams:detail', args=(team_id, )))
 
 
 @login_required(login_url='members:login_member')
@@ -132,7 +132,7 @@ def leave(request, team_id, member_id):
 
     team.members.remove(member)
 
-    return HttpResponseRedirect(reverse('teams:detail_team', args=(team_id, )))
+    return HttpResponseRedirect(reverse('teams:detail', args=(team_id, )))
 
 
 @login_required(login_url='members:login_member')
