@@ -25,10 +25,30 @@ class Command(BaseCommand):
             {'team_name': 'Northern Virginia Rugby Football Club', 'city': 'Northern Virginia', 'state': 'VA', 'bio': 'A rugby club in the vibrant Northern Virginia region.'},
         ]
 
+        # Create a dictionary to map team names to specific image URLs
+        team_image_urls = {
+            'First Five Rugby Club': 'https://i.imgur.com/ZSU83fW.png',
+            'Old Blue Rugby Club': 'https://i.imgur.com/Ap82DHi.png',
+            'Boston Rugby Club': 'https://i.imgur.com/PwMjc7P.png',
+            'Life University Rugby': 'https://i.imgur.com/ffM9bSf.png',
+            'Mystic River Rugby Club': 'https://i.imgur.com/SmjX2TV.png',
+            'Raleigh Rugby Football Club': 'https://i.imgur.com/bgvZsxw.png',
+            'Schuylkill River Exiles': 'https://i.imgur.com/wU9QkQd.png',
+            'Washington Rugby Club': 'https://i.imgur.com/q1Ho06p.png',
+            'Charlotte Rugby Football Club': 'https://i.imgur.com/ejI6Xtz.png',
+            'Northern Virginia Rugby Football Club': 'https://i.imgur.com/NSws2nJ.png',
+        }
+
         # Populate the database with 10 East Coast teams
         self.stdout.write('Populating the database with teams from the East Coast...')
         for team_data in east_coast_teams:
+            # Lookup the team's image URL based on the team name
+            team_name = team_data['team_name']
+            team_data['profile_photo'] = team_image_urls.get(team_name, 'https://i.imgur.com/ZSU83fW.png')  # Provide a default image URL if not found
+
+            # Create the team with the updated profile_photo field
             Team.objects.create(**team_data)
+
             self.stdout.write(self.style.SUCCESS(f'Team created: {team_data["team_name"]}'))
 
         self.stdout.write(self.style.SUCCESS('Database successfully populated with East Coast teams.'))
@@ -75,4 +95,3 @@ class Command(BaseCommand):
             teams.remove(away)
 
         self.stdout.write(self.style.SUCCESS('All matches and scores are successfully created.'))
-
