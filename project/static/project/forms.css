@@ -4,6 +4,7 @@
     flex-direction: column;
     gap: 1rem;
     padding: 1rem;
+    min-width: 300px;
 }
 
 .authform p {
@@ -15,6 +16,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 1rem;
+    overflow: scroll;
 }
 
 .authform p label {
@@ -28,6 +31,7 @@ input {
     border: none;
     border-left: 2px solid black;
     padding: .75rem;
+    border-radius: 0;
 }
 
 input:focus {
