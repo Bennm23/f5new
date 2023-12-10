@@ -24,49 +24,37 @@ Articles
             <h2 class="section_title">Latest news</h2>
         </div>
         <div class="section_data_wrapper">
+           {% for blog in recent_blogs %}
+                <div class="data_card">
+                    <div class="card_title">
+                        {{ blog.title }}
+                    </div>
+                    <div class="card_meta">
+                        <div class="card_date">
+                            {{ blog.author }}
+                        </div>
+                        <div class="card_date">
+                            {{ blog.create_date|date:"F d, Y" }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %} 
+        </div>
+    </div>
+</div>
 
-            <div class="data_card">
-                <div class="card_title">
-                    Simple Card Title
-                </div>
-                <div class="card_meta">
-                    <div class="card_date">
-                    Author Name
-                    </div>
-                    <div class="card_date">
-                    December 06th, 2023
-                    </div>
-                </div>
-            </div>
-
-            <div class="data_card">
-                <div class="card_title">
-                    Another Card Title That Could Be Longer
-                </div>
-                <div class="card_meta">
-                    <div class="card_date">
-                    Author Name
-                    </div>
-                    <div class="card_date">
-                    December 05th, 2023
-                    </div>
-                </div>
-            </div>
-
-            <div class="data_card">
-                <div class="card_title">
-                    Lastly just another title.
-                </div>
-                <div class="card_meta">
-                    <div class="card_date">
-                    Author Name
-                    </div>
-                    <div class="card_date">
-                    December 03th, 2023
-                    </div>
-                </div>
-            </div>
-
+<div class="section">
+    <div class="in_margins_60">
+        <div class="section_title_wrapper">
+            <h2 class="section_title">Category Filters</h2>
+        </div>
+        <div class="section_data_wrapper">
+            <ul>
+                <li><a href="?category=all"{% if not selected_category %} class="selected"{% endif %}>All</a></li>
+                {% for tag in filter_tags %}
+                    <li><a href="?category={{ tag.name }}"{% if selected_category == tag.name %} class="selected"{% endif %}>{{ tag.name }}</a></li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </div>

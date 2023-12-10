@@ -6,29 +6,27 @@ from django.shortcuts import get_object_or_404, render
 from django.contrib.auth.decorators import login_required
 
 def index(request):
+    # Get the three most recent blogs
+    recent_blogs = BlogPost.objects.order_by('-create_date')[:3]
+
+    # Fetch all blogs and tags (for category filtering)
     blogs = BlogPost.objects.all()
-    search_form = BlogSearchForm(request.GET)
+    tags = Tag.objects.all()
 
-    if search_form.is_valid():
-        search_query = search_form.cleaned_data.get('search_query')
-        tag = search_form.cleaned_data.get('tags')
-
-        if search_query:
-            blogs = blogs.filter(title__icontains=search_query)
-
-        if tag and tag != '--':
-            # Convert the selected tag name to a Tag instance
-            tag_object = Tag.objects.get(name=tag)
-            blogs = blogs.filter(tags__in=[tag_object])
-
-    recent_blogs = blogs.order_by('-create_date')[:5]
-
+    # If a category filter is applied, filter blogs by category
+    category_filter = request.GET.get('category')
+    if category_filter:
+        blogs = blogs.filter(tags__name=category_filter)
+    
     context = {
+        'filter_tags': tags,
+        'blogs': blogs,
         'recent_blogs': recent_blogs,
-        'search_form': search_form,
+        'selected_category': category_filter,
     }
 
     return render(request, 'f5blogs/blogs_home.html', context)
+
 
 @login_required(login_url='members:login_member')
 def create(request):
