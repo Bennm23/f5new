@@ -58,7 +58,16 @@
                 <div class="section_title">
                     Live scores
                 </div>
-                <p>The following were submitted during the match by fans.</p>
+                <div class="call_out">
+                    <p class="call_text">The scores here are from real-time submissions by fans like you. Our systems ensure accuracy, but if anything seems amiss, please let us know.
+                    </p>
+                    
+                    <p>Legend</p>
+                    <ul class="call_list">
+                        <li>A <i class="fa fa-check fa-lg" aria-hidden="true"></i> is a verified score.</li> 
+                        <li>A <i class="fa fa-star fa-lg" aria-hidden="true"></i> is the best score.</li> 
+                    </ul>
+                </div>
                 <div class="scores_list">
                     {% for report in reported_scores %}
                         {% if forloop.first %}

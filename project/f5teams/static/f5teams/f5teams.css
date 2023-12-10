@@ -104,8 +104,31 @@
     gap: 1rem;
 }
 
+.call_out {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 50%;
+}
+
+.call_out * {
+    margin: 0;
+    padding: 0;
+    color: rgb(117, 117, 117);
+}
+
+.call_list {
+    border: 1px solid black;
+    padding: 1rem;
+    list-style-type: none;
+}
+
 @media only screen and (max-width: 680px) { 
     .match_results {
         grid-template-columns: 1fr;
+    }
+
+    .call_out {
+        width: 100%;
     }
 }
