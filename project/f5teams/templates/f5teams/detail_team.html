@@ -49,9 +49,9 @@
 {% block content %}
 <div class="section">
     <div class="in_margins_60">
-        <div class="section_title">
+        <h2 class="section_title">
             {{team.team_name}}
-        </div>
+        </h2>
         <div class="editor">
             {% if user.is_authenticated and user in team_members %}
             <a href="{% url 'teams:edit' team.id %}" class="button_link">Edit team</a>
