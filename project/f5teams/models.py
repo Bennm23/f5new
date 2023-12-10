@@ -6,6 +6,7 @@ from ckeditor.fields import RichTextField
 
 class Team(models.Model):
     team_name = models.CharField(max_length=200)
+    profile_photo = models.CharField(max_length=200)
     city = models.CharField(max_length=200, null=True)
     state = models.CharField(max_length=2, choices=STATE_CHOICES, null=True)
     bio = RichTextField(blank=True, null=True)
