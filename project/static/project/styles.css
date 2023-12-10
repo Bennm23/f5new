@@ -125,22 +125,6 @@ body {
     gap: .25rem;
 }
 
-.default {
-    color: black;
-}
-
-.primary {
-    color: green;
-}
-
-.positive {
-    color: skyblue;
-}
-
-.neutral {
-    color: tomato;
-}
-
 .horizontal_divider {
     width: 0.3rem;
     height: auto;

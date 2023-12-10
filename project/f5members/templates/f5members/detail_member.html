@@ -43,8 +43,8 @@ Member
                         </div>
                     </div>
                     <div class="button_link_group">
-                        <a class="button_link positive" href="{% url 'members:edit_member' %}">Edit profile</a>
-                        <a class="button_link positive" href="{% url 'members:logout_member'%}">Logout</a>
+                        <a class="button_link" href="{% url 'members:edit_member' %}">Edit profile</a>
+                        <a class="button_link" href="{% url 'members:logout_member'%}">Logout</a>
                     </div>
                 {% else %}
                     <div class="profile_card">
@@ -55,7 +55,7 @@ Member
                         <div class="profile_username">
                             <h2>@{{ member.username }}</h2>
                             <div class="button_link_group">
-                                <a href="{% url 'teams:create' %}" class="button_link positive">Create your own!</a>
+                                <a href="{% url 'teams:create' %}" class="button_link">Create your own!</a>
                             </div>
                         </div>
                         <div class="profile_bio">
@@ -72,7 +72,7 @@ Member
                     <div class="profile_username">
                         <h2>@{{ member.username }}</h2>
                         <div class="button_link_group">
-                            <a href="{% url 'members:create_member' %}" class="button_link positive">Create your account!</a>
+                            <a href="{% url 'members:create_member' %}" class="button_link">Create your account!</a>
                         </div>
                     </div>
                 </div>
@@ -87,15 +87,15 @@ Member
                 {% if request.user == member %}
                     <h3>My Blogs</h3>
                     <div class="button_link_group">
-                        <a href="{% url 'blogs:create' %}" class="button_link positive">Create your own!</a>
+                        <a href="{% url 'blogs:create' %}" class="button_link">Create your own!</a>
                     </div>
                 {% else %}
                     <h3>{{ member.username }}'s Blogs</h3>
-                    <p>Create an account to <a class="button-link positive" href="{% url 'blogs:create' %}">write a blog</a>!</p>
+                    <p>Create an account to <a class="button-link" href="{% url 'blogs:create' %}">write a blog</a>!</p>
                 {% endif %}
             {% else %}
                 <h3>{{ member.username }} has not written any blogs.</h3>
-                <p>Create an account to <a class="button-link positive" href="{% url 'blogs:create' %}">write a blog</a>!</p>
+                <p>Create an account to <a class="button-link" href="{% url 'blogs:create' %}">write a blog</a>!</p>
             {% endif %}
 
             <div class="results_list">
@@ -104,7 +104,7 @@ Member
                     <div class="list_item">
                         <details>
                             <summary>
-                                <a href="{% url 'blogs:detail' blog.id %}" class="button_link default">{{ blog.title }}</a>
+                                <a href="{% url 'blogs:detail' blog.id %}" class="button_link">{{ blog.title }}</a>
                                 <div class="float_right_div">
                                     <h5>Created On: {{ blog.create_date }}</h5>
                                 </div>
@@ -129,7 +129,7 @@ Member
                 {% if request.user == member %}
                     <h3>My Teams</h3>
                     <div class="button_link_group">
-                        <a href="{% url 'teams:create' %}" class="button_link positive">Create your own!</a>
+                        <a href="{% url 'teams:create' %}" class="button_link">Create your own!</a>
                     </div>
                     {% if user_teams %}
                         <div class="results_list">
@@ -138,7 +138,7 @@ Member
                                 <div class="list_item">
                                     <details>
                                         <summary>
-                                            <a href="{% url 'teams:detail' team.id %}" class="button_link default">{{ team.team_name }}</a>
+                                            <a href="{% url 'teams:detail' team.id %}" class="button_link">{{ team.team_name }}</a>
                                             <div class="float_right_div">
                                                 <h5>{{ team.city }}, {{ team.state }}</h5>
                                             </div>
@@ -160,7 +160,7 @@ Member
                                 <div class="list_item">
                                     <details>
                                         <summary>
-                                            <a href="{% url 'teams:detail' team.id %}" class="button_link default">{{ team.team_name }}</a>
+                                            <a href="{% url 'teams:detail' team.id %}" class="button_link">{{ team.team_name }}</a>
                                             <div class="float_right_div">
                                                 <h5>{{ team.city }}, {{ team.state }}</h5>
                                             </div>
@@ -176,7 +176,7 @@ Member
                 {% endif %}
             {% else %}
                 <h3>{{ member.username }}'s Teams</h3>
-                <p>Create an account to <a class="button-link positive" href="{% url 'teams:create' %}">create/join a team</a>!</p>
+                <p>Create an account to <a class="button-link" href="{% url 'teams:create' %}">create/join a team</a>!</p>
             {% endif %}
         </div>
     </div>
