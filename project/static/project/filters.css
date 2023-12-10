@@ -1,0 +1,25 @@
+.filter_list {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.filter_link {
+    padding: 1rem;
+    border: 1px solid black;
+    color: black;
+    text-decoration: none;
+}
+
+.filter_link:visited {
+    color: black;
+}
+
+.filter_link.selected {
+    background-color: black;
+    color: white;
+}
