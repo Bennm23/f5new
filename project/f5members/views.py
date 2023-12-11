@@ -98,6 +98,7 @@ def create_member(request):
 def edit_member(request):
     # Fetch the current user's profile
     member = request.user
+    current_profile = request.user.profile
 
     # Fetch all profile pictures
     profile_pictures = ProfilePicture.objects.all()
@@ -107,10 +108,10 @@ def edit_member(request):
     if selected_pic_id:
         try:
             selected_pic = ProfilePicture.objects.get(id=selected_pic_id)
-            member.profile_picture = selected_pic
+            member.profile = selected_pic
             member.save()
             # Redirect after saving, to avoid re-submission on refresh
-            return redirect('members:dashboard')
+            return redirect('members:edit_member')
         except ProfilePicture.DoesNotExist:
             # Handle the case where the profile picture doesn't exist
             pass
@@ -118,7 +119,8 @@ def edit_member(request):
     context = {
         'member': member,
         'profile_pictures': profile_pictures,
-        'selected_pic_id': selected_pic_id
+        'selected_pic_id': selected_pic_id,
+        'current_profile': current_profile,
     }
     return render(request, 'f5members/edit_member.html', context)
 

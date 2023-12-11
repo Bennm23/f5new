@@ -16,9 +16,9 @@ Edit account
       <div class="section_title">
         <h2>Update profile</h2>
       </div>
-      <div class="current_profile_wrapper">
+      <div class="dash_wrapper">
         <div class="dash_banner">
-          <img class="dash_banner_img" src="{{ member.profile.image_link }}" />
+          <img class="dash_banner_img" src="{{ current_profile.image_link }}" />
         </div>
       </div>
       <div class="profile_chooser">
@@ -32,6 +32,7 @@ Edit account
               <div class="profile_name">{{ profile.name }}</div>
               <div class="profile_source">{{ profile.source }}</div>
               <div class="profile_collection">{{ profile.collection }}</div>
+              <div><a class="profile_edit_link" href="{% url 'members:edit_member' %}?selected_pic={{ profile.id }}">set</a></div>
             </div>
           </div>
         {% endfor %}

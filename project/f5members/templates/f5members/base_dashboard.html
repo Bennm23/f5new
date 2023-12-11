@@ -18,6 +18,11 @@ Dashboard / @{{ member.username }}
         </h2>
         <a href="{% url 'members:edit_member' %}">edit profile</a>
         <div class="dash_wrapper">
+            <div class="dash_banner">
+                <img class="dash_banner_img" src="{{ member.profile.image_link }}" />
+            </div>
+        </div>
+        <div class="dash_wrapper">
             {% block additional_sections %}{% endblock %}
             <hr>
             <div class="dash_section">
