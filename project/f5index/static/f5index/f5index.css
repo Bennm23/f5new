@@ -12,4 +12,15 @@
 
 .jumbo_feature {
     text-align: center;
+    padding-bottom: 1rem
+}
+
+.jumbo_video {
+    width: 70%;
+}
+
+@media only screen and (max-width: 680px) {
+    .jumbo_video {
+        width: 100%;
+    }
 }
