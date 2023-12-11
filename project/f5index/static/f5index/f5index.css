@@ -1,6 +1,11 @@
 .livewire_wrapper {
-    padding: 1rem;
+    padding-top: 1rem;
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+.black_bg {
+    background-color: black;
+    color: white;
 }
