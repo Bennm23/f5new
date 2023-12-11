@@ -28,10 +28,11 @@ Edit account
             <div class="profile_image_wrapper">
               <img class="profile_image" src="{{ profile.image_link }}" alt="{{ profile.name }}"/>
             </div>
-            <div class="profile_name">{{ profile.name }}</div>
-            <div class="profile_source">{{ profile.source }}</div>
-            <div class="profile_collection">{{ profile.collection }}</div>
-            <div><a href="{% url 'members:edit_member' %}?selected_pic={{ profile.id }}">select profile</a></div>
+            <div class="profile_meta">
+              <div class="profile_name">{{ profile.name }}</div>
+              <div class="profile_source">{{ profile.source }}</div>
+              <div class="profile_collection">{{ profile.collection }}</div>
+            </div>
           </div>
         {% endfor %}
       </div>
