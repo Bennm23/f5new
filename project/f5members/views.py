@@ -12,19 +12,12 @@ from f5members.models import Member, ProfilePicture
 from .decorators import group_access_only
 
 def index(request):
-    # Retrieve the counts from the database
-    user_count = Member.objects.count()
-    blog_count = BlogPost.objects.count()
-    team_count = Team.objects.count()
+    members = Member.objects.all()
 
-    # Prepare the context to be passed to the template
     context = {
-        'user_count': user_count,
-        'blog_count': blog_count,
-        'team_count': team_count,
+        'members': members,
     }
 
-    # Render the template with the provided context
     return render(request, 'f5members/members_home.html', context)
 
 @login_required(login_url='members:login_member')

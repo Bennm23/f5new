@@ -4,6 +4,7 @@
 {% block loadcss %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'f5members/f5members.css' %}">
+    <link rel="stylesheet" href="{% static 'f5members/profiles.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -13,15 +14,20 @@ Dashboard / @{{ member.username }}
 {% block content %}
 <div class="section">
     <div class="in_margins_60">
-        <h2 class="section_title">
-            Welcome, @{{ member.username }}
-        </h2>
-        <a href="{% url 'members:edit_member' %}">edit profile</a>
-        <div class="dash_wrapper">
-            <div class="dash_banner">
-                <img class="dash_banner_img" src="{{ member.profile.image_link }}" />
+        <div class="profile_card_wrapper">
+            <div class="profile_card">
+                <div class="profile_username">
+                    @{{ member.username }}
+                </div>
+                <div class="dash_wrapper">
+                    <div class="dash_banner">
+                        <img class="dash_banner_img" src="{{ member.profile.image_link }}" />
+                    </div>
+                </div>
+                <a href="{% url 'members:edit_member' %}">edit profile</a>
             </div>
         </div>
+        
         <div class="dash_wrapper">
             {% block additional_sections %}{% endblock %}
             <hr>
