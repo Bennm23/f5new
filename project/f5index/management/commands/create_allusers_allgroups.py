@@ -71,5 +71,50 @@ class Command(BaseCommand):
         create_user('fan_username', 'fan@example.com', 'fan_password', fan_group, 'Short bio of the fan')
 
 
+        # Function to create a random name
+        def create_random_username():
+            # Lists of words or names to create username
+            adjectives = ['Speedy', 'Happy', 'Clever', 'Brave', 'Lucky', 'Wise', 'Calm', 'Jolly', 'Bold', 'Bright']
+            nouns = ['Lion', 'Dragon', 'Phoenix', 'Tiger', 'Eagle', 'Wolf', 'Bear', 'Hawk', 'Shark', 'Leopard']
+
+            # Select a random adjective and noun
+            adjective = random.choice(adjectives)
+            noun = random.choice(nouns)
+
+            # Generate a random number
+            number = random.randint(1, 99)
+
+            # Combine to form a username
+            username = f"{adjective}{noun}{number}"
+
+        def create_random_username():
+            # Lists of words or names to create username
+            adjectives = ['Speedy', 'Happy', 'Clever', 'Brave', 'Lucky', 'Wise', 'Calm', 'Jolly', 'Bold', 'Bright']
+            nouns = ['Lion', 'Dragon', 'Phoenix', 'Tiger', 'Eagle', 'Wolf', 'Bear', 'Hawk', 'Shark', 'Leopard']
+
+            # Select a random adjective and noun
+            adjective = random.choice(adjectives)
+            noun = random.choice(nouns)
+
+            # Generate a random number
+            number = random.randint(1, 99)
+
+            # Combine to form a username
+            username = f"{adjective}{noun}{number}"
+
+            return username
+
+        # Create additional users
+        for i in range(1, 22):  # Adjust the range for the desired number of users
+            username = create_random_username()
+            email = f'user_{i}@example.com'
+            password = f'password_{i}'
+            bio = f'{username} - {i} bio'
+            
+            group = random.choice([player_group, fan_group])
+            
+            create_user(username, email, password, group, bio)
+
+
 
 
