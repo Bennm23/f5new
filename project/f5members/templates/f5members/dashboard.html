@@ -14,7 +14,7 @@ Dashboard / {{ user.username }}
 {% block content %}
 <div class="section">
     <div class="profile_img">
-        <img src="{{ user.pic_url }}" alt="{{ user.username }} Profile Picture" class="img_fluid">
+        <img src="{{ user.profile.image_link }}" alt="{{ user.username }} Profile Picture" class="img_fluid">
     </div>
     
     <div class="profile_greeting">

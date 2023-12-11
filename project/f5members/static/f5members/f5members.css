@@ -45,6 +45,24 @@
     align-items: center;
 }
 
+.profile_chooser {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.profile_wrapper {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    justify-content: center;
+    max-width: 25%;
+}
+
+.profile_
+
 @media only screen and (max-width: 680px) {
     .section_container {
         width: auto;

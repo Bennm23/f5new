@@ -59,4 +59,4 @@ class LoginUserForm(AuthenticationForm):
 class EditUserForm(ModelForm):
     class Meta:
         model = Member
-        fields = ['pic_url', 'bio',]
+        fields = ['profile', 'bio',]

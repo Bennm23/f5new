@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 from django.shortcuts import get_object_or_404, redirect, render
 from .forms import CreateUserForm, EditUserForm, LoginUserForm
-from f5members.models import Member 
+from f5members.models import Member, ProfilePicture
 from .decorators import group_access_only
 
 def index(request):
@@ -29,51 +29,51 @@ def index(request):
 
 @login_required(login_url='members:login_member')
 def dashboard(request):
-    profile = get_object_or_404(Member, pk=request.user.id)
+    member = get_object_or_404(Member, pk=request.user.id)
     
-    if profile.is_staff:
-        return admin_dashboard(request, profile)
+    if member.is_staff:
+        return admin_dashboard(request, member)
     
-    user_groups = Group.objects.filter(user=profile)
+    user_groups = Group.objects.filter(user=member)
 
     if user_groups.exists():
         group_name = user_groups.first().name
         if group_name == 'Player':
-            return player_dashboard(request, profile)
+            return player_dashboard(request, member)
         elif group_name == 'Coach':
-            return coach_dashboard(request, profile)
+            return coach_dashboard(request, member)
         elif group_name == 'Fan':
-            return fan_dashboard(request, profile)
+            return fan_dashboard(request, member)
 
     # If the user doesn't belong to any specific group, redirect to the error page
     return error(request)
 
 @group_access_only("Staff", view_to_return="members:error", message="Must have Staff role to access this page.")
-def admin_dashboard(request, profile):
+def admin_dashboard(request, member):
     submissions = SupportSubmission.objects.all()
-    context = {'profile': profile, 'user_submissions': submissions}
+    context = {'member': member, 'user_submissions': submissions}
     return render(request, 'f5members/admin_dashboard.html', context)
 
 @group_access_only("Coach", view_to_return="members:error", message="Must have Coach role to access this page.")
-def coach_dashboard(request, profile):
-    context = {'profile': profile}
+def coach_dashboard(request, member):
+    context = {'member': member}
     return render(request, 'f5members/coach_dashboard.html', context)
 
 @group_access_only("Player", view_to_return="members:error", message="Must have Player role to access this page.")
-def player_dashboard(request, profile):
-    context = {'profile': profile}
+def player_dashboard(request, member):
+    context = {'member': member}
     return render(request, 'f5members/player_dashboard.html', context)
 
 @group_access_only("Fan", view_to_return="members:error", message="Must have Fan role to access this page.")
-def fan_dashboard(request, profile):
-    context = {'profile': profile}
+def fan_dashboard(request, member):
+    context = {'member': member}
     return render(request, 'f5members/fan_dashboard.html', context)
 
 def public_profile(request, member_username):
     # Get the user with the provided username, or return a 404 response if not found
-    profile = get_object_or_404(Member, username=member_username)
+    member = get_object_or_404(Member, username=member_username)
     
-    context = {'profile': profile}
+    context = {'member': member}
 
     return render(request, 'f5members/profile.html', context)
 
@@ -95,18 +95,31 @@ def create_member(request):
     return render(request, 'f5members/create_member.html', context)
 
 @login_required(login_url='members:login_member')
-def edit_member(request):  
-    form = None
-    if request.method == 'POST':  
-        form = EditUserForm(request.POST, instance=request.user)  
-        if form.is_valid():  
-            form.save()  
+def edit_member(request):
+    # Fetch the current user's profile
+    member = request.user
+
+    # Fetch all profile pictures
+    profile_pictures = ProfilePicture.objects.all()
+
+    # Check if a profile picture has been selected (query parameter 'selected_pic')
+    selected_pic_id = request.GET.get('selected_pic')
+    if selected_pic_id:
+        try:
+            selected_pic = ProfilePicture.objects.get(id=selected_pic_id)
+            member.profile_picture = selected_pic
+            member.save()
+            # Redirect after saving, to avoid re-submission on refresh
             return redirect('members:dashboard')
-    else:  
-        form = EditUserForm(instance=request.user)  
-    context = {  
-        'form':form  
-    }  
+        except ProfilePicture.DoesNotExist:
+            # Handle the case where the profile picture doesn't exist
+            pass
+
+    context = {
+        'member': member,
+        'profile_pictures': profile_pictures,
+        'selected_pic_id': selected_pic_id
+    }
     return render(request, 'f5members/edit_member.html', context)
 
 def login_member(request):

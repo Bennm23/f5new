@@ -5,8 +5,18 @@ from .constants import USER_TYPES
 from django.core.mail import send_mail
 from django.contrib.auth.models import AbstractUser
 
+class ProfilePicture(models.Model):
+    name = models.CharField(max_length=255)
+    image_link = models.URLField(default="http://tinyurl.com/f5-jumbo-bg")
+    source = models.CharField(max_length=255)
+    collection = models.CharField(max_length=50, default='general')
+
+    def __str__(self):
+        return f"{self.name} ({self.collection})"
+
 class Member(AbstractUser):    
-    pic_url = models.CharField(max_length=50, default="http://tinyurl.com/f5-jumbo-bg")
+    profile = models.ForeignKey(ProfilePicture, on_delete=models.SET_NULL, null=True, blank=True)
+
     bio = models.TextField(max_length=500, blank=True)
     user_type = models.CharField(
         max_length=20,
