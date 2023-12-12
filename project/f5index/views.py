@@ -4,19 +4,15 @@ from django.contrib import messages
 from f5members.models import Member
 from f5blogs.models import BlogPost
 from f5teams.models import Team
+from random import sample
 
 
 def index(request):
-    # Retrieve the counts from the database
-    user_count = Member.objects.count()
-    blog_count = BlogPost.objects.count()
-    team_count = Team.objects.count()
+    random_users = []
+    random_users = sample(list(Member.objects.all()), 3) 
 
-    # Prepare the context to be passed to the template
     context = {
-        'user_count': user_count,
-        'blog_count': blog_count,
-        'team_count': team_count,
+        'members': random_users,
     }
     return render(request, "f5index/index.html", context)
 
