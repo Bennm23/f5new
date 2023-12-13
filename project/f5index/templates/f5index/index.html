@@ -4,6 +4,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'f5index/f5index.css' %}">
     <link rel="stylesheet" href="{% static 'f5members/profiles.css' %}">
+    <link rel="stylesheet" href="{% static 'project/lists.css' %}">
 {% endblock %}
 
 {% block loadjs %}
@@ -32,8 +33,41 @@ Home
 
 <div class="section">
     <div class="in_margins_60">
-        <div class="section_title_wrapper">
-            <h2 class="section_title">Community</h2>
+        <div class="sub_wrapper">
+            <h2 class="section_title">Recent Blogs</h2> 
+            
+            <div class="datalist">
+                <div class="data_obj">
+                    <p>Example object</p>
+                </div>
+                <div class="data_obj">
+                    <p>Second Example object</p>
+                </div>
+            </div>
+        </div>
+        <div class="sub_wrapper">
+            <h2 class="section_title">Matchup Results</h2> 
+            
+            <div class="datalist">
+                <div class="data_obj">
+                    <p>match report obj 1</p>
+                </div>
+                <div class="data_obj">
+                    <p>match report obj 2</p>
+                </div>
+            </div>
+        </div>
+        <div class="sub_wrapper">
+            <h2 class="section_title">Highest Selling</h2> 
+            
+            <div class="datalist">
+                <div class="data_obj">
+                    <p>Store product 1</p>
+                </div>
+                <div class="data_obj">
+                    <p>Store product 2</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
