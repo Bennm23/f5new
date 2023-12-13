@@ -8,11 +8,8 @@ from random import sample
 
 
 def index(request):
-    random_users = []
-    random_users = sample(list(Member.objects.all()), 3) 
-
     context = {
-        'members': random_users,
+                
     }
     return render(request, "f5index/index.html", context)
 

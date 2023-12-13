@@ -9,17 +9,27 @@ Error!
 {% endblock %}
 
 {% block content %}
-<div class="section">
-  <h2>Whoa there!</h2>
-  
-  {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-      {% endfor %}
-    </ul>
-  {% endif %}
-  
-  <p>We have an idea of what just broke from AI, but what's <a href="{% url 'index:contact_support' %}" class="button_link">your side of the story</a>?</p>
+<div class="service_wrapper">
+    <div class="service_jumbo">
+        <div class="in_margins_60">
+            <h1 class="service_title">TMO review</h1>
+        </div>
+    </div>
 </div>
+<div class="section">
+  <div class="in_margins_60">
+    <div class="section_title_wrapper">
+      <div class="section_title">Follow up</div>
+    </div>
+    <div class="messages_wrapper">
+       {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+  </div>
+</div> 
 {% endblock %}
