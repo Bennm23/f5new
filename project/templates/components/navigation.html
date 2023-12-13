@@ -8,7 +8,10 @@
 
                 {% if user.is_authenticated %}
                 <div class="app">
-
+                    <div class="auth">
+                        <a id="username" class="white_link" href="{% url 'members:dashboard'%}">@{{ user.username }}</a>
+                        <a class="white_link" href="{% url 'members:logout_member' %}">Logout</a>
+                    </div>
                 </div>
                 {% else %}
                  <div class="app">
@@ -28,22 +31,6 @@
         </div>
     </div>
 </div>
-
-{% if user.is_authenticated %}
-<div class="account_wrapper">
-    <div class="in_margins_70">
-        <div class="spread">
-            <div>
-                
-            </div>
-            <div class="account_links">
-                <a id="username" class="white_link" href="{% url 'members:dashboard'%}">@{{ user.username }}</a>
-                <a class="white_link" href="{% url 'members:logout_member' %}">Logout</a>
-            </div>
-        </div>
-    </div>
-</div>
-{% endif %}
 
 <div class="nav_wrapper_hidden">
     <div class="in_margins_70">

@@ -41,23 +41,23 @@ def dashboard(request):
     # If the user doesn't belong to any specific group, redirect to the error page
     return error(request)
 
-@group_access_only("Staff", view_to_return="members:error", message="Must have Staff role to access this page.")
+@group_access_only("Staff", view_to_return="members:error", message="Tried to access a Staff page. You are not a Staff.")
 def admin_dashboard(request, member):
     submissions = SupportSubmission.objects.all()
     context = {'member': member, 'user_submissions': submissions}
     return render(request, 'f5members/admin_dashboard.html', context)
 
-@group_access_only("Coach", view_to_return="members:error", message="Must have Coach role to access this page.")
+@group_access_only("Coach", view_to_return="members:error", message="Tried to access a Coach page. You are not a Coach.")
 def coach_dashboard(request, member):
     context = {'member': member}
     return render(request, 'f5members/coach_dashboard.html', context)
 
-@group_access_only("Player", view_to_return="members:error", message="Must have Player role to access this page.")
+@group_access_only("Player", view_to_return="members:error", message="Tried to access a Player page. You are not a Player.")
 def player_dashboard(request, member):
     context = {'member': member}
     return render(request, 'f5members/player_dashboard.html', context)
 
-@group_access_only("Fan", view_to_return="members:error", message="Must have Fan role to access this page.")
+@group_access_only("Fan", view_to_return="members:error", message="Tried to access a Fan page. You are not a Fan.")
 def fan_dashboard(request, member):
     context = {'member': member}
     return render(request, 'f5members/fan_dashboard.html', context)
