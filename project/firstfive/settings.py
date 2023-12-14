@@ -73,6 +73,13 @@ SESSION_SAVE_EVERY_REQUEST = True
 # Expire session when the user closes their browser
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
+# Cache with local memory defined
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.locmem.LocMemCache',
+    }
+}
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

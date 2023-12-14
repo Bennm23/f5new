@@ -1,16 +1,32 @@
-from django.shortcuts import get_object_or_404, redirect, render
-from .forms import SupportSubmissionForm
+import feedparser
+from f5teams.models import Team
 from django.contrib import messages
 from f5members.models import Member
 from f5blogs.models import BlogPost
-from f5teams.models import Team
-from random import sample
-
+from django.core.cache import cache
+from .forms import SupportSubmissionForm
+from django.shortcuts import get_object_or_404, redirect, render
 
 def index(request):
+    # Attempt rw_feed fetch from cache
+    rw_feed = cache.get('rw_feed')
+
+    if not rw_feed:
+        # fetch rw_feed
+        print("FETCH LIVE JUST NOW!")
+        rw_url = 'https://www.rugbyworld.com/feed'
+        rw_feed = feedparser.parse(rw_url)
+
+        # cache for 6 hours
+        cache.set('rw_feed', rw_feed, 21600)
+
+    blogs = rw_feed.entries
+    print(blogs[0])
+
     context = {
-                
+        'blogs': blogs,
     }
+    
     return render(request, "f5index/index.html", context)
 
 def contact_support(request):

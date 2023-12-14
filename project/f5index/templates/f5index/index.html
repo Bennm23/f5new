@@ -36,12 +36,23 @@ Home
             <h2 class="section_title">Recent Blogs</h2> 
             
             <div class="datalist">
-                <div class="data_obj">
-                    <p>Example object</p>
-                </div>
-                <div class="data_obj">
-                    <p>Second Example object</p>
-                </div>
+                {% for blog in blogs %}
+                    <div class="data_obj blog">
+                        <h2><a target="_blank" href="{{ blog.link }}">{{ blog.title }}</a></h2>
+                        <p class="date">Published on: {{ blog.published }}</p>
+                        <p class="author">By: {{ blog.author }}</p>
+                        <ul class="categories">
+                            {% for category in blog.tags %}
+                                <li>{{ category.term }}</li>
+                            {% endfor %}
+                        </ul>
+                        <div class="description">
+                            {{ blog.summary|safe }}
+                        </div>
+                    </div>
+                {% empty %}
+                    <p>No articles found.</p>
+                {% endfor %}
             </div>
         </div>
     </div>
