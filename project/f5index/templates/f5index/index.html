@@ -33,8 +33,18 @@ Home
 <div class="section">
     <div class="in_margins_60">
         <div class="sub_wrapper">
-            <h2 class="section_title">Recent Blogs</h2> 
+            <h2 class="section_title">Latest News</h2> 
             
+            <div class="data_obj feature_post">
+                <p class="tag">{{ feature_post.tags.0.term }}<p>
+                <h2 class="title"><a target="_blank" href="{{ feature_post.link }}">{{ feature_post.title }}</a></h2>
+                <div class="summary">
+                    {{ feature_post.summary|safe }}
+                </div>
+                <p class="date">{{ feature_post.published }}</p>
+            </div>
+
+            {% comment %}
             <div class="datalist">
                 {% for blog in blogs %}
                     <div class="data_obj blog">
@@ -54,6 +64,8 @@ Home
                     <p>No articles found.</p>
                 {% endfor %}
             </div>
+            {% endcomment %}
+
         </div>
     </div>
 </div>

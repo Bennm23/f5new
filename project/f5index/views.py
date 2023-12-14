@@ -13,18 +13,18 @@ def index(request):
 
     if not rw_feed:
         # fetch rw_feed
-        print("FETCH LIVE JUST NOW!")
         rw_url = 'https://www.rugbyworld.com/feed'
         rw_feed = feedparser.parse(rw_url)
 
         # cache for 6 hours
         cache.set('rw_feed', rw_feed, 21600)
 
-    blogs = rw_feed.entries
-    print(blogs[0])
+    # Extract the first post
+    feature_post, *remaining_posts = rw_feed.entries
 
     context = {
-        'blogs': blogs,
+        'feature_post': feature_post,
+        'blogs': remaining_posts,
     }
     
     return render(request, "f5index/index.html", context)

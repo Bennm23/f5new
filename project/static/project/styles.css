@@ -50,7 +50,7 @@ body {
 .sub_wrapper {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 1.25rem;
 }
 
 .data_card {

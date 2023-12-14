@@ -7,12 +7,13 @@
 if [ -f ".env" ]; then
   export $(cat .env | xargs)
 fi
-
+pwd
+ls
 # Redundent
-python /app/manage.py makemigrations
+python project/manage.py makemigrations
 
-python /app/manage.py migrate --no-input
-python /app/manage.py pollinate admin blogs
+python project/manage.py migrate --no-input
+python project/manage.py pollinate admin blogs
 
 # Start the Django development server
-python /app/manage.py runserver 0.0.0.0:8000
+python project/manage.py runserver 0.0.0.0:8000
