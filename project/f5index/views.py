@@ -1,6 +1,3 @@
-import random
-import feedparser
-from f5teams.models import Team
 from django.contrib import messages
 from f5members.models import Member
 from f5blogs.models import BlogPost
