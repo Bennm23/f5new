@@ -1,3 +1,24 @@
+.filter_toggler {
+    cursor: pointer;
+    width: fit-content;
+}
+
+.filter_container{
+    margin-top: 1rem;
+    display: none;
+    flex-direction: column;
+    gap: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    padding: 1rem;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.filter_container.show {
+    display: flex;
+    opacity: 1;
+}
+
 .filter_list {
     display: flex;
     flex-direction: row;
@@ -9,10 +30,10 @@
 }
 
 .filter_link {
-    padding: .25rem;
-    border: 1px solid black;
-    color: black;
+    background-color: rgba(144, 144, 144, 0.227);
     text-decoration: none;
+    border-radius: 20px;
+    padding: .25rem .75rem;
 }
 
 .filter_link:visited {
