@@ -1,0 +1,72 @@
+.product_container {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.product_card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    position: relative; /* for absolute positioning of elements inside */
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.product_link {
+    color: gray;
+    text-decoration: none;
+    text-decoration: underline;
+}
+
+.product_tag {
+    .product_link {
+        background-color: rgba(144, 144, 144, 0.227);
+        text-decoration: none;
+        border-radius: 20px;
+        padding: .25rem .75rem;
+        font-size: 0.8em; /* smaller font size for date */
+    }
+}
+
+.product_view {
+    margin: 0;
+    text-align: right;
+    .product_link {
+        background-color: darkblue;
+        padding: .25rem .75rem;
+        color: #ffffff;
+    }
+}
+
+.product_name {
+    margin-top: 8px; /* space above title */
+}
+
+.product_price {
+    margin-top: 8px; /* space above title */
+    text-align: right;
+}
+
+.product_thumbnail {
+    height: 200px;
+    background-size: cover; 
+    background-position: center;
+}
+
+.product_thumbnail img {
+    width: 100%; /* full width of the card */
+    height: auto; /* maintain aspect ratio */
+    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.product_title {
+    margin-top: 8px; /* space above title */
+    color: #333; /* title text color */
+}
+
+@media only screen and (max-width: 680px) {
+    .product_container {
+        grid-template-columns: 1fr;
+    }
+}

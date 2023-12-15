@@ -4,14 +4,17 @@ from f5teams.models import Team
 from django.contrib import messages
 from f5members.models import Member
 from f5blogs.models import BlogPost
+from f5store.models import Product
 from .forms import SupportSubmissionForm
 from django.shortcuts import get_object_or_404, redirect, render
 
 def index(request):
-    blogs = BlogPost.objects.all()
+    blogs = BlogPost.objects.all()[:1]
+    products = Product.objects.all()[:3]
 
     context = {
         'blogs': blogs,
+        'products': products[:3],
     }
     
     return render(request, "f5index/index.html", context)

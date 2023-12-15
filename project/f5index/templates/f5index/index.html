@@ -4,6 +4,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'f5index/f5index.css' %}">
     <link rel="stylesheet" href="{% static 'project/blogs.css' %}">
+    <link rel="stylesheet" href="{% static 'project/products.css' %}">
 {% endblock %}
 
 {% block loadjs %}
@@ -40,6 +41,25 @@ Home
                 <p class="blog_date">{{ blog.create_date|date:"m.d.Y" }}</p>
                 <p class="blog_description">{{ blog.content|safe|truncatewords:20 }}</p>
                 <p class="blog_read"><a class="blog_link" href="{% url 'blogs:detail' blog.id %}">Read</a></p>
+            </div>
+            {% endfor %}
+        </div>
+        
+    </div>
+</div>
+
+<div class="section">
+    <div class="in_margins_60">
+        <h1 class="section_title">Selling now</h1> 
+
+        <div class="product_container">
+            {% for product in products %}
+            <div class="product_card">
+                <h4 class="product_name">{{ product.name }}<h4>
+                <div class="product_thumbnail" style="background-image: url('{{ product.thumbnail }}');"></div>
+                <p class="product_tag"><a class="product_link" href="{% url 'store:home' %}?category={{ product.categories.first.name }}#product_search">{{ product.categories.first }}</a></p>
+                <p class="product_price">${{ product.price|floatformat:2 }}</p>
+                <p class="product_view"><a class="product_link" href="{% url 'store:product_detail' product.id %}">View</a></p>
             </div>
             {% endfor %}
         </div>

@@ -4,6 +4,7 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'f5store/f5store.css' %}">
     <link rel="stylesheet" href="{% static 'project/filters.css' %}">
+    <link rel="stylesheet" href="{% static 'project/products.css' %}">
 {% endblock %}
 
 {% block loadjs %}
@@ -23,7 +24,7 @@ Store
     </div>
 </div>
 
-<div id="blog_search" class="section">
+<div id="product_search" class="section">
     <div class="in_margins_60">
 
         <div class="filter_toggler" onclick="toggleFilters()">
@@ -39,27 +40,29 @@ Store
             {% endif %}
             <ul class="filter_list">
                 <li>
-                    <a class="filter_link{% if not selected_category or selected_category == 'all' %} selected{% endif %}" href="?category=all#blog_search">All</a>
+                    <a class="filter_link reset" href="{% url 'store:home' %}#product_search">Reset Filters</a>
+                </li>
+                <li>
+                    <a class="filter_link{% if not selected_category or selected_category == 'all' %} selected{% endif %}" href="?category=all#product_search">All</a>
                 </li>
                 
                 {% for tag in filter_tags %}
                 <li>
-                    <a class="filter_link{% if selected_category == tag.name %} selected{% endif %}" href="?category={{ tag.name }}#blog_search">{{ tag.name }}</a>
+                    <a class="filter_link{% if selected_category == tag.name %} selected{% endif %}" href="?category={{ tag.name }}#product_search">{{ tag.name }}</a>
                 </li>
                 {% endfor %}
             </ul>
         </div>
         
 
-        <div class="blog_container">
-            {% for blog in blogs %}
-            <div class="blog_card">
-                <div class="blog_thumbnail" style="background-image: url('{{ blog.thumbnail }}');"></div>
-                <h3 class="blog_title">{{ blog.title }}</h3>
-                <p class="blog_tag"><a class="blog_link" href="{% url 'blogs:home' %}?category={{ blog.tags.first.name }}#blog_search">{{ blog.tags.first }}</a></p>
-                <p class="blog_date">{{ blog.create_date|date:"m.d.Y" }}</p>
-                <p class="blog_description">{{ blog.content|safe|truncatewords:20 }}</p>
-                <p class="blog_read"><a class="blog_link" href="{% url 'blogs:detail' blog.id %}">Read</a></p>
+        <div class="product_container">
+            {% for product in products %}
+            <div class="product_card">
+                <h4 class="product_name">{{ product.name }}<h4>
+                <div class="product_thumbnail" style="background-image: url('{{ product.thumbnail }}');"></div>
+                <p class="product_tag"><a class="product_link" href="{% url 'store:home' %}?category={{ product.categories.first.name }}#product_search">{{ product.categories.first }}</a></p>
+                <p class="product_price">${{ product.price|floatformat:2 }}</p>
+                <p class="product_view"><a class="product_link" href="{% url 'store:product_detail' product.id %}">View</a></p>
             </div>
             {% endfor %}
         </div>

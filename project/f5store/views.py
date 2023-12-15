@@ -14,16 +14,17 @@ def index(request):
 
     # If there's a category filter in the request, apply it
     category_filter = request.GET.get('category')
-    if category_filter == 'all':
-        products = products.order_by('-created_at')  
-    else:
-        products = products.filter(categories__name=category_filter)
+    if category_filter:
+        if category_filter == 'all':
+            products = products.order_by('-created_at')  
+        else:
+            products = products.filter(categories__name=category_filter)
 
     # Get all categories for the filter options in the template
     categories = Category.objects.all()
 
     context = {
-        'categories': categories,
+        'filter_tags': categories,
         'products': products,
         'recent_products': recent_products,
         'selected_category': category_filter,

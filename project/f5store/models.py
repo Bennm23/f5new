@@ -17,7 +17,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=255)
-    thumbnail = models.CharField(max_length=50)
+    thumbnail = models.CharField(max_length=50, default="https://i.imgur.com/pcq1IAz.jpeg")
     description = RichTextField(blank=True, null=True)
     quantity = models.PositiveIntegerField(default=0)
     materials = models.ManyToManyField(Material)  # Updated to ManyToManyField
