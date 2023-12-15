@@ -2,30 +2,13 @@
 {% extends "f5members/base_dashboard.html" %}
 
 {% block additional_sections %}
-<div class="dash_section">
-    <div class="dash_title">
-        Managed Teams
-    </div>
-    <div class="dash_data">
-        Any teams you manage will appear here.
-    </div>
-</div>
+<div class="section">
+    <div class="in_margins_60">
+        <h2 class="section_title">Coaching Tools</h2>
 
-<div class="dash_section">
-    <div class="dash_title">
-        Recruits
-    </div>
-    <div class="dash_data">
-        Any players you have marked will show up here.
-    </div>
-</div>
-
-<div class="dash_section">
-    <div class="dash_title">
-        Training resources
-    </div>
-    <div class="dash_data">
-        Any resources you have aquired will appear here.
+        <div class="control_container">
+            We value your <a href="{% url 'index:contact_support' %}">feedback</a>, what would you like to see here?
+        </div>
     </div>
 </div>
 {% endblock %}

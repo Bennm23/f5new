@@ -1,15 +1,17 @@
 from django import forms
-from .models import Member
+from .models import Member, USER_TYPES
 from django.forms import ModelForm, widgets
 from django_recaptcha.fields import ReCaptchaField
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 class CreateUserForm(UserCreationForm):
     captcha = ReCaptchaField()
+    user_type = forms.ChoiceField(choices=USER_TYPES, widget=forms.RadioSelect)
 
     def save(self, commit=True):
         user = super().save(commit=False)
         user.set_verification_code()  # Set the verification code
+        user.user_type = self.cleaned_data['user_type']
         if commit:
             user.save()
         return user

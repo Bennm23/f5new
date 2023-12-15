@@ -1,3 +1,26 @@
 .control_container {
     padding-top: 1rem;
 }
+
+#id_user_type {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1rem;
+
+    label {
+        display: flex;
+        flex-direction: row;
+        gap: 0;
+        align-items: center;
+    }
+
+    input {
+        width: auto;
+    }
+
+    input[type="radio"] {
+        height: 15px;
+        width: 15px;
+    }
+}
