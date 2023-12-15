@@ -34,8 +34,6 @@ Blog Detail
 
 {% block content %}
 <div class="section">
-<div class="blog_detail">
-    <h2>{{blog.title}}</h2>
 
     {% if user == blog.author %}
     <div class="button_link_group">
@@ -44,20 +42,6 @@ Blog Detail
     </div>
     {% endif %}
 
-    <p class="blog_date">Published On: {{ blog.create_date }}</p>
-    <p class="blog_date">Authored By: {{ blog.author.username }}</p>
-    
-    <div class="badge_list">
-        {% for tag in blog.tags.all %}
-        <div class="badge" style="border-color: {{ tag.color }}; color: {{tag.color}};">{{ tag.name }}</div>
-        {% endfor %}
-    </div>
-
-    <div class="blog_container">
-        <h3>Content</h3>
-        <p>{{ blog.content|safe }}
-    </div>
-</div>
 </div>
 
 {% endblock %}

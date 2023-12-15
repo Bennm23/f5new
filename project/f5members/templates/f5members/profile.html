@@ -13,39 +13,21 @@ Dash / {{ member.username }}
 
 
 {% block content %}
-<div class="section">
-    <div class="in_margins_60">
-        <div class="profile_card_wrapper">
-            <div class="profile_card">
-                <div class="profile_username">
-                    @{{ member.username }}
-                </div>
-                <div class="dash_wrapper">
-                    <div class="dash_banner">
-                        <img class="dash_banner_img" src="{{ member.profile.image_link }}" />
-                    </div>
-                </div>
-            </div>
+<div class="service_wrapper">
+    <div class="service_jumbo">
+        <div class="in_margins_60">
+            <h1 class="service_title">@{{ member.username }}</h1>
         </div>
-        <div class="dash_wrapper">
-            <div class="dash_section">
-                <div class="small_title">
-                    Featured
-                </div>
-                <div class="dash_data">
-                    You can show off your achievements here.
-                </div>
-            </div>
-            <div class="dash_section">
-                <div class="small_title">
-                    Highlights
-                </div>
-                <div class="dash_data">
-                    You best scores and top records will show here.
-                </div>
-            </div>
-        </div> <!-- end of dash wrapper -->
     </div>
 </div>
 
+<div class="section">
+    <div class="in_margins_60">
+        <h2 class="section_title">Achievements</h2>
+
+        <div class="control_container">
+            We value your <a href="{% url 'index:contact_support' %}">feedback</a>, what would you like to see here?
+        </div>
+    </div>
+</div>
 {% endblock %}
