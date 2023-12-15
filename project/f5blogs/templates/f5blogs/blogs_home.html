@@ -40,10 +40,10 @@ Blogs
             {% endif %}
             <ul class="filter_list">
                 <li>
-                    <a class="filter_link{% if not selected_category or selected_category == 'all' %} selected{% endif %}" href="?category=all#blog_search">All</a>
+                    <a class="filter_link reset" href="{% url 'blogs:home' %}#blog_search">Reset Filters</a>
                 </li>
                 <li>
-                    <a class="filter_link reset" href="{% url 'blogs:home' %}#blog_search">Reset Filters</a>
+                    <a class="filter_link{% if not selected_category or selected_category == 'all' %} selected{% endif %}" href="?category=all#blog_search">All</a>
                 </li>
                 
                 {% for tag in filter_tags %}
