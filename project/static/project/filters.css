@@ -34,6 +34,7 @@
     text-decoration: none;
     border-radius: 20px;
     padding: .25rem .75rem;
+    color: black;
 }
 
 .filter_link:visited {
@@ -43,4 +44,8 @@
 .filter_link.selected {
     background-color: black;
     color: white;
+}
+
+.filter_link.reset {
+    background-color: rgba(143, 4, 4, 0.19);
 }

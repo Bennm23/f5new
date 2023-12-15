@@ -42,6 +42,9 @@ Blogs
                 <li>
                     <a class="filter_link{% if not selected_category or selected_category == 'all' %} selected{% endif %}" href="?category=all#blog_search">All</a>
                 </li>
+                <li>
+                    <a class="filter_link reset" href="#blog_search">Reset Filters</a>
+                </li>
                 
                 {% for tag in filter_tags %}
                 <li>
