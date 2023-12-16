@@ -3,6 +3,16 @@
     color: white;
 }
 
+.jumbo_title {
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: .3rem;
+    padding: 1rem;
+    border: 2px solid white;
+    width: fit-content;
+    margin: 3rem auto;
+}
+
 .jumbo_feature {
     text-align: center;
     padding-bottom: 3rem
