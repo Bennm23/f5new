@@ -12,36 +12,12 @@ from datetime import timezone, datetime
 # Create your views here.
 
 def index(request):
-    teams = Team.objects.all()
-
-    recent_matches = Match.objects.all().order_by('-match_date')[:5]
-    recent_scores = []
-
-    for match in recent_matches:
-        recent_scores.append(match.get_best_score_report())
-
-    # Handle the search form
-    search_form = TeamSearchForm(request.GET)
-    if search_form.is_valid():
-        team_name = search_form.cleaned_data.get('team_name')
-        city = search_form.cleaned_data.get('city')
-        state = search_form.cleaned_data.get('state')
-
-        if team_name:
-            teams = teams.filter(team_name__icontains=team_name)
-        if city:
-            teams = teams.filter(city__icontains=city)
-        if state:
-            teams = teams.filter(state=state)
+    matches = Match.objects.all()
 
     # Additional context for authenticated users
     context = {
-        'teams': teams,
-        'search_form': search_form,
-        'recent_scores' : recent_scores,
+        'matches': matches,
     }
-    #if request.user.is_authenticated:
-    #    context['my_teams'] = Team.objects.filter(members__id=request.user.id)
 
     return render(request, 'f5teams/teams_home.html', context)
 
