@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="{% static 'f5index/f5index.css' %}">
     <link rel="stylesheet" href="{% static 'project/blogs.css' %}">
     <link rel="stylesheet" href="{% static 'project/products.css' %}">
+    <link rel="stylesheet" href="{% static 'project/matches.css' %}">
 {% endblock %}
 
 {% block loadjs %}
@@ -23,6 +24,39 @@ Home
             <h1 class="jumbo_title">First Five</h1>
             <p class="subtext">The only official community platform for rugby.</p>
         </div>
+    </div>
+</div>
+<div class="section">
+    <div class="in_margins_60">
+        <h1 class="section_title">New Matchups</h1> 
+
+        <div class="matches_container">
+            <div class="match_card">
+                <div class="team">
+                    <div class="crest_name_group">
+                        <div class="team_crest">
+                            <img src="https://i.imgur.com/Q5NK3xO.png" />
+                        </div>
+                        <p class="team_name">Team one</p>
+                    </div>
+                    <p class="team_score">20</p>
+                </div>
+                <div class="team">
+                    <div class="crest_name_group">
+                        <div class="team_crest">
+                            <img src="https://i.imgur.com/Q5NK3xO.png" />
+                        </div>
+                        <p class="team_name">Team two</p>
+                    </div>
+                    <p class="team_score">15</p>
+                </div>
+                <div class="date_time_group">
+                    <p class="match_time">16:00 EST</p>
+                    <p class="match_date">12.15.2023</p>
+                </div>
+            </div>
+        </div>
+        
     </div>
 </div>
 <div class="section">
