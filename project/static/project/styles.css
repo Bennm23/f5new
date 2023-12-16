@@ -169,7 +169,7 @@ body {
 }
 
 @media only screen and (max-width: 680px) {
-   .in_margins_60 {
+    .in_margins_60 {
         width: 90%;
     }
 
