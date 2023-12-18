@@ -22,23 +22,33 @@ Members
 <div class="section">
   <div class="in_margins_60">
       <div class="section_title_wrapper">
-          <h2 class="section_title">Explore</h2>
+          <h2 class="section_title">Information</h2>
       </div>
       <div class="profile_chooser">
         <!-- Loop through each profile picture -->
-        {% for member in members %}
-        <div class="profile_wrapper">
-          <div class="profile_image_wrapper">
-            <img class="profile_image" src="{{ member.profile.image_link }}" alt="{{ member.profile.name }}"/>
-          </div>
-          <div class="profile_meta">
-            <div class="profile_name">{{ member.username }}</div>
-            <div class="profile_collection">{{ member.get_user_type_str }}</div>
-            <div><a class="profile_edit_link" href="{% url 'members:public_profile' member.username %}">visit</a></div>
-          </div>
-        </div>
-        {% endfor %}
+        <p>Our platform doesn't require you to create an account. By design you can register for events, purchase products, download programs, and more without signing up. Each service page has base features and <em>unlockable features</em> when you create a free account.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="in_margins_60">
+      <div class="section_title_wrapper">
+          <h2 class="section_title">Getting started</h2>
       </div>
+      <div class="profile_chooser">
+        <!-- Loop through each profile picture -->
+        <p>When creating an account you have the choice to register as a player, coach, parent, or as a fan/other. You will have special instructions waiting in your mailbox once logged in.</p>
+  </div>
+</div>
+
+<div class="section">
+  <div class="in_margins_60">
+      <div class="section_title_wrapper">
+          <h2 class="section_title">Community goals</h2>
+      </div>
+      <div class="profile_chooser">
+        <!-- Loop through each profile picture -->
+        <p>Help the rugby community grow by interacting with our platform. Watch the community trackers light up as we make progress towards better rugby infastructure in North America. When you join First Five, you're joining a team of people committed to success. Members on here post live scores during local rugby matches, write community wide blogs, and they even trade vintage rugby jerseys on our store!</p>
   </div>
 </div>
 {% endblock %}
