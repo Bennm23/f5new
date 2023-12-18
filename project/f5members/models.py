@@ -36,6 +36,9 @@ class Member(AbstractUser):
             case 'coach': return 'Coach'
             case _: return 'Fan/Other'
 
+    def get_user_group(self):
+        pass
+
     # generates a verification code for user email
     def generate_verification_code(self):
         return ''.join(random.choices(string.ascii_letters + string.digits, k=20))

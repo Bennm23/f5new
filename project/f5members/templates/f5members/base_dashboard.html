@@ -11,9 +11,6 @@
 Dashboard / @{{ member.username }}
 {% endblock %}
 
-<!-- Additional common content can go here -->
-{% block additional_content %}{% endblock %}
-
 {% block content %}
 <div class="service_wrapper">
     <div class="service_jumbo">
@@ -22,6 +19,9 @@ Dashboard / @{{ member.username }}
         </div>
     </div>
 </div>
+
+<!-- Additional common content can go here -->
+{% block additional_content %}{% endblock %}
 
 <div class="section">
     <div class="in_margins_60">
@@ -33,3 +33,4 @@ Dashboard / @{{ member.username }}
     </div>
 </div>
 {% endblock %}
+

@@ -20,6 +20,16 @@ def index(request):
 
     return render(request, 'f5members/members_home.html', context)
 
+@group_access_only("Staff", view_to_return="members:error", message="Tried to access a Staff page. You are not a Staff.")
+def manage_users(request):
+    members = Member.objects.all()
+
+    context = {
+        'users' : members,
+    }
+    
+    return render(request, 'f5members/manage_users.html', context)
+
 @login_required(login_url='members:login_member')
 def dashboard(request):
     member = get_object_or_404(Member, pk=request.user.id)
