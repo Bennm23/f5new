@@ -31,6 +31,12 @@
 
     .section_title {
         text-transform: uppercase;
+        text-align: center;
+        padding: .5rem;
+        background: black;
+        font-size: 1.2rem;
+        letter-spacing: .25rem;
+        border: 1px solid white;
     }
 }
 
