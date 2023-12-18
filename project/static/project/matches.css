@@ -9,34 +9,27 @@
 .team_name {
     text-transform: uppercase;
     font-size: .8rem;
+    font-weight: 400;
+    padding-right: 1rem;
 }
 
 .team {
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    gap: 1rem;
     
     .crest_name_group {
         display: flex;
         flex-direction: row;
         align-items: center;
-        gap: 1rem;
     }
-}
-
-.date_time_group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 1rem;
 }
 
 .team_crest {
     height: 40px;
     width: 40px;
     overflow: hidden;
+    padding-right: 1rem;
 
     img {
         width: 100%;
@@ -71,11 +64,5 @@
         color: #3c3c3c; /* date text color */
         font-size: .8rem;
         margin: 0;
-    }
-}
-
-@media only screen and (max-width: 680px) {
-    .match_card {
-        width: 100%;
     }
 }
