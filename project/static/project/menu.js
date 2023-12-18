@@ -7,7 +7,7 @@ function toggleMenu() {
         navWrapperHidden.classList.remove('show');
         setTimeout(function() {
             navWrapperHidden.style.display = "none";
-        }, 500); // Match the timeout to your transition duration
+        }, 10); // Match the timeout to your transition duration
         togglerButton.classList.replace('fa-times', 'fa-bars');
     } else {
         navWrapperHidden.style.display = "flex";
