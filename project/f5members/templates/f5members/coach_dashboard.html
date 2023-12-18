@@ -8,6 +8,15 @@
 
         <div class="control_container">
             We value your <a href="{% url 'index:contact_support' %}">feedback</a>, what would you like to see here?
+
+            <div class="control_actions">
+                <h4>Object Manager</h4>
+                <div class="control_list">
+                    <a class="disabled" href="{% url 'members:manage_users' %}">Add a Team</a>
+                    <a class="disabled" href="{% url 'members:manage_users' %}">Player Recruiting</a>
+                </div>
+            </div>
+
         </div>
     </div>
 </div>

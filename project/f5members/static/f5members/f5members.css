@@ -15,6 +15,13 @@
         color: white;
         background: darkred;
     }
+
+    .disabled {
+        opacity: .5;
+        background: rgb(118, 0, 0);
+        pointer-events: none;
+        cursor: none;
+    }
 }
 
 #id_user_type {
