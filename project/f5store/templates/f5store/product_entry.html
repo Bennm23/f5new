@@ -3,6 +3,7 @@
 {% block loadcss %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'f5store/f5store.css' %}">
+    <link rel="stylesheet" href="{% static 'project/forms.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -11,14 +12,16 @@
 
 {% block content %}
 <div class="section">
-    <div class="product_form_wrapper">
-        <h2>Create Product</h2>
-        <form method="post" action="{% url 'store:create_product' %}">
-            {% csrf_token %}
-            {{ form.as_p }}
-            {{ form.media }}
-            <button type="submit">Create Product</button>
-        </form>
+    <div class="in_margins_60">
+        <div class="blog_form_wrapper">
+            <h2>Create Product</h2>
+            <form method="post" action="{% url 'blogs:create_blog' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {{ form.media }}
+                <button class="submit" type="submit">Add Product</button>
+            </form>
+        </div>
     </div>
 </div>
 {% endblock %}
