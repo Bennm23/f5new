@@ -5,12 +5,8 @@ function toggleMenu() {
     // Check the current state and toggle it
     if (navWrapperHidden.classList.contains('show')) {
         navWrapperHidden.classList.remove('show');
-        setTimeout(function() {
-            navWrapperHidden.style.display = "none";
-        }, 10); // Match the timeout to your transition duration
         togglerButton.classList.replace('fa-times', 'fa-bars');
     } else {
-        navWrapperHidden.style.display = "flex";
         setTimeout(function() {
             navWrapperHidden.classList.add('show');
         }, 10);
@@ -23,7 +19,6 @@ function setMenuInitialState() {
     var togglerButton = document.querySelector('.nav_toggler i');
 
     // Initially hide the menu
-    navWrapperHidden.style.display = "none";
     navWrapperHidden.classList.remove('show');
     togglerButton.classList.add('fa-bars');
 }

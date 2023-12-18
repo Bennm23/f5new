@@ -6,17 +6,18 @@
 }
 
 .nav_wrapper_hidden {
+    position: absolute;
     height: 100%;
+    width: 50%;
     background: darkred;
     color: white;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.5s ease;
+    display: flex;
+    transform: translateX(-100%);
+    transition: transform 0.5s ease;
 }
 
 .nav_wrapper_hidden.show {
-    display: flex;
-    opacity: 1;
+    transform: translateX(0);
 }
 
 .nav_group {
