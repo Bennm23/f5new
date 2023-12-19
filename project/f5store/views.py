@@ -43,7 +43,7 @@ def get_stripe_products(request):
         # Pass the products data to the template
         return render(request, 'f5store/products_home.html', {'products': products})
     except stripe.error.StripeError as e:
-        return render(request, 'members:error', {'message': str(e)})
+        return render(request, 'f5members/error.html', {'message': str(e)})
     
 def get_stripe_product_detail(request, product_id):
     stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -51,7 +51,7 @@ def get_stripe_product_detail(request, product_id):
         product = stripe.Product.retrieve(product_id)
         return render(request, 'f5store/detail_product.html', {'product': product})
     except stripe.error.StripeError as e:
-        return render(request, 'members:error', {'message': str(e)})
+        return render(request, 'f5members/error.html', {'message': str(e)})
 
 def create(request):
     form = None
