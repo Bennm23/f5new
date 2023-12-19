@@ -3,7 +3,7 @@
 {% block loadcss %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'f5index/f5index.css' %}">
-    <link rel="stylesheet" href="{% static 'project/blogs.css' %}">
+    <link rel="stylesheet" href="{% static 'f5blogs/blogs.css' %}">
     <link rel="stylesheet" href="{% static 'project/products.css' %}">
     <link rel="stylesheet" href="{% static 'project/matches.css' %}">
 {% endblock %}
@@ -26,79 +26,27 @@ Home
         </div>
     </div>
 </div>
-<div class="section">
-    <div class="in_margins_60">
-        <h1 class="section_title">New matchups</h1> 
-
-        <div class="matches_container">
-            {% for match in matches %}
-            <div class="match_card">
-                <div class="team">
-                    <div class="crest_name_group">
-                        <div class="team_crest">
-                            <img src="https://i.imgur.com/Q5NK3xO.png" />
-                        </div>
-                        <p class="team_name">{{match.home_team.team_name}}</p>
-                    </div>
-                    <p class="team_score">20</p>
-                </div>
-                <div class="team">
-                    <div class="crest_name_group">
-                        <div class="team_crest">
-                            <img src="https://i.imgur.com/Q5NK3xO.png" />
-                        </div>
-                        <p class="team_name">{{match.away_team.team_name}}</p>
-                    </div>
-                    <p class="team_score">15</p>
-                </div>
-                <div class="date_time_group">
-                    <p class="match_time">{{ match.match_date|date:"m.d.Y" }}</p>
-                    <p class="match_date">{{ match.match_date|time }}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        
+<div class="in_margins_60">
+    <div class="fact_of_the_day">
+        <p class="dismiss_button">X</p>
+        <p class="fact_title">Daily Rugby Fact</p>
+        <p class="fact_message">The Rugby World Cup, first held in 1987, is a men's rugby union tournament contested every four years between the top international teams. The tournament was first won by New Zealand, who defeated France 29-9 in the final.</p>
     </div>
 </div>
 <div class="section">
     <div class="in_margins_60">
-        <h1 class="section_title">Quick news</h1> 
-
-        <div class="blog_container">
-            {% for blog in blogs %}
-            <div class="blog_card">
-                <div class="blog_thumbnail" style="background-image: url('{{ blog.thumbnail }}');"></div>
-                <h3 class="blog_title">{{ blog.title }}</h3>
-                <p class="blog_tag"><a class="blog_link" href="{% url 'blogs:home' %}?category={{ blog.tags.first.name }}#blog_search">{{ blog.tags.first }}</a></p>
-                <p class="blog_date">{{ blog.create_date|date:"m.d.Y" }}</p>
-                <p class="blog_description">{{ blog.content|safe|truncatewords:20 }}</p>
-                <p class="blog_read"><a class="blog_link" href="{% url 'blogs:detail' blog.id %}">Read</a></p>
-            </div>
-            {% endfor %}
-        </div>
-        
+        <h1 class="section_title">Welcome</h1>
+        <p>Our rugby platform is one of a kind. We created it especially for the North American Rugby Community. Don't wait to leave your mark on rugby history, interact on the platform and make a difference in the rugby world today. Visit our members page to find out where you fit in, or read more about what we do down below.</p>
     </div>
 </div>
 
 <div class="section">
     <div class="in_margins_60">
-        <h1 class="section_title">Selling now</h1> 
-
-        <div class="product_container">
-            {% for product in products %}
-            <div class="product_card">
-                <h4 class="product_name">{{ product.name }}<h4>
-                <div class="product_thumbnail" style="background-image: url('{{ product.thumbnail }}');"></div>
-                <p class="product_tag"><a class="product_link" href="{% url 'store:home' %}?category={{ product.categories.first.name }}#product_search">{{ product.categories.first }}</a></p>
-                <p class="product_price">${{ product.price|floatformat:2 }}</p>
-                <p class="product_view"><a class="product_link" href="{% url 'store:product_detail' product.id %}">View</a></p>
-            </div>
-            {% endfor %}
-        </div>
-        
+        <h1 class="section_title">Rugby Talk</h1>
+        <p>We've talked to a few people to gain some insight on the true state of American Rugby, we figured you would want to listen in on what they had to say.</p>
     </div>
 </div>
+
 {% endblock %}
 
 

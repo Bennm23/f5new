@@ -38,11 +38,12 @@ def get_stripe_products(request):
     stripe.api_key = settings.STRIPE_SECRET_KEY
 
     try:
-        products = stripe.Product.list()
+        products = stripe.Product.list(active=True)
 
         # Pass the products data to the template
         return render(request, 'f5store/products_home.html', {'products': products})
     except stripe.error.StripeError as e:
+        print(str(e))
         return render(request, 'f5members/error.html', {'message': str(e)})
     
 def get_stripe_product_detail(request, product_id):

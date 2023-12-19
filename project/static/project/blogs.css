@@ -1,68 +1,63 @@
 .blog_container {
-    margin-top: 1rem;
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 1rem;
-    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 20px;
 }
 
 .blog_card {
-    padding: 1rem; /* spacing inside the card */
-    margin-bottom: 1rem; /* spacing between cards */
-    position: relative; /* for absolute positioning of elements inside */
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
-}
-
-.blog_link {
-    color: gray;
-    text-decoration: none;
-    text-decoration: underline;
-}
-
-.blog_tag {
-    margin-top: 0;
-    .blog_link {
-        background-color: rgba(144, 144, 144, 0.227);
-        text-decoration: none;
-        border-radius: 20px;
-        padding: .25rem .75rem;
-    }
-}
-
-.blog_read {
-    margin-top: 0;
-    text-align: right;
-    .blog_link {
-        color: white;
-        background: darkred;
-        padding: .25rem .75rem;
-    }
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .blog_thumbnail {
+    width: 100%;
     height: 200px;
-    background-size: cover; 
+    background-size: cover;
     background-position: center;
 }
 
-.blog_thumbnail img {
-    width: 100%; /* full width of the card */
-    height: auto; /* maintain aspect ratio */
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
-}
-
 .blog_title {
-    margin-top: 8px; /* space above title */
-    color: #333; /* title text color */
+    font-size: 1.2em;
+    margin: 15px;
 }
 
-.blog_description {
-    color: #666; /* description text color */
-    margin-top: 8px; /* space above description */
+.blog_tag {
+    font-size: 0.9em;
+    margin: 0 15px;
+    color: #666;
 }
 
 .blog_date {
-    color: #3c3c3c; /* date text color */
-    margin-top: 8px; /* space above date */
-    font-size: 0.8em; /* smaller font size for date */
+    font-size: 0.8em;
+    margin: 5px 15px;
+    color: #999;
+}
+
+.blog_description {
+    padding: 0 15px 15px;
+    border-bottom: 1px solid #e1e1e1;
+}
+
+.blog_read {
+    margin: 15px;
+    text-align: right;
+}
+
+.blog_link {
+    text-decoration: none;
+    color: black;
+    transition: color 0.3s ease;
+}
+
+.blog_link:hover {
+    color: black;
+}
+
+@media (max-width: 768px) {
+    .blog_container {
+        grid-template-columns: 1fr;
+    }
 }

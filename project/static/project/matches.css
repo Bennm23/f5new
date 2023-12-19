@@ -1,69 +1,51 @@
 .matches_container {
-    margin-top: 1rem;
     display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    flex-wrap: wrap;
-}
-
-.team_name {
-    text-transform: uppercase;
-    font-size: .8rem;
-    font-weight: 400;
-    padding-right: 1rem;
-}
-
-.team {
-    display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    
-    .crest_name_group {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-    }
-}
-
-.team_crest {
-    height: 40px;
-    width: 40px;
-    overflow: hidden;
-    padding-right: 1rem;
-
-    img {
-        width: 100%;
-    }
 }
 
 .match_card {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
-.team_score {
+.team_group {
+    display: flex;
+    align-items: center;
+}
+
+.team {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 15px;
+}
+
+.team_crest {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 5px;
+}
+
+.team_name, .team_score {
+    margin: 0;
+}
+
+.versus {
+    font-size: 20px;
     font-weight: bold;
-    font-style: italic;
 }
 
 .date_time_group {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    
-    .match_date {
-        color: #3c3c3c; /* date text color */
-        font-size: .8rem;
-        margin: 0;
-    }
+    margin-top: 10px;
+    text-align: center;
+}
 
-    .match_time {
-        color: #3c3c3c; /* date text color */
-        font-size: .8rem;
-        margin: 0;
-    }
+.match_date, .match_time {
+    margin: 0;
 }

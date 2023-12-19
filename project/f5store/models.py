@@ -21,9 +21,9 @@ class Product(models.Model):
     thumbnail = models.CharField(max_length=50, default="https://i.imgur.com/pcq1IAz.jpeg")
     description = RichTextField(blank=True, null=True)
     quantity = models.PositiveIntegerField(default=0)
-    materials = models.ManyToManyField(Material, null=True)
+    materials = models.ManyToManyField(Material)
     price = models.DecimalField(max_digits=10, decimal_places=2)
-    categories = models.ManyToManyField(Category, null=True)
+    categories = models.ManyToManyField(Category)
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):

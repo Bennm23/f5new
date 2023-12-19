@@ -19,6 +19,7 @@ def index(request):
     
     return render(request, "f5index/index.html", context)
 
+
 def contact_support(request):
     if request.method == 'POST':
         form = SupportSubmissionForm(request.POST)
