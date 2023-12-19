@@ -13,7 +13,7 @@ def get_rugby_fact():
         # Updated API call for OpenAI using Completion.create
         response = openai.completions.create(
             model="text-davinci-003",
-            prompt="Tell me an interesting fact about rugby.",
+            prompt="Tell me an interesting fact about rugby or about a rugby player's statistics, or the rugby world cup.",
             max_tokens=60
         )
 
