@@ -33,7 +33,7 @@
     margin: 0;
     text-align: right;
     .product_link {
-        background-color: darkblue;
+        background-color: darkred;
         padding: .25rem .75rem;
         color: #ffffff;
     }
@@ -41,6 +41,7 @@
 
 .product_name {
     margin-top: 8px; /* space above title */
+    font-weight: 400;
 }
 
 .product_price {
