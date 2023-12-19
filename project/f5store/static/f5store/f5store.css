@@ -1,0 +1,9 @@
+.product_detail_wrapper {
+    padding-top: 1rem;
+}
+
+.thumbnail_wrapper {
+    .thumbnail {
+        width: 100%;
+    }
+}

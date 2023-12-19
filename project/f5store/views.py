@@ -5,6 +5,9 @@ from django.urls import reverse
 from .forms import ProductForm, ProductSearchForm
 from .models import Product, Category, Material
 
+import stripe
+from django.conf import settings 
+
 def index(request):
     # Fetch the most recent three products for the 'recent_products' context
     recent_products = Product.objects.all().order_by('-id')[:3]
@@ -30,6 +33,25 @@ def index(request):
         'selected_category': category_filter,
     }
     return render(request, 'f5store/products_home.html', context)
+
+def get_stripe_products(request):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+
+    try:
+        products = stripe.Product.list()
+
+        # Pass the products data to the template
+        return render(request, 'f5store/products_home.html', {'products': products})
+    except stripe.error.StripeError as e:
+        return render(request, 'members:error', {'message': str(e)})
+    
+def get_stripe_product_detail(request, product_id):
+    stripe.api_key = settings.STRIPE_SECRET_KEY
+    try:
+        product = stripe.Product.retrieve(product_id)
+        return render(request, 'f5store/detail_product.html', {'product': product})
+    except stripe.error.StripeError as e:
+        return render(request, 'members:error', {'message': str(e)})
 
 def create(request):
     form = None

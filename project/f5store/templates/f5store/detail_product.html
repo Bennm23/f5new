@@ -3,6 +3,7 @@
 {% block loadcss %}
   {% load static %}
   <link rel="stylesheet" href="{% static 'f5store/f5store.css' %}">
+
 {% endblock %}
 
 {% block title %}
@@ -10,6 +11,12 @@
 {% endblock %}
 
 {% block content %}
+<div class="section">
+    <div class="in_margins_60">
+      <h2 class="section_title">{{ product.name }}</h2>
+      <div class="img_wrapper"><img class="product_image" src="{{ product.thumbnail }}" alt="product_image"></div>
+    </div>
+</div>
 <div class="section">
     <div class="product_detail">
         <h1>{{ product.name }}</h1>

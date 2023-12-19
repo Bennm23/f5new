@@ -17,6 +17,7 @@
     justify-content: center;
     margin-top: 1rem;
     overflow: auto;
+    flex-direction: column;
 }
 
 .authform p label {
