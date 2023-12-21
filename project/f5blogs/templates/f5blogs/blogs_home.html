@@ -54,9 +54,9 @@ Blogs
         </div>
         
         <ul class="blog_list">
-        {% for blog in blogs %}
-           <li>{{ blog.title }}</li> 
-        {% endfor %}
+            {% for blog in blogs %}
+                <li class="blog_list_item"><a class="redlink" href="{% url 'blogs:detail' blog.id %}">{{ blog.title }}</a></li>
+            {% endfor %}
         </ul>
 
     </div>
