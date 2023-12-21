@@ -1,3 +1,14 @@
 img {
     height: 50px;
 }
+
+.blog_action {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+}
+
+.redlink {
+    color: darkred;
+}

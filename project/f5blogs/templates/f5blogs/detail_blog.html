@@ -39,11 +39,12 @@ Blog Detail
         <div class="blog_image">
             <img src="{{blog.thumbnail}}" />
         </div>
+        
         {% if user == blog.author %}
         Blog Controls
         <div class="blog_actions">
-            <div class="edit_action"><a class="blog_link" href="{% url 'blogs:edit' blog.id %}">Edit blog</a></div>
-            <div class="delete_action"><a class="blog_link" onclick="showPopupContent()">Delete blog</a></div>
+            <div class="edit_action"><a class="redlink" href="{% url 'blogs:edit' blog.id %}">Edit blog</a></div>
+            <div class="delete_action"><a class="redlink" onclick="showPopupContent()">Delete blog</a></div>
         </div>
         {% endif %}
     </div>
