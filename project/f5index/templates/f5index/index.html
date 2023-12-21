@@ -3,9 +3,6 @@
 {% block loadcss %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'f5index/f5index.css' %}">
-    <link rel="stylesheet" href="{% static 'f5blogs/blogs.css' %}">
-    <link rel="stylesheet" href="{% static 'project/products.css' %}">
-    <link rel="stylesheet" href="{% static 'project/matches.css' %}">
 {% endblock %}
 
 {% block loadjs %}
@@ -36,18 +33,32 @@ Home
 <div class="section">
     <div class="in_margins_60">
         <h1 class="section_title">Welcome</h1>
-        <p>Our rugby platform is one of a kind, created especially for the North American Rugby Community. Interact on the platform and make a difference in the rugby world today. Visit our <a class="redlink" href="{% url 'members:home' %}">members</a> page to find out where you fit in, or read more about what we do down below.</p>
+        <p>Our rugby platform is one of a kind, created especially for the North American Rugby Community. Interact with the platform and make a difference in the rugby world today. Visit our <a class="redlink" href="{% url 'members:home' %}">members</a> page to find out where you fit in, or read more about what we do down below.</p>
     </div>
 </div>
 
 <div class="section">
     <div class="in_margins_60">
-        <h1 class="section_title">Rugby on the ritz</h1>
-        <p>Seeking a deeper understanding of American Rugby's current landscape, we engaged in conversations with knowledgeable friends. Follow our <a class="redlink" href="https://www.instagram.com/firstfiverugby/">socials</a> to find out who is next.</p>
-        <p><a class="redlink" href="{% url 'index:contact_support' %}">Suggest a person of interest.</a></p>
+        <h1 class="section_title">Quick news</h1>
+        <p>We have carefully curated a list of relevant summaries from the current month. Our platform automatically finds the best rugby news, and lists it here so you never have to go looking.</p>
+        <p><a class="redlink" href="{% url 'index:contact_support' %}">Suggest topic of interest.</a></p>
     </div>
 </div>
 
+<div class="section">
+    <div class="in_margins_60">
+        <h1 class="section_title">Digital jersey archives</h1>
+        <p>We house the only online <a class="redlink" href="{% url 'store:home' %}">repository</a> of vintage rugby jerseys. Each with it's very own story to tell from its years of use on the pitch and in the pub. List your very own jersey and track it's ownership through the years.</p>
+    </div>
+</div>
+
+<div class="section">
+    <div class="in_margins_60">
+        <h1 class="section_title">Rugby on the Ritz</h1>
+        <p>Seeking a deeper understanding of American Rugby's current landscape, we engaged in conversations with rugby friends from all over. Follow our <a class="redlink" href="https://www.instagram.com/firstfiverugby/">socials</a> to find out who is next, or tag friend down below.</p>
+        <p><a class="redlink" href="{% url 'index:contact_support' %}">Suggest person of interest.</a></p>
+    </div>
+</div>
 {% endblock %}
 
 

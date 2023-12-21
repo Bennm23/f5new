@@ -23,10 +23,6 @@
     padding-bottom: 3rem
 }
 
-.jumbo_video {
-    width: 70%;
-}
-
 .fact_of_the_day {
     margin-top: 3rem;
     font-size: .9em;
@@ -57,7 +53,5 @@
 }
 
 @media only screen and (max-width: 680px) {
-    .jumbo_video {
-        width: 100%;
-    }
+
 }

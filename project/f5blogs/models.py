@@ -22,6 +22,9 @@ class BlogPost(models.Model):
     create_date = models.DateTimeField('date created', auto_now_add=True)
     content = RichTextField(blank=True, null=True)
     author = models.ForeignKey('f5members.Member', on_delete=models.CASCADE)
+    draft = models.BooleanField(default=True)
+    archived = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.title
+
