@@ -9,15 +9,13 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .services import get_rugby_fact
 
 def index(request):
-    blogs = BlogPost.objects.all()[:1]
-    products = Product.objects.all()[:3]
-    matches = Match.objects.all()
+    blogs = BlogPost.objects.all()[:5]
+    products = Product.objects.all()[:5]
     fact = get_rugby_fact()
 
     context = {
         'blogs': blogs,
-        'products': products[:3],
-        'matches': matches,
+        'products': products,
         'fact': fact,
     }
     
