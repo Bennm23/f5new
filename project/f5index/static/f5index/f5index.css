@@ -57,8 +57,8 @@
     margin: 0;
     padding: 0;
     display: flex;
-    flex-wrap: wrap;
     gap: 1rem;
+    overflow: hidden;
 
     .blog_list_item {
         padding: 1rem;
