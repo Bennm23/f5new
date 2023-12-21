@@ -48,7 +48,7 @@ Blog Detail
         </div>
         {% endif %}
         <p>
-            {{ blog.content }}
+            {{ blog.content|safe }}
         </p>
     </div>
 </div>
