@@ -45,7 +45,7 @@ Home
         <ul class="blog_list">
             {% if blogs %}
             {% for blog in blogs %}
-                <li class="blog_list_item">{{ blog.title }}</li>
+                <li class="blog_list_item"><a href="{% url 'blogs:detail' blog.id %}">{{ blog.title }}</a></li>
             {% endfor %}
             {% endif %}
         </ul>
