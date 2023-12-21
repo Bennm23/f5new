@@ -55,7 +55,7 @@
 .blog_list {
     list-style-type: none;
     margin: 0;
-    padding: 0;
+    padding: 1rem 0;
     display: flex;
     flex-wrap: wrap;
     gap: 1rem;
