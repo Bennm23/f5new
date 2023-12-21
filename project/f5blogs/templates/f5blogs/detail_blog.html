@@ -47,6 +47,9 @@ Blog Detail
             <div class="delete_action"><a class="redlink" onclick="showPopupContent()">Delete blog</a></div>
         </div>
         {% endif %}
+        <p>
+            {{ blog.content }}
+        </p>
     </div>
 </div>
 {% endblock %}
