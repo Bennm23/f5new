@@ -40,7 +40,6 @@ Blog Detail
         <h1 class="blog_title">{{ blog.title }}</h1>
         
         {% if show_controls %}
-        <p class="control_label">Control Options</p>
         <div class="control_options">
             <a class="edit_blog" href="{% url 'blogs:edit' blog.id %}">Edit</a>
             <a class="delete_blog" href="{% url 'blogs:delete' blog.id %}">Delete</a>

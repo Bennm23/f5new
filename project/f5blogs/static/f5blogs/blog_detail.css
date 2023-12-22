@@ -31,10 +31,7 @@ p {
     display: flex;
     border: 1px solid black;
     width: fit-content;
-}
-
-.control_label {
-    margin: .25rem 0;
+    padding: .5rem 0;
 }
 
 .edit_blog {
