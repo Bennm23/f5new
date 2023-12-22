@@ -68,6 +68,18 @@
     }
 }
 
+.jersey_wall {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+    grid-gap: 0;
+    
+    img {
+        width: 100%;
+        display: block; /* Remove extra space below images */
+        height: auto; /* Maintain aspect ratio */
+    }
+}
+
 @media only screen and (max-width: 680px) {
     .blog_list_item {
         width: 100%;
