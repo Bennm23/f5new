@@ -26,6 +26,33 @@ Store
 
 <div id="product_search" class="section">
     <div class="in_margins_60">
+        
+        <div class="filter_toggler" onclick="toggleFilters()">
+            <i id="filter_button" class="fa-solid fa-filter"></i>
+            View Filters
+        </div>
+
+        <div class="filter_container" data-selected-category="{{ selected_category }}">
+            {% if not selected_category or selected_category == 'all' %}
+            <h2 class="section_title">Results for: All</h2>
+            {% else %}
+            <h2 class="section_title">Results for: {{ selected_category }}</h2>
+            {% endif %}
+            <ul class="filter_list">
+                <li>
+                    <a class="filter_link reset" href="{% url 'store:home' %}#product_search">Reset Filters</a>
+                </li>
+                <li>
+                    <a class="filter_link{% if not selected_category or selected_category == 'all' %} selected{% endif %}" href="?category=all#product_search">All</a>
+                </li>
+                
+                {% for tag in filter_tags %}
+                <li>
+                    <a class="filter_link{% if selected_category == tag.name %} selected{% endif %}" href="?category={{ tag.name }}#product_search">{{ tag.name }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
 
         <div class="product_container">
             {% for product in products %}
