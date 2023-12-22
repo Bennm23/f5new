@@ -54,9 +54,13 @@ def create(request):
 
 def detail(request, blog_id):
     blog = get_object_or_404(BlogPost, pk=blog_id)
+    is_editor = request.user.groups.filter(name='Editor').exists()
+    is_staff = request.user.is_staff
+
 
     context = {
         'blog' : blog,
+        'show_controls': is_editor or is_staff,
     }
     return render(request, 'f5blogs/detail_blog.html', context)
 

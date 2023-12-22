@@ -76,6 +76,7 @@ def detail(request, product_id):
 
     context = {
         'product': product,
+        'show_controls': is_editor or is_staff,
     }
     return render(request, 'f5store/detail_product.html', context)
 

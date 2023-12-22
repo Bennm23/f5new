@@ -37,12 +37,10 @@ Blog Detail
     <div class="in_margins_60">
         <h1 class="section_title">{{ blog.title }}</h1>
         
-        {% if user == blog.author %}
-        Blog Controls
-        <div class="blog_actions">
-            <div class="edit_action"><a class="redlink" href="{% url 'blogs:edit' blog.id %}">Edit blog</a></div>
-            <div class="delete_action"><a class="redlink" onclick="showPopupContent()">Delete blog</a></div>
-        </div>
+        {% if show_controls %}
+        <p>Product controls</p>
+        <p>Edit</p>
+        <p>Delete</p>
         {% endif %}
         <p>
             {{ blog.content|safe }}
