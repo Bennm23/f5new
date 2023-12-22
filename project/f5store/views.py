@@ -71,7 +71,7 @@ def detail(request, product_id):
         'product': product,
         'show_controls': is_editor or is_staff,
     }
-    return render(request, 'f5store/detail_product.html', context)
+    return render(request, 'f5store/product_detail.html', context)
 
 def edit(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
