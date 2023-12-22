@@ -28,6 +28,8 @@
 
 .filter_link {
     display: block;
+    padding: .25rem;
+    margin: 0rem .5rem .5rem 0;
     background-color: rgba(144, 144, 144, 0.227);
     text-decoration: none;
     border-radius: 20px;
