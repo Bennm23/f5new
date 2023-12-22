@@ -5,7 +5,7 @@ from django.urls import reverse
 from .forms import ProductForm, ProductSearchForm
 from .models import Product, Category, Material
 
-from services import create_stripe_product
+from .services import create_stripe_product
 
 def index(request):
     # Fetch the most recent three products for the 'recent_products' context

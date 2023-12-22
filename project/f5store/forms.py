@@ -24,4 +24,8 @@ class ProductForm(ModelForm):
             'categories': CheckboxSelectMultiple(),
 			'materials': CheckboxSelectMultiple(),
         }
-		fields = ['name', 'thumbnail', 'quantity', 'description', 'price', 'categories', 'materials']
+
+		help_texts = {
+			'stripe_product_desc': 'Short description for checkout page!',
+		}
+		fields = ['name', 'thumbnail', 'quantity', 'stripe_product_desc','description', 'price', 'categories', 'materials']
