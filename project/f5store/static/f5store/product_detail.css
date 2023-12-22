@@ -1,0 +1,23 @@
+.product_name {
+    text-align: center;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.product_thumbnail {
+    width: 400px;
+    margin: 0 auto;
+}
+
+.thumbnail_image {
+    width: 100%;
+}
+
+.product_description {
+    text-align: center;
+}
+
+@media only screen and (max-width: 768px) {
+    .product_thumbnail {
+    }
+}
