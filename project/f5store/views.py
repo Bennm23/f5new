@@ -73,7 +73,9 @@ def create(request):
 
 def detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
-
+    is_editor = request.user.groups.filter(name='Editor').exists()
+    is_staff = request.user.is_staff
+    
     context = {
         'product': product,
         'show_controls': is_editor or is_staff,
