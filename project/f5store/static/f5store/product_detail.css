@@ -1,7 +1,18 @@
+
+.product_meta_card {
+    border: 1px solid black;
+    width: 60%;
+    margin: 0 auto;
+}
+
 .product_name {
     text-align: center;
     font-weight: 400;
     text-transform: capitalize;
+}
+
+.product_description {
+    padding: .5rem;
 }
 
 .product_thumbnail {
@@ -13,8 +24,33 @@
     width: 100%;
 }
 
+.action_links {
+    display: flex;
+    width: 100%;
+}
+
+.purchase_link {
+    padding: 1rem;
+    color: white;
+    background: darkred;
+    width: 50%;
+    text-decoration: none;
+}
+
+.more_info_link {
+    text-decoration: none;
+    width: 50%;
+    padding: 1rem;
+    color: white;
+    background: rgb(103, 103, 103);
+}
+
 @media only screen and (max-width: 768px) {
     .product_thumbnail {
         width: 70%;
+    }
+
+    .product_meta_card {
+        width: 100%;
     }
 }
