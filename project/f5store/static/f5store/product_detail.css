@@ -6,17 +6,15 @@
 
 .product_thumbnail {
     margin: 1rem auto;
+    width: 50%;
 }
 
 .thumbnail_image {
     width: 100%;
 }
 
-.product_description {
-    text-align: center;
-}
-
 @media only screen and (max-width: 768px) {
     .product_thumbnail {
+        width: 70%;
     }
 }

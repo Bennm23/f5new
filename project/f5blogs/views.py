@@ -62,7 +62,7 @@ def detail(request, blog_id):
         'blog' : blog,
         'show_controls': is_editor or is_staff,
     }
-    return render(request, 'f5blogs/detail_blog.html', context)
+    return render(request, 'f5blogs/blog_detail.html', context)
 
 @login_required(login_url='members:login_member')
 def edit(request, blog_id):
