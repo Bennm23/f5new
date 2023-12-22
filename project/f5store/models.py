@@ -1,14 +1,6 @@
 from django.db import models
 from ckeditor.fields import RichTextField
 
-class LocalStripeProduct(models.Model):
-    product_name = models.CharField(max_length=50)
-    product_id = models.CharField(max_length=255, unique=True)
-    description = RichTextField(blank=True, null=True)
-
-    def __str__(self):
-        return self.product_id
-    
 class Material(models.Model):
     name = models.CharField(max_length=50, default='none')
     percentage = models.PositiveIntegerField(default=0)
@@ -24,6 +16,7 @@ class Category(models.Model):
         return self.name
 
 class Product(models.Model):
+    stripe_product_id = models.CharField(max_length=255, blank=True, null=True)
     name = models.CharField(max_length=255)
     thumbnail = models.CharField(max_length=50, default="https://i.imgur.com/pcq1IAz.jpeg")
     description = RichTextField(blank=True, null=True)
