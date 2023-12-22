@@ -5,8 +5,7 @@ from django.urls import reverse
 from .forms import ProductForm, ProductSearchForm
 from .models import Product, Category, Material
 
-import stripe
-from django.conf import settings 
+from services import create_stripe_product
 
 def index(request):
     # Fetch the most recent three products for the 'recent_products' context
@@ -40,8 +39,20 @@ def create(request):
         form = ProductForm(request.POST)
 
         if form.is_valid():
-            form.save()
-            return HttpResponseRedirect(reverse('store:home'))
+            # Save the product locally first, but don't commit to the database yet
+            product = form.save(commit=False)
+
+            # Create the product in Stripe and get the Stripe product ID
+            stripe_product_id = create_stripe_product(product.name, product.stripe_product_desc)
+
+            if stripe_product_id:
+                # Update the local product with Stripe product ID and save
+                product.stripe_product_id = stripe_product_id
+                product.save()
+                return HttpResponseRedirect(reverse('store:home'))
+            else:
+                # Handle the case where Stripe product creation failed
+                pass
     else:
         form = ProductForm()
 
