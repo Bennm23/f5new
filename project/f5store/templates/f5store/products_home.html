@@ -60,7 +60,7 @@ Store
                 <h4 class="product_name">{{ product.name }}<h4>
                 <div class="product_thumbnail" style="background-image: url('{{ product.images.0 }}');"></div>
                 <p class="product_tag"><a class="product_link" href="{% url 'store:home' %}?category={{ product.categories.first.name }}#product_search">{{ product.categories.first }}</a></p>
-                <p class="product_price">$--.--</p>
+                <p class="product_price">${{ product.price }}</p>
                 <p class="product_view"><a class="product_link" href="{% url 'store:product_detail' product.id %}">View</a></p>
             </div>
             {% endfor %}
