@@ -10,11 +10,11 @@ class LocalStripeProduct(models.Model):
         return self.product_id
     
 class Material(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, default='none')
     percentage = models.PositiveIntegerField(default=0)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} ({self.percentage}%)"
 
 class Category(models.Model):
     name = models.CharField(max_length=50)
