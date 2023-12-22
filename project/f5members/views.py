@@ -21,6 +21,16 @@ def index(request):
     return render(request, 'f5members/members_home.html', context)
 
 @group_access_only("Staff", view_to_return="members:error", message="Tried to access a Staff page. You are not a Staff.")
+def tools_f5crawler(request):
+    url = 'https://testrugbysite.com'
+    context = {
+        'url': url,
+        
+    }
+
+    return render(request, 'f5members/admintools/f5crawler.html', context)
+
+@group_access_only("Staff", view_to_return="members:error", message="Tried to access a Staff page. You are not a Staff.")
 def manage_users(request):
     members = Member.objects.all()
 
@@ -28,7 +38,7 @@ def manage_users(request):
         'users' : members,
     }
     
-    return render(request, 'f5members/manage_users.html', context)
+    return render(request, 'f5members/admintools/manage_users.html', context)
 
 @login_required(login_url='members:login_member')
 def dashboard(request):

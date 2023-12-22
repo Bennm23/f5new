@@ -5,6 +5,7 @@ from . import views
 app_name='members'
 urlpatterns = [
     path('', views.index, name='home'),
+    path('admintools/f5crawler/', views.tools_f5crawler, name='tools_f5crawler'),
     path('users/', views.manage_users, name='manage_users'),
     path('signup/', views.create_member, name='create_member'),
     path('dashboard/', views.dashboard, name='dashboard'),
