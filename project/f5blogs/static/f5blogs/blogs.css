@@ -1,0 +1,21 @@
+.blog_list {
+    list-style-type: none;
+    margin: 0;
+    padding: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    overflow: hidden;
+
+    .blog_list_item {
+        padding: 1rem;
+        border: 1px solid rgba(0, 0, 0, 0.401);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.309);
+    }
+}
+
+@media only screen and (max-width: 680px) {
+    .blog_list_item {
+        width: 100%;
+    }
+}
