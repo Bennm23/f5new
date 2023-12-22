@@ -14,7 +14,7 @@
     transform: translateX(-100%);
     transition: transform 0.1s ease-in;
     z-index: 10;
-    text-transform: uppercase;
+    padding: 1rem;
 }
 
 .nav_wrapper_hidden.show {
@@ -29,13 +29,7 @@
     padding: 2rem 0;
 
     .section_title {
-        text-transform: uppercase;
-        text-align: center;
-        padding: .5rem;
-        background: black;
-        font-size: 1.4rem;
         letter-spacing: .25rem;
-        border: 1px solid white;
     }
 }
 
@@ -46,8 +40,16 @@
     flex-direction: column;
     gap: 1rem;
     list-style-type: none;
-    text-align: center;
     font-size: 1.1em;
+
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+    a:hover {
+        color: rgb(91, 0, 0);
+    }
 }
 
 .nav_wrapper_hidden h1 {

@@ -13,19 +13,9 @@
 {% block content %}
 <div class="section">
     <div class="in_margins_60">
-      <div class="product_detail_wrapper">
-        {% if show_controls %}
-        <p>Product controls</p>
-        <p>Edit</p>
-        <p>Delete</p>
-        {% endif %}
-        <h2 class="section_title">{{ product.name }}</h2>
-
-        <div class="image_and_description">
-          <div class="image_wrapper"><img class="image" src="{{ product.thumbnail }}" alt="product_image"></div>
+      <h1 class="product_name">{{ product.name }}</h1> 
           <p class="product_description">{{ product.description|safe }}</p>
         </div>
-      </div>
     </div>
 </div>
 {% endblock %}
