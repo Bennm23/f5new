@@ -34,26 +34,6 @@ def index(request):
     }
     return render(request, 'f5store/products_home.html', context)
 
-def get_stripe_products(request):
-    stripe.api_key = settings.STRIPE_SECRET_KEY
-
-    try:
-        products = stripe.Product.list(active=True)
-
-        # Pass the products data to the template
-        return render(request, 'f5store/products_home.html', {'products': products})
-    except stripe.error.StripeError as e:
-        print(str(e))
-        return render(request, 'f5members/error.html', {'message': str(e)})
-    
-def get_stripe_product_detail(request, product_id):
-    stripe.api_key = settings.STRIPE_SECRET_KEY
-    try:
-        product = stripe.Product.retrieve(product_id)
-        return render(request, 'f5store/detail_product.html', {'product': product})
-    except stripe.error.StripeError as e:
-        return render(request, 'f5members/error.html', {'message': str(e)})
-
 def create(request):
     form = None
     if request.method == 'POST':
@@ -75,7 +55,7 @@ def detail(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     is_editor = request.user.groups.filter(name='Editor').exists()
     is_staff = request.user.is_staff
-    
+
     context = {
         'product': product,
         'show_controls': is_editor or is_staff,
