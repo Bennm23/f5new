@@ -38,11 +38,17 @@
 }
 
 .more_info_link {
-    text-decoration: none;
+    text-decoration: line-through;
+    pointer-events: none;
     width: 50%;
     padding: 1rem;
     color: white;
     background: rgb(103, 103, 103);
+}
+
+.disabled {
+    color: rgba(46, 45, 45, 0.843);
+    background: rgba(75, 75, 75, 0.757);
 }
 
 @media only screen and (max-width: 768px) {
