@@ -5,8 +5,7 @@
 }
 
 .product_thumbnail {
-    width: 400px;
-    margin: 0 auto;
+    margin: 1rem auto;
 }
 
 .thumbnail_image {
