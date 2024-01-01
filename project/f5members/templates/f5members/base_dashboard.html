@@ -20,6 +20,9 @@ Dashboard / @{{ member.username }}
     </div>
 </div>
 
+<!-- Additional common content can go here -->
+{% block additional_content %}{% endblock %}
+
 <div class="section">
     <div class="in_margins_60">
         <h2 class="section_title">Your Own Dashboard</h2>
@@ -29,9 +32,5 @@ Dashboard / @{{ member.username }}
         </div>
     </div>
 </div>
-
-<!-- Additional common content can go here -->
-{% block additional_content %}{% endblock %}
-
 {% endblock %}
 

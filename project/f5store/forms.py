@@ -1,8 +1,8 @@
 # f5store/forms.py 
 
 from django import forms
-from .models import Product
-from django.forms import ModelForm, widgets
+from .models import Category, Product, Material
+from django.forms import CheckboxSelectMultiple, ModelForm, widgets
 
 class ProductSearchForm(forms.Form):
     search_query = forms.CharField(label='Search', required=False)
@@ -10,6 +10,22 @@ class ProductSearchForm(forms.Form):
     max_price = forms.DecimalField(label='Max Price', required=False)
 
 class ProductForm(ModelForm):
+	categories = forms.ModelMultipleChoiceField(queryset=Category.objects.all(), 
+                                              required=False,
+                                              widget=CheckboxSelectMultiple, 
+                                              blank=True)
+	materials = forms.ModelMultipleChoiceField(queryset=Material.objects.all(),
+											required=False,
+											widget=CheckboxSelectMultiple,
+											blank=True)
 	class Meta:
 		model = Product
-		fields = ['name', 'thumbnail', 'quantity', 'description', 'price', 'categories', 'materials']
+		widgets = {
+            'categories': CheckboxSelectMultiple(),
+			'materials': CheckboxSelectMultiple(),
+        }
+
+		help_texts = {
+			'stripe_product_desc': 'Short description for checkout page!',
+		}
+		fields = ['name', 'thumbnail', 'quantity', 'stripe_product_desc','description', 'price', 'categories', 'materials']

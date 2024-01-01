@@ -16,6 +16,11 @@ Dash / {{ member.username }}
 <div class="service_wrapper">
     <div class="service_jumbo">
         <div class="in_margins_60">
+            {% if member.profile %}
+                <img class="profile_image" src="{{ member.profile.image_link }}" alt="profile_image" />
+            {% else %}
+                <img class="profile_image" src="https://www.place-hold.it/150x150" alt="profile_image" />
+            {% endif %}
             <h1 class="service_title">@{{ member.username }}</h1>
         </div>
     </div>

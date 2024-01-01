@@ -3,9 +3,6 @@
 {% block loadcss %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'f5index/f5index.css' %}">
-    <link rel="stylesheet" href="{% static 'project/blogs.css' %}">
-    <link rel="stylesheet" href="{% static 'project/products.css' %}">
-    <link rel="stylesheet" href="{% static 'project/matches.css' %}">
 {% endblock %}
 
 {% block loadjs %}
@@ -26,77 +23,54 @@ Home
         </div>
     </div>
 </div>
-<div class="section">
-    <div class="in_margins_60">
-        <h1 class="section_title">New matchups</h1> 
-
-        <div class="matches_container">
-            {% for match in matches %}
-            <div class="match_card">
-                <div class="team">
-                    <div class="crest_name_group">
-                        <div class="team_crest">
-                            <img src="https://i.imgur.com/Q5NK3xO.png" />
-                        </div>
-                        <p class="team_name">{{match.home_team.team_name}}</p>
-                    </div>
-                    <p class="team_score">20</p>
-                </div>
-                <div class="team">
-                    <div class="crest_name_group">
-                        <div class="team_crest">
-                            <img src="https://i.imgur.com/Q5NK3xO.png" />
-                        </div>
-                        <p class="team_name">{{match.away_team.team_name}}</p>
-                    </div>
-                    <p class="team_score">15</p>
-                </div>
-                <div class="date_time_group">
-                    <p class="match_time">{{ match.match_date|date:"m.d.Y" }}</p>
-                    <p class="match_date">{{ match.match_date|time }}</p>
-                </div>
-            </div>
-            {% endfor %}
-        </div>
-        
+<div class="in_margins_60">
+    <div class="fact_of_the_day">
+        <p class="dismiss_button">X | Dismiss</p>
+        <p class="fact_title">Daily Message</p>
+        <p class="fact_message">{{ fact }}</p>
     </div>
 </div>
 <div class="section">
     <div class="in_margins_60">
-        <h1 class="section_title">Quick news</h1> 
+        <h1 class="section_title">Welcome</h1>
+        <p>Our rugby platform is one of a kind, created especially for the North American Rugby Community. Interact with the platform and make a difference in the rugby world today. Visit our <a class="redlink" href="{% url 'members:home' %}">members</a> page to find out where you fit in, or read more about what we do down below.</p>
+    </div>
+</div>
 
-        <div class="blog_container">
+<div class="section">
+    <div class="in_margins_60">
+        <h1 class="section_title">Quick News</h1>
+        <p>We have carefully curated a list of relevant summaries from the current month. Our platform automatically finds the best rugby news, and lists it here so you never have to go looking.</p>
+        <p><a class="redlink" href="{% url 'index:contact_support' %}">Suggest topic of interest.</a></p>
+        <ul class="blog_list">
+            {% if blogs %}
             {% for blog in blogs %}
-            <div class="blog_card">
-                <div class="blog_thumbnail" style="background-image: url('{{ blog.thumbnail }}');"></div>
-                <h3 class="blog_title">{{ blog.title }}</h3>
-                <p class="blog_tag"><a class="blog_link" href="{% url 'blogs:home' %}?category={{ blog.tags.first.name }}#blog_search">{{ blog.tags.first }}</a></p>
-                <p class="blog_date">{{ blog.create_date|date:"m.d.Y" }}</p>
-                <p class="blog_description">{{ blog.content|safe|truncatewords:20 }}</p>
-                <p class="blog_read"><a class="blog_link" href="{% url 'blogs:detail' blog.id %}">Read</a></p>
-            </div>
+                <li class="blog_list_item"><a class="redlink" href="{% url 'blogs:detail' blog.id %}">{{ blog.title }}</a></li>
             {% endfor %}
-        </div>
-        
+            {% endif %}
+        </ul>
     </div>
 </div>
 
 <div class="section">
     <div class="in_margins_60">
-        <h1 class="section_title">Selling now</h1> 
-
-        <div class="product_container">
+        <h1 class="section_title">Digital Jersey Archives</h1>
+        <p>We house the only online <a class="redlink" href="{% url 'store:home' %}">collection</a> of vintage rugby jerseys. Each with it's very own story to tell from its years of use on the pitch and in the pub. List your very own jersey and track it's ownership through the years.</p>
+        <div class="jersey_wall">
+            {% if products %}
             {% for product in products %}
-            <div class="product_card">
-                <h4 class="product_name">{{ product.name }}<h4>
-                <div class="product_thumbnail" style="background-image: url('{{ product.thumbnail }}');"></div>
-                <p class="product_tag"><a class="product_link" href="{% url 'store:home' %}?category={{ product.categories.first.name }}#product_search">{{ product.categories.first }}</a></p>
-                <p class="product_price">${{ product.price|floatformat:2 }}</p>
-                <p class="product_view"><a class="product_link" href="{% url 'store:product_detail' product.id %}">View</a></p>
-            </div>
+                <img class="jersey_image" src="{{ product.thumbnail }}" alt="rugby jersey"/>
             {% endfor %}
+            {% endif %}
         </div>
-        
+    </div>
+</div>
+
+<div class="section">
+    <div class="in_margins_60">
+        <h1 class="section_title">Rugby on the Ritz</h1>
+        <p>Seeking a deeper understanding of American Rugby's current landscape, we engaged in conversations with rugby friends from all over. Follow our <a class="redlink" href="https://www.instagram.com/firstfiverugby/">socials</a> to find out who is next, or tag friend down below.</p>
+        <p><a class="redlink" href="{% url 'index:contact_support' %}">Suggest person of interest.</a></p>
     </div>
 </div>
 {% endblock %}

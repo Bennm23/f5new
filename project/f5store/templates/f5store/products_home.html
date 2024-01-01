@@ -3,8 +3,8 @@
 {% block loadcss %}
     {% load static %}
     <link rel="stylesheet" href="{% static 'f5store/f5store.css' %}">
+    <link rel="stylesheet" href="{% static 'f5store/products.css' %}">
     <link rel="stylesheet" href="{% static 'project/filters.css' %}">
-    <link rel="stylesheet" href="{% static 'project/products.css' %}">
 {% endblock %}
 
 {% block loadjs %}
@@ -26,7 +26,7 @@ Store
 
 <div id="product_search" class="section">
     <div class="in_margins_60">
-
+        
         <div class="filter_toggler" onclick="toggleFilters()">
             <i id="filter_button" class="fa-solid fa-filter"></i>
             View Filters
@@ -53,7 +53,6 @@ Store
                 {% endfor %}
             </ul>
         </div>
-        
 
         <div class="product_container">
             {% for product in products %}
@@ -61,7 +60,7 @@ Store
                 <h4 class="product_name">{{ product.name }}<h4>
                 <div class="product_thumbnail" style="background-image: url('{{ product.thumbnail }}');"></div>
                 <p class="product_tag"><a class="product_link" href="{% url 'store:home' %}?category={{ product.categories.first.name }}#product_search">{{ product.categories.first }}</a></p>
-                <p class="product_price">${{ product.price|floatformat:2 }}</p>
+                <p class="product_price">${{ product.price }}</p>
                 <p class="product_view"><a class="product_link" href="{% url 'store:product_detail' product.id %}">View</a></p>
             </div>
             {% endfor %}

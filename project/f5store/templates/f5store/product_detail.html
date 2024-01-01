@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block loadcss %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'f5store/product_detail.css' %}">
+{% endblock %}
+
+{% block title %}
+  Product details
+{% endblock %}
+
+{% block content %}
+<div class="section">
+  <div class="in_margins_60">
+    <h1 class="product_name">{{ product.name }}</h1>
+    <div class="product_thumbnail">
+      <img class="thumbnail_image" src="{{ product.thumbnail }}" />
+    </div> 
+      
+    <div class="product_meta_card">
+      <div class="product_description">
+        {{ product.description|safe }}
+      </div>
+      <div class="action_links">
+        <a class="disabled more_info_link" href="#">More Info</a>
+        <a class="purchase_link" href="#">Purchase</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+{% endblock %}

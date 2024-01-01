@@ -3,6 +3,10 @@
     color: white;
 }
 
+.redlink {
+    color: darkred;
+}
+
 .jumbo_title {
     font-weight: 400;
     text-transform: uppercase;
@@ -19,12 +23,65 @@
     padding-bottom: 3rem
 }
 
-.jumbo_video {
-    width: 70%;
+.fact_of_the_day {
+    margin-top: 3rem;
+    font-size: .9em;
+    color: rgb(95, 95, 95);
+    border: 1px solid lightgray;
+    padding: 1rem;
+
+    .dismiss_button {
+        float: right;
+        position: relative;
+        right: 0;
+        top: 0;
+        margin: 0;
+        color: darkred;
+        cursor: pointer;
+        padding: 2px 4px;
+    }
+
+    .fact_title {
+        color: rgb(35, 35, 35);
+        margin: 0;
+    }
+
+    .fact_message {
+        padding-top: 1rem;
+        margin: 0;
+    }
+}
+
+.blog_list {
+    list-style-type: none;
+    margin: 0;
+    padding: 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    overflow: hidden;
+
+    .blog_list_item {
+        padding: 1rem;
+        border: 1px solid rgba(0, 0, 0, 0.401);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.309);
+    }
+}
+
+.jersey_wall {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(30px, 1fr));
+    grid-gap: 0;
+}
+
+.jersey_image {
+    width: 100%;
+    display: block; /* Remove extra space below images */
+    height: auto; /* Maintain aspect ratio */
 }
 
 @media only screen and (max-width: 680px) {
-    .jumbo_video {
+    .blog_list_item {
         width: 100%;
     }
 }

@@ -40,7 +40,21 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model = Member
         fields = ['email', 'user_type', 'username', 'password1', 'password2', 'captcha']
-        
+
+class AdminCreateUserForm(CreateUserForm):
+    # Remove captcha field for admin user creation
+    def __init__(self, *args, **kwargs):
+        super(AdminCreateUserForm, self).__init__(*args, **kwargs)
+        del self.fields['captcha']
+
+    def save(self, commit=True):
+        # You can add any additional processing here
+        return super(AdminCreateUserForm, self).save(commit=commit)
+
+    class Meta:
+        model = Member
+        # Include the fields you want the admin to fill out
+        fields = ['email', 'groups', 'user_type', 'username', 'password1', 'password2']
 
 class LoginUserForm(AuthenticationForm):
     def __init__(self, *args, **kwargs):
@@ -57,8 +71,7 @@ class LoginUserForm(AuthenticationForm):
         model = Member  # Replace YourUserModel with the actual user model you are using
         fields = ['username', 'password']
 
-
-class EditUserForm(ModelForm):
+class AdminEditUserForm(ModelForm):
     class Meta:
         model = Member
-        fields = ['profile', 'bio',]
+        fields = ['username', 'groups', 'user_type', 'bio', 'xp', 'level', 'verification_code', 'is_verified',]

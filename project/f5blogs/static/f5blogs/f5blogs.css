@@ -1,78 +1,14 @@
-.blog_image {
-    height: 50vh;
-    overflow: hidden;
-    display: flex;
-    align-items: center;
-    margin: 1rem 0;
-    box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+img {
+    height: 50px;
 }
 
-.blog_image img {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    display: block;
-}
-
-.blog_actions {
+.blog_action {
+    padding-top: 1rem;
     display: flex;
     flex-direction: row;
-    margin-top: 8px;
-    margin-bottom: 1rem;
-}
-
-#id_tags {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
     gap: 1rem;
-
-    label {
-        display: flex;
-        flex-direction: row;
-        gap: 0;
-        align-items: center;
-    }
-
-    input {
-        width: auto;
-    }
-
-    input[type="checkbox"] {
-        height: 15px;
-        width: 15px;
-    }
 }
 
-.edit_action {
-    .blog_link {
-        padding: .15rem .45rem;
-        background-color: rgb(98, 98, 98);
-        color: white;
-        text-decoration: none;
-        border-top-left-radius: 20px;
-        border-bottom-left-radius: 20px;
-        box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
-    }
-
-    .blog_link:hover {
-        background-color: black;    
-    }
-}
-
-.delete_action {
-    
-    .blog_link {
-        padding: .15rem .45rem;
-        background: darkred;
-        color: white;
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
-        cursor: pointer;
-        box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
-    }
-
-    .blog_link:hover {
-        background-color: black;    
-    }
+.redlink {
+    color: darkred;
 }

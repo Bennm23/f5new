@@ -1,0 +1,9 @@
+#id_tags div {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#id_tags div label {
+    display: flex;
+    align-items: center;
+}

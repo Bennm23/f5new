@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib import messages
 from f5members.models import Member
 from f5blogs.models import BlogPost
@@ -5,16 +6,17 @@ from f5store.models import Product
 from f5teams.models import Match
 from .forms import SupportSubmissionForm
 from django.shortcuts import get_object_or_404, redirect, render
+from .services import get_rugby_fact
 
 def index(request):
-    blogs = BlogPost.objects.all()[:1]
-    products = Product.objects.all()[:3]
-    matches = Match.objects.all()
+    blogs = BlogPost.objects.all()[:5]
+    products = Product.objects.all()[:5]
+    fact = get_rugby_fact()
 
     context = {
         'blogs': blogs,
-        'products': products[:3],
-        'matches': matches,
+        'products': products,
+        'fact': fact,
     }
     
     return render(request, "f5index/index.html", context)

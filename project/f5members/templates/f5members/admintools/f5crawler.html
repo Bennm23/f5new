@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block loadcss %}
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'f5members/f5members.css' %}">
+    <link rel="stylesheet" href="{% static 'f5members/profiles.css' %}">
+{% endblock %}
+
+{% block title %}
+Manage Users
+{% endblock %}
+
+{% block content %}
+<div class="service_wrapper">
+    <div class="service_jumbo">
+        <div class="in_margins_60">
+            <h1 class="service_title">F5 Crawler</h1>
+        </div>
+    </div>
+</div>
+
+<div class="section">
+  <div class="in_margins_60">
+      <div class="section_title_wrapper">
+          <h2 class="section_title">Description</h2>
+      </div>
+      <p>This tool works very well for extracting contact data from a website. Many use cases for us in terms of connecting with the community and networking with rugby groups/clubs/people accross the country.</p>
+      
+    <form method="GET" action="{% url 'members:tools_f5crawler' %}">
+        <label for="url_input">Enter URL:</label>
+        <input type="text" id="url_input" name="url">
+        <button type="submit">Go</button>
+    </form>
+      <button>Crawl</button>
+  </div>
+</div>
+{% endblock %}

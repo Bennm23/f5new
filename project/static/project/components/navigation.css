@@ -8,15 +8,12 @@
 .nav_wrapper_hidden {
     position: absolute;
     min-height: 100%;
-    width: 25%;
     background: darkred;
     color: white;
     display: flex;
     transform: translateX(-100%);
     transition: transform 0.1s ease-in;
-    border-top: 5px solid white;
     z-index: 10;
-    text-transform: uppercase;
 }
 
 .nav_wrapper_hidden.show {
@@ -29,27 +26,36 @@
     flex-direction: column;
     gap: 1rem;
     padding: 2rem 0;
+    width: 100%;
+}
 
-    .section_title {
-        text-transform: uppercase;
-        text-align: center;
-        padding: .5rem;
-        background: black;
-        font-size: 1.4rem;
-        letter-spacing: .25rem;
-        border: 1px solid white;
-    }
+.nav_group .section_title {
+    letter-spacing: .25rem;
+    padding-left: 1rem;
+    padding-right: 3rem;
 }
 
 .nav_list {
     margin: 0;
-    padding: 0;
+    padding: 1rem 0;
     display: flex;
     flex-direction: column;
-    gap: 1rem;
     list-style-type: none;
-    text-align: center;
+    font-size: 1.4em; 
+}
+
+.navlink {
+    color: rgb(227, 227, 227);
+    text-decoration: none;
     font-size: 1.1em;
+    display: block;
+    padding: .25rem 0;
+    padding-left: 1rem;
+    width: auto;
+}
+
+.navlink:hover {
+    background-color: black;
 }
 
 .nav_wrapper_hidden h1 {
