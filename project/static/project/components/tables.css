@@ -1,0 +1,22 @@
+.f5-table {
+    border-collapse: collapse;
+    border: 1px solid #a2a9b1;
+    margin-top: 1rem;
+}
+
+.f5-table th, .f5-table td {
+    border: 1px solid #a2a9b1;
+    text-align: left;
+    width: fit-content;
+    padding: 5px; 
+}
+
+.f5-table th {
+    background-color: #b9b9b9;
+    text-align: center;
+    font-weight: bold;
+}
+
+.f5-table tr:nth-child(even) {
+    background-color: #f8f9fa;
+}

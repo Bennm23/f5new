@@ -57,3 +57,9 @@ select {
     border: none;
     color: white;
 }
+
+input[type="checkbox"] {
+    width: 20px;  /* or any other size */
+    height: 20px;
+    accent-color: darkred;
+}
