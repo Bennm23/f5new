@@ -13,11 +13,18 @@ def get_rugby_fact():
         # Updated API call for OpenAI using Completion.create
         response = openai.completions.create(
             model="text-davinci-003",
-            prompt="Tell me an interesting fact about rugby or about a rugby player's statistics, or the rugby world cup.",
+            prompt="Give me an interesting rugby fact about historical matches, remarkable events, or information about individual players.",
             max_tokens=60
         )
 
-        fact = response.choices[0].text.strip()
+        response = openai.chat.completions.create(
+            model="gpt-4",
+            messages=[
+                {"role": "system", "content": "Give me an interesting rugby fact about historical matches, remarkable events, or information about individual players."},
+            ]
+        )
+
+        fact = response.choices[0].message.content
 
         # Cache the fact for 24 hours (86400 seconds)
         cache.set('rugby_fact', fact, 86400)
