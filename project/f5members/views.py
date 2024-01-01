@@ -1,13 +1,11 @@
 from .models import Member
-from f5teams.models import Team
-from f5blogs.models import BlogPost
 from django.contrib import messages
 from f5index.models import SupportSubmission
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import Group
 from django.shortcuts import get_object_or_404, redirect, render
-from .forms import CreateUserForm, EditUserForm, LoginUserForm
+from .forms import AdminCreateUserForm, CreateUserForm, AdminEditUserForm, LoginUserForm
 from f5members.models import Member, ProfilePicture
 from .decorators import group_access_only
 
@@ -31,14 +29,26 @@ def tools_f5crawler(request):
     return render(request, 'f5members/admintools/f5crawler.html', context)
 
 @group_access_only("Staff", view_to_return="members:error", message="Tried to access a Staff page. You are not a Staff.")
-def manage_users(request):
+def tools_create_member(request):
+    if request.method == 'POST':
+        form = AdminCreateUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('members:manage_members')
+    else:
+        form = AdminCreateUserForm()
+
+    return render(request, 'f5members/admintools/create_member.html', {'form': form})
+
+@group_access_only("Staff", view_to_return="members:error", message="Tried to access a Staff page. You are not a Staff.")
+def manage_members(request):
     members = Member.objects.all()
 
     context = {
-        'users' : members,
+        'members' : members,
     }
     
-    return render(request, 'f5members/admintools/manage_users.html', context)
+    return render(request, 'f5members/admintools/manage_members.html', context)
 
 @login_required(login_url='members:login_member')
 def dashboard(request):
@@ -107,33 +117,22 @@ def create_member(request):
     }  
     return render(request, 'f5members/create_member.html', context)
 
-@login_required(login_url='members:login_member')
-def edit_member(request):
-    # Fetch the current user's profile
-    member = request.user
-    current_profile = request.user.profile
+@group_access_only("Staff", view_to_return="members:error", message="Tried to access a Staff page. You are not a Staff.")
+def edit_member(request, member_id):
+    member = get_object_or_404(Member, pk=member_id)
+    if request.method == 'POST':
+        form = AdminEditUserForm(request.POST, instance=member)
 
-    # Fetch all profile pictures
-    profile_pictures = ProfilePicture.objects.all()
+        member = form.save()
 
-    # Check if a profile picture has been selected (query parameter 'selected_pic')
-    selected_pic_id = request.GET.get('selected_pic')
-    if selected_pic_id:
-        try:
-            selected_pic = ProfilePicture.objects.get(id=selected_pic_id)
-            member.profile = selected_pic
-            member.save()
-            # Redirect after saving, to avoid re-submission on refresh
-            return redirect('members:edit_member')
-        except ProfilePicture.DoesNotExist:
-            # Handle the case where the profile picture doesn't exist
-            pass
+        if form.is_valid():
+            return redirect('members:manage_members')
+    else:
+        form = AdminEditUserForm(instance=member)
 
     context = {
-        'member': member,
-        'profile_pictures': profile_pictures,
-        'selected_pic_id': selected_pic_id,
-        'current_profile': current_profile,
+        'form': form,
+        'member_id': member_id,
     }
     return render(request, 'f5members/edit_member.html', context)
 

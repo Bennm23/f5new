@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block loadcss %}
+  {% load static %}
+  <link rel="stylesheet" href="{% static 'f5members/f5members.css' %}">
+  <link rel="stylesheet" href="{% static 'project/forms.css' %}">
+{% endblock %}
+
+{% block title %}
+Admin Create
+{% endblock %}
+
+{% block content %}
+<div class="section">
+  <div class="in_margins_60">
+    <h2 class="section_title">Create via admin</h2>
+    <div class="form_wrapper">
+      <form class="authform" method="post" action="{% url 'members:tools_create_member' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="submit" type="submit">Create</button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
