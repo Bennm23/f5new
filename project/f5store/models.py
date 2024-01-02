@@ -17,6 +17,7 @@ class Category(models.Model):
 
 class Product(models.Model):
     stripe_product_id = models.CharField(max_length=255, blank=True, null=True)
+    stripe_price_id = models.CharField(max_length=255, blank=True, null=True)
     stripe_product_desc = models.CharField(max_length=149, blank=True, null=True)
     name = models.CharField(max_length=255)
     thumbnail = models.CharField(max_length=50, default="https://i.imgur.com/pcq1IAz.jpeg")
