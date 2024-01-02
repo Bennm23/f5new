@@ -59,8 +59,8 @@ def create_stripe_checkout_session(price_id):
                 'quantity': 1,
             }],
             mode='payment',
-            success_url='YOUR_SUCCESS_URL',
-            cancel_url='YOUR_CANCEL_URL',  
+            success_url='http://localhost:8000/store/checkout_success/',
+            cancel_url='http://localhost:8000/store/checkout_error/',  
         )
         return session.url
     except stripe.error.StripeError as e:

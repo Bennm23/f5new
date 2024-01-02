@@ -103,3 +103,21 @@ def delete(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     product.delete()
     return HttpResponseRedirect(reverse('store:home'))
+
+def checkout_error(request):
+    message = request.GET.get('message', 'An error occured during checkout the checkout process, you will not be charged.')
+    
+    context = {
+        'message': message,
+    }
+
+    return render(request, 'f5store/checkout_error.html', context)
+
+def checkout_success(request):
+    message = request.GET.get('message', 'Your checkout process was successful!')
+    
+    context = {
+        'message': message,
+    }
+
+    return render(request, 'f5store/checkout_success.html', context)
