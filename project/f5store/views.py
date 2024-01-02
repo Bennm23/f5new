@@ -5,7 +5,7 @@ from django.urls import reverse
 from .forms import ProductForm, ProductSearchForm
 from .models import Product, Category, Material
 
-from .services import create_stripe_product
+from .services import create_stripe_product, create_stripe_product_with_price
 
 def index(request):
     # Fetch the most recent three products for the 'recent_products' context
@@ -45,9 +45,19 @@ def create(request):
             # Create the product in Stripe and get the Stripe product ID
             stripe_product_id = create_stripe_product(product.name, product.stripe_product_desc)
 
-            if stripe_product_id:
+            # convert price to smallest ammount
+            unit_amount = int(float(str(product.price)) * 100)
+
+            stripe_product_id, stripe_price_id = create_stripe_product_with_price(
+                product.name, 
+                product.stripe_product_desc, 
+                unit_amount,
+            )
+
+            if stripe_product_id and stripe_price_id:
                 # Update the local product with Stripe product ID and save
                 product.stripe_product_id = stripe_product_id
+                product.stripe_price_id = stripe_price_id
                 product.save()
                 return HttpResponseRedirect(reverse('store:home'))
             else:
