@@ -53,7 +53,7 @@ def create_stripe_product_with_price(name, description, unit_amount, currency='u
 def create_stripe_checkout_session(price_id):
     try:
         session = stripe.checkout.Session.create(
-            payment_method_types=['card'],
+            payment_method_types=['card', 'apple_pay', 'google_pay'],
             line_items=[{
                 'price': price_id,
                 'quantity': 1,
