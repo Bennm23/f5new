@@ -21,10 +21,18 @@
       <div class="product_description">
         {{ product.description|safe }}
       </div>
+
+      {% if product.quantity > 0 %}
       <div class="action_links">
-        <a class="disabled more_info_link" href="#">More Info</a>
-        <a class="purchase_link" href="#">Purchase</a>
+        <a class="more_info_link disabled" href="#">More Info</a>
+        <a class="purchase_link" href="{% url 'store:initiate_checkout' product_id=product.id %}">Purchase</a>
       </div>
+      {% else %}
+      <div class="action_links">
+        <a class="more_info_link disabled" href="#">More Info</a>
+        <a class="purchase_link disabled" href="#">SOLD OUT</a>
+      </div>
+      {% endif %}
     </div>
 
   </div>
